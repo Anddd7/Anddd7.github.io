@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        Scala学习整理[第十一-十三章 类型+特质和其应用+包][Programming In Scala] - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i>  </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar">
+            <img src="/assets/avatar.jpeg" />
+        </div>
+        <div class="name">
+            <i>Anddd7</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第十一章-类型结构"><span class="toc-text">第十一章 类型结构</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+        <div class="index-about-mobile">
+            <i>  </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Scala学习整理[第十一-十三章 类型+特质和其应用+包][Programming In Scala]
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2018-01-06 21:20:16</span></span>
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h2 id="第十一章-类型结构"><a href="#第十一章-类型结构" class="headerlink" title="第十一章 类型结构"></a>第十一章 类型结构</h2><p><li><strong>Any</strong></li></p>
+<p><ul>- 公共基类 ,定义了基本的equals(==/!=的实现)/##(hashCode)/toString等方法<br><strong>AnyVal</strong></ul></p>
+<p><li>所有内建类型的父类 ,Byte,Short,Char,Int,Long,Float,Double,Boolean(对应JAVA基本类型),Unit(void) <br><br>类型间使用隐式转换 ,用implicit声明一个转换函数并import到目标点 ,遇到类型不匹配会调用相关的转换函数</li><br><strong>AnyRef</strong></p>
+<ul>
+<li>所有引用类型的基类 ,类似于Java中的java.lang.Object<br><strong>Null Nothing</strong></li>
+<li>底层类型</li>
+<li>Null表示null引用(AnyRef的子类)</li>
+<li>Nothing是Null的子类 ,没有任何实例 ,通常在程序的非正常中止时作为”无”的返回值<br><code>`</code><br>def divide(x:Int,y:Int):Int=<br>if(y!=0) x/y<br>else error(“Cannot divide by Zero”)</li>
+</ul>
+<p>def error(message:String) :Nothing =<br>throw new RuntimeException(message)</p>
+<pre><code>
+&gt; 
+&lt;p&gt;如果在Java中你需要在错误时候返回一个默认结果 ,因为函数需要返回Int &lt;br/&gt;
+  这里则可以直接返回Nothing(子类) ,并由外界函数检查&lt;/p&gt;
+
+
+## 第十二章 特质(类似接口 ,应用更广和复杂)
+
+</code></pre><p>package SecondWithProgrammingInScala</p>
+<p>package Zoo {</p>
+<p>  import scala.io.StdIn</p>
+<p>  /**</p>
+<pre><code>* trait 特质
+* 是重用代码的一个基本单位 用于封装方法和变量
+* 类似于Java的接口 可以继承多个trait(只能继承一个class) 可以有实现
+* =java的 interface+abstract class
+*
+* 使用一个动物园来描述 继承和特质
+* 组合是have-a  继承是is-a
+*/
+</code></pre><p>  //可以用trait做大多数事 包括设置字段和状态值<br>  //但是无法像类一样创建构造参数<br>  //因此scala倾向于胖接口设计 因为在接口上可以进行处理 可以减少实现者的压力<br>  //同时调用者可以从胖接口的多种方法上获利<br>  abstract class Animal {<br>    def bark: Unit<br>  }</p>
+<p>  trait Body {<br>    def body: String<br>  }</p>
+<p>  trait Color {<br>    private val defaultColor = Array(“红”, “橙”, “黄”, “绿”, “青”, “蓝”, “紫”)</p>
+<pre><code>def color: String = {
+  defaultColor((new util.Random).nextInt(defaultColor.length))
+}
+</code></pre><p>  }</p>
+<p>  /**</p>
+<pre><code>* 从下面例子可见
+* 1.abstract只能继承一个 ,trait特质可以有多个(with连接)
+* 2.trait特质也可以设置内部变量 ,可以设置使用范围(private只能在特质内)
+* 3.应用胖接口设计 ,对一些接口可以在特质中提前实现 ,不必交给使用者(相比java的接口)
+*/
+</code></pre><p>  class Cat extends Animal with Color with Body {<br>    println(“你抓住了一只” + color + “色的” + body + “猫”)</p>
+<pre><code>override def bark: Unit = println(&quot;喵喵喵&quot;)
+
+override def body: String = &quot;小&quot;
+</code></pre><p>  }</p>
+<p>  class Dog extends Animal with Color with Body {<br>    println(“你抓住了一只” + color + “色的” + body + “狗”)</p>
+<pre><code>override def bark: Unit = println(&quot;汪汪汪&quot;)
+
+override def body: String = &quot;大&quot;
+</code></pre><p>  }</p>
+<p>  class Zoo {<br>    //private 只能类/对象本身访问<br>    //protect 类和派生类可访问<br>    //public 默认权限 公开访问<br>    private var animalMap: Map[String, Animal] = Map()<br>    initZoo</p>
+<pre><code>def findAnimal(name: String): Animal = {
+  animalMap(name)
+}
+
+private def initZoo: Unit = {
+  //多态
+  animalMap += (&quot;dog&quot; -&gt; new Dog)
+  animalMap += (&quot;cat&quot; -&gt; new Cat)
+}
+</code></pre><p>  }</p>
+<p>  object ZooMgnt {<br>    def main(args: Array[String]): Unit = {<br>      val zoo = new Zoo</p>
+<pre><code>  var line = &quot;&quot;
+  while (true) {
+    line = StdIn.readLine()
+    try {
+      zoo.findAnimal(line.trim.toLowerCase).bark
+    } catch {
+      case ex: Exception =&gt; println(&quot;动物园里还没有这种动物&quot;)
+    }
+  }
+}
+</code></pre><p>  }</p>
+<p>}</p>
+<p>//胖接口应用 : Ordered Trait<br>//Ordered Trait 接口内部利用compare函数 ,实现了大于小于等其他比较 ,因此用户只需要实现compare函数就可以使用其他比较符号<br>//override def compare</p>
+<p>package Queue {</p>
+<p>  import scala.collection.mutable.ArrayBuffer</p>
+<p>  /**</p>
+<pre><code>* 使用Trait处理可叠加的修改操作 创建对象时混合trait
+*/
+</code></pre><p>  //定义一个队列<br>  abstract class IntQueue {<br>    //返回队首<br>    def get(): Int</p>
+<pre><code>//加入到队尾
+def put(x: Int)
+</code></pre><p>  }</p>
+<p>  class BasicIntQueue extends IntQueue {<br>    private val buf = new ArrayBuffer[Int]</p>
+<pre><code>def get() = buf.remove(0)
+
+def put(x: Int) {
+  buf += x
+}
+
+def show {
+  println(buf)
+}
+</code></pre><p>  }</p>
+<p>  //trait继承基类 保证继承trait的只能是基类的子类(具有相同的函数)<br>  //如果调用的super.put是一个没有实现的抽象函数 那么在重载的函数前面也要加上abstract<br>  //那么在最后实现的时候 调用的super.put会指向 super-&gt;IntQueue-&gt;IntQueue子类的put实现<br>  //否则会去寻找IntQueue的实现<br>  trait Doubling extends IntQueue {<br>    //利用trait重载函数<br>    abstract override def put(x: Int) {<br>      //重载的函数调用父类函数 =&gt; 父类函数被其子类实现 =&gt; 调用子类实现<br>      super.put(2 * x)<br>    }<br>  }</p>
+<p>  trait Incrementing extends IntQueue {<br>    abstract override def put(x: Int) {<br>      super.put(x + 1)<br>    }<br>  }</p>
+<p>  trait Filtering extends IntQueue {<br>    abstract override def put(x: Int) {<br>      if (x &gt;= 0) super.put(x)<br>    }<br>  }</p>
+<p>  object DemoApp {<br>    def main(args: Array[String]): Unit = {</p>
+<pre><code>  val basicQueue = new BasicIntQueue
+  val doubleQueue = new BasicIntQueue with Doubling
+  val incrementQueue = new BasicIntQueue with Incrementing
+  val filterQueue = new BasicIntQueue with Filtering
+
+  Array(10, 2, 33, -21, -1, 4, -3).foreach(e =&gt; {
+    basicQueue.put(e)
+    doubleQueue.put(e)
+    incrementQueue.put(e)
+    filterQueue.put(e)
+  })
+
+  Array(basicQueue, doubleQueue, incrementQueue, filterQueue).foreach(e =&gt; {
+    e.show
+  })
+}
+</code></pre><p>  }<br>}</p>
+<pre><code>
+## 第十三章 包和引用
+
+&gt; 
+在之前的代码中已经有所体现 ,包和引用的规则与Java也比较类似 .作用域有更详细的控制方法 .(注意代码中的包名)
+
+
+</code></pre><p>package SecondWithProgrammingInScala.Package</p>
+<p>/**</p>
+<ul>
+<li>包和引用</li>
+<li>之前的代码中已经展示过</li>
+<li>在scala中 ,可以在同一个文件中定义多个包 ,并且设置各自包内的类的访问权限</li>
+<li>import也可以在任意地方使用 ,并且像局部变量 ,有着应用域<br>*/</li>
+</ul>
+<p>//在文件中还可以定义package用来分隔文件<br>package navigation {</p>
+<p>  import SecondWithProgrammingInScala.Package.navigation</p>
+<p>  //private[x]  protect[x]<br>  // x可以是包/对象/类 表示允许访问的范围<br>  private[Package] class Navigator {</p>
+<pre><code>protected[navigation] def useStarChart() {}
+
+//内部类
+class LegOfJourney {
+  private[Navigator] val distance = 100
+}
+
+
+private[this] var speed = 200
+
+def demo: Unit = {
+  val other = new Navigator
+  // private[this] 只在创建该实例中可用 这里使用了new 外界无法读取
+  //other.speed
+
+  val leg = new LegOfJourney
+  val dis = leg.distance
+}
+</code></pre><p>  }</p>
+<p>  class NavDemo {<br>    val navigator = new Navigator<br>    navigator.useStarChart()</p>
+<pre><code>//使用内部类
+val leg = new navigator.LegOfJourney
+//distance是Navigator类下可访问
+//val dis = leg.distance
+</code></pre><p>  }</p>
+<p>}</p>
+<p>package Launch {<br>  //引入包<br>  import FirstInShiyanlou.Package.Launch<br>  import navigation._</p>
+<p>  object Vehicle {<br>    //Navigator是Package包下可访问<br>    private[Launch] val guide = new Navigator</p>
+<pre><code>//useStarChart是Navigation包下可访问
+//guide.useStarChart //error
+
+//使用内部类
+val leg = new guide.LegOfJourney
+//distance是Navigation包下可访问
+//val dis = leg.distance  //error
+</code></pre><p>  }<br>}<br><code>`</code></p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span> PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span> UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

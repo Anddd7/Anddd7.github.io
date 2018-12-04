@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        单点登录SSO（Single Sign On） - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i>  </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar">
+            <img src="/assets/avatar.jpeg" />
+        </div>
+        <div class="name">
+            <i>Anddd7</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Cookie"><span class="toc-text">Cookie</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JSONP"><span class="toc-text">JSONP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#重定向"><span class="toc-text">重定向</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+        <div class="index-about-mobile">
+            <i>  </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        单点登录SSO（Single Sign On）
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2018-01-06 21:20:16</span></span>
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <p>单点登录是一次登录 ,可以访问多个应用 .在复杂的软件体系中 ,减少登录的操作时间 .</p>
+<h2 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h2><p>登陆后 ,将登录成功的凭证(账号密码/Ticket/Token)放在Cookie(公共域名或者父域名下) .登录其他应用的时候带上这个Cookie ,其他应用只需要校验Cookie里的信息就可以判断是否登录 .</p>
+<p>缺点 : 不能跨域(硬伤)/Cookie不安全(加密md5验证)</p>
+<p><li>Cookie通过域名区分 ,浏览器只会传递Cookie给同一域名下的网页 .</li></p>
+<p><blockquote><br>通过Domain和Path细分 : 域名是倒叙 ,表示父子结构 ;Path表示主机上的访问路径 .</blockquote></p>
+<p><blockquote></blockquote></p>
+<p></p><p>baidu.com    适用百度下所有子应用 <br><br>    baike.baidu.com    只适用百度百科 <br><br>    baike.baidu.com/link    只适用百科link路径下的请求</p><br><br><p></p>
+<ul>
+<li>但只是看起来安全 : 例如之前使用百度搜索关键字”word” ,到另一个嵌入了百度广告系统的网站B ,B里面的广告直接和”word”相关 .</li>
+<li>使用百度搜索时 ,将关键字写入较高级别的Cookie ;因为广告系统同属Baidu ,进入网站B时加载广告系统 ,将Cookie带入 ,广告系统获取了搜索的关键字 ,自动推荐 .但实际上这是一种隐私暴露 .</li>
+</ul>
+<p>但只是看起来安全 : 例如之前使用百度搜索关键字”word” ,到另一个嵌入了百度广告系统的网站B ,B里面的广告直接和”word”相关 .</p>
+<h2 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a>JSONP</h2><p>通过父应用进行登录 ,将登录凭证存放在父应用Session中 .登录子引用时 ,通过Cookie信息(只包含简单的用户名) ,调用父应用的验证接口 ,由父应用告诉是否已经登陆过 .避免Cookie的敏感信息存放本地的一些问题 .</p>
+<p>缺点 :  <strong>(已知加密算法时)</strong> 将子应用访问引到伪造的父应用(绑定本地host)上 / 伪造响应请求给子引用直接登录 / 一定程度上的跨域(需要共享父应用的Cookie)</p>
+<h2 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h2><p>设置一个单独的登录系统SSOSite ,访问网站A的请求(请求参数中包含请求路径)都被重定向到SSOSite ,进行登陆后创建Cookie ,并重定向到目标网站A .再次访问B时 ,也重定向到SSOSite ,此时已有Cookie(SSO的) ,返回并重定向到B .</p>
+<blockquote>
+</blockquote>
+<p>参考 <a href="http://www.onmpw.com/tm/xwzj/network_145.html" target="_blank" rel="noopener">SSO单点登录三种情况的实现方式详解</a> 最后一种</p>
+<p><strong>单点登录理解并不困难 ,主要在于解决 跨域和安全性 上需要诸多考虑 .</strong></p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span> PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span> UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

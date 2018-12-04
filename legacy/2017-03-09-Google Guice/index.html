@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        Google Guice - 轻量级 DI 依赖注入框架 - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i>  </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar">
+            <img src="/assets/avatar.jpeg" />
+        </div>
+        <div class="name">
+            <i>Anddd7</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Guice简单使用"><span class="toc-text">Guice简单使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开始"><span class="toc-text">开始</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用"><span class="toc-text">使用</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+        <div class="index-about-mobile">
+            <i>  </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Google Guice - 轻量级 DI 依赖注入框架
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2018-01-06 21:20:16</span></span>
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h2 id="Guice简单使用"><a href="#Guice简单使用" class="headerlink" title="Guice简单使用"></a>Guice简单使用</h2><blockquote>
+</blockquote>
+<p>示例代码 <a href="https://github.com/Anddd7/Demo-Guice" target="_blank" rel="noopener">Anddd7/Demo-Guice</a><br>参考了 博客 - <a href="http://www.cnblogs.com/youngC/archive/2012/12/21/2828419.html?utm_source=tuicool&amp;utm_medium=referral" target="_blank" rel="noopener">Google Guice 系列教程</a> 和 Github - <a href="https://github.com/greengerong/guice-demo" target="_blank" rel="noopener">greengerong/guice-demo</a></p>
+<p><code>Guice</code>是一个DI (依赖注入) 框架 ,和Spring的依赖注入基本相同</p>
+<ul>
+<li>轻量级 ,启动迅速</li>
+<li>使用比较简单</li>
+</ul>
+<p>但是</p>
+<ul>
+<li>只有依赖注入的功能 ,如果是企业级的程序 ,需要整合其他资源 ,Spring的生态圈还是好很多的</li>
+</ul>
+<h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><ul>
+<li>引入依赖<code>@Inject</code> ,同Spring <code>@Autowired</code></li>
+</ul>
+<pre><code>public class MessageServiceImpl implements MessageService {
+
+    @Inject
+    MessageDao messageDao;
+
+    public void sendMessage(Message msg) {
+        messageDao.sendMessage(msg);
+    }
+
+    public Message receiveMessage() {
+        return messageDao.receiveMessage();
+    }
+}
+</code></pre><ul>
+<li>注入对象 <code>@Provide</code> ,同Spring <code>@Bean</code> ; 同时会将方法中包含的其他对象注入(nameService1,nameService2)</li>
+</ul>
+<pre><code>@Provides
+public List&lt;BookService&gt; getAllItemServices(@Named(&quot;book1&quot;) BookService nameService1, @Named(&quot;book2&quot;) BookService nameService2) {
+    return of(nameService1, nameService2);
+}
+</code></pre><ul>
+<li>依赖管理 <code>AbstractModule</code> ,Spring是通过扫描注解 ,Guice则是按照模块手动控制</li>
+</ul>
+<pre><code>/**
+ * Message模块 依赖管理
+ * 绑定接口和实现
+ */
+public class MessageModule extends AbstractModule {
+
+    protected void configure() {
+        final Binder binder = binder();
+        //interface-impl 依赖关系
+        binder.bind(MessageService.class).to(MessageServiceImpl.class).in(SINGLETON);
+        binder.bind(MessageDao.class).to(MessageDaoImpl.class).in(SINGLETON);
+
+        //单独注入 ,单例
+        binder.bind(SingleScopeBean.class).in(SINGLETON);
+        binder.bind(NoScopeBean.class).in(NO_SCOPE);
+
+        //可以将已经引入的对象绑定到容器中
+        binder.bind(HelloWorld.class).toInstance(helloWorld);
+    }
+
+    private HelloWorld helloWorld;
+
+    public MessageModule(HelloWorld helloWorld) {
+        this.helloWorld = helloWorld;
+    }
+}
+</code></pre><ul>
+<li>多实现</li>
+</ul>
+<pre><code>/**
+ * User模块 依赖管理
+ * &lt;p&gt;
+ * 一个interface是无法绑定不同的impl的 ,可以通过两种方式
+ *      使用Multibinder
+ *      使用注解别名区别
+ */
+public class UserModule extends AbstractModule {
+
+    protected void configure() {
+        final Binder binder = binder();
+
+        //具有多个实现的service ,会以 Set&lt;UserService&gt; 存在
+        final Multibinder&lt;UserService&gt; userServiceMultibinder = Multibinder.newSetBinder(binder, UserService.class);
+        userServiceMultibinder.addBinding().to(EmployeeServiceImpl.class);
+        userServiceMultibinder.addBinding().to(EmployerServiceImpl.class);
+
+        //通过名称绑定
+        binder.bind(BookService.class).annotatedWith(Names.named(&quot;book1&quot;)).to(Book1ServiceImpl.class);
+        binder.bind(BookService.class).annotatedWith(Names.named(&quot;book2&quot;)).to(Book2ServiceImpl.class);
+    }
+
+    /**
+     * 同@Bean ,将返回值作为一个容器对象
+     */
+    @Provides
+    public List&lt;BookService&gt; getAllItemServices(@Named(&quot;book1&quot;) BookService nameService1, @Named(&quot;book2&quot;) BookService nameService2) {
+        return of(nameService1, nameService2);
+    }
+}
+</code></pre><h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><pre><code>public class AppBindTest {
+
+    private static final Logger log = LoggerFactory.getLogger(AppBindTest.class);
+
+    private Injector injector;
+    /**
+     * 创建module(相当于 bean 工厂) ,可加载多个
+     */
+    @Before
+    public void setUp() throws Exception {
+        injector = Guice.createInjector(
+                new MessageModule(new HelloWorld(&quot;Test 初始化&quot;)),//这里的HelloWorld是手动创建 再关联到容器中的
+                new UserModule());
+    }
+
+    /**
+     * 测试绑定已有对象 ,HelloWorld
+     */
+    @Test
+    public void runtimeTest() throws Exception {
+        HelloWorld instance = injector.getInstance(HelloWorld.class);
+        HelloWorld instance2 = injector.getInstance(HelloWorld.class);
+
+        Assert.assertEquals(instance, instance2);
+    }
+
+    /**
+     * 测试依赖注入 @Inject ,通过接口取用 ; Service中包含了Dao
+     */
+    @Test
+    public void injectTest() throws Exception {
+        MessageService instance = injector.getInstance(MessageService.class);
+        instance.sendMessage(new Message(&quot;send&quot;, &quot;土豆土豆 ,我是地瓜&quot;));
+
+        Message receive = instance.receiveMessage();
+        log.debug(receive.toString());
+
+        Assert.assertThat(instance, is(instanceOf(MessageServiceImpl.class)));
+    }
+
+    /**
+     * 测试单例 Singleton
+     */
+    @Test
+    public void singletonTest() throws Exception {
+        SingleScopeBean instance = injector.getInstance(SingleScopeBean.class);
+        SingleScopeBean instance2 = injector.getInstance(SingleScopeBean.class);
+
+        log.debug(instance.toString());
+        log.debug(instance2.toString());
+
+        Assert.assertEquals(instance, instance2);
+    }
+
+    /**
+     * 测试非单例 NoScope
+     */
+    @Test
+    public void noScopeTest() throws Exception {
+        NoScopeBean instance = injector.getInstance(NoScopeBean.class);
+        NoScopeBean instance2 = injector.getInstance(NoScopeBean.class);
+
+        log.debug(instance.toString());
+        log.debug(instance2.toString());
+        Assert.assertNotEquals(instance, instance2);
+    }
+
+    /**
+     * 测试多重绑定 ,取出的是一个Set
+     */
+    @Test
+    public void multiBindTest() throws Exception {
+        Set&lt;UserService&gt; instances = injector.getInstance(
+                new Key&lt;Set&lt;UserService&gt;&gt;() {
+                });
+
+        List&lt;User&gt; users = new ArrayList&lt;User&gt;();
+        instances.forEach(e -&gt; users.addAll(e.getUser()));
+
+        users.forEach(e -&gt; log.debug(e.toString()));
+
+        Assert.assertEquals(4, users.size());
+    }
+
+    /**
+     * 测试 @Provide 装配的对象
+     */
+    @Test
+    public void provideTest() throws Exception {
+        List&lt;BookService&gt; instances = injector.getInstance(new Key&lt;List&lt;BookService&gt;&gt;() {
+        });
+        instances.forEach(e -&gt; log.debug(e.info()));
+
+        Assert.assertEquals(2, instances.size());
+    }
+}
+</code></pre>
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span> PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span> UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

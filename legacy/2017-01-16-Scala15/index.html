@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        Scala学习整理[第二十四-二十六章 抽取器和XML][Programming In Scala] - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i>  </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar">
+            <img src="/assets/avatar.jpeg" />
+        </div>
+        <div class="name">
+            <i>Anddd7</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第二十四章-抽取器"><span class="toc-text">第二十四章 抽取器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第二十五章-注解"><span class="toc-text">第二十五章 注解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第二十六章-使用XML"><span class="toc-text">第二十六章 使用XML</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+        <div class="index-about-mobile">
+            <i>  </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Scala学习整理[第二十四-二十六章 抽取器和XML][Programming In Scala]
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2018-01-06 21:20:16</span></span>
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h2 id="第二十四章-抽取器"><a href="#第二十四章-抽取器" class="headerlink" title="第二十四章 抽取器"></a>第二十四章 抽取器</h2><pre><code>package SecondWithProgrammingInScala
+
+/**
+  * 抽取器
+  *
+  * 抽取器可以在匹配的同时进行分解 ,可以直接抽出里面的值
+  * 相当与 is是非语句 + get方法
+  * 通常配合模式匹配使用 ,在之前章节中匹配并获取数组值 Array(x,y)=&gt; x+y ,也是抽取器
+  *
+  * 之前的模式匹配和样本类 ,标注了case的样本类可以将参数列表作为匹配项
+  * 实质就一个语法糖 ,为样本类同时声称了一个伴生对象(同名object) ,并提供了了apply和unapply
+  * 然后模式匹配时候调用unapply ,用于匹配和拆解参数
+  *
+  * 使用样本类 ,匹配表达式和构造器一致 ,数据和模型是一一对应的
+  * 使用抽取器 ,可以为一个模型添加不同的抽取方式(对Email字串执行多种方式的抽取) ,数据和模型是分开的
+  */
+
+object Email {
+  //抽取方法 : 匹配并分解值
+  def unapply(s: String): Option[(String, String)] = {
+    val parts = s split &quot;@&quot;
+    if (parts.length == 2) Some(parts(0), parts(1)) else None
+  }
+
+  //注入方法 : 相对的
+  def apply(user: String, domain: String) = user + &quot;@&quot; + domain
+}
+
+//比较是否是连续的email
+object TwiceEmail {
+  def unapply(s: String): Option[String] = {
+    val length = s.length / 2
+    val half = s.substring(0, length)
+    if (half == s.substring(length)) Some(half) else None
+  }
+}
+
+//判断是否全为大写
+object UpperCase {
+  //没有设置apply方法 ,在模式匹配时 UpperCase() 是没有参数的
+  //如果想要利用(输出)匹配到的参数 ,可以使用 str @ UpperCase()
+  def unapply(s: String): Boolean = s.toUpperCase == s
+}
+
+//拆解域名
+object Domain {
+  //拆解成seq
+  def unapplySeq(whole: String): Option[Seq[String]] = Some(whole.split(&quot;&quot;&quot;\.&quot;&quot;&quot;))
+}
+
+object ExtractorsApp {
+  //配合模式匹配使用 ,当匹配的是抽取器 ,会自动调用unapply方法获取返回值
+  def parser(s: String) = {
+    s match {
+      case Email(user, domain) =&gt; println(user + &quot; AT &quot; + domain)
+      case _ =&gt; print(&quot;not an email address&quot;)
+    }
+  }
+
+  def userTwiceUpper(s: String): Unit = {
+    s match {
+      case Email(TwiceEmail(user@UpperCase()), domain) =&gt; println(&quot;Twice,Upper :  &quot; + user + &quot; AT &quot; + domain)
+      case Email(user@UpperCase(), domain) =&gt; println(&quot;Upper :  &quot; + user + &quot; AT &quot; + domain)
+      case Email(TwiceEmail(user), domain) =&gt; println(&quot;Twice :  &quot; + user + &quot; AT &quot; + domain)
+
+      case Email(user@UpperCase(), domain@UpperCase()) =&gt; println(&quot;Upper :  &quot; + user + &quot; AT &quot; + &quot;Upper :  &quot; + domain)
+      case _ =&gt; println(&quot;not match :  &quot; + s)
+    }
+  }
+
+  def isSinaEmail(s: String): Boolean = s match {
+    case Email(user, Domain(&quot;sina&quot;, _*)) =&gt; true
+    case _ =&gt; false
+  }
+
+  def main(args: Array[String]): Unit = {
+    val emails = List(&quot;liaoad@asiainfo.com&quot;, &quot;liaoadliaoad@aisainfo.com&quot;, &quot;LIAOLIAO@sina.com&quot;, &quot;LIAOAD@QQ.COM&quot;)
+
+    emails.foreach(userTwiceUpper)
+    emails.foreach(x =&gt; if (isSinaEmail(x)) println(x))
+  }
+}
+
+/**
+  * 正则表达式
+  */
+object RegexApp {
+  def main(args: Array[String]): Unit = {
+    import scala.util.matching.Regex
+    //使用 &quot;&quot;&quot; 三引号表示一个原始字符串 ,里面的字符串默认不为\转义 (\d即匹配数字 ,\.即匹配.)
+    //RichString提供了 .r 方法 ,将字符串转化成Regex
+    val Decimal =
+    &quot;&quot;&quot;(-)?(\d+)(\.\d*)?&quot;&quot;&quot;.r
+    val input = &quot;for -0.1 to 99 by 3&quot;
+
+    //在字符串中查询数字 生成Seq 打印
+    for (s &amp;lt;- Decimal findAllIn input) println(s)
+  }
+}
+</code></pre><h2 id="第二十五章-注解"><a href="#第二十五章-注解" class="headerlink" title="第二十五章 注解"></a>第二十五章 注解</h2><blockquote>
+</blockquote>
+<p>注解和Java的用法基本相同</p>
+<h2 id="第二十六章-使用XML"><a href="#第二十六章-使用XML" class="headerlink" title="第二十六章 使用XML"></a>第二十六章 使用XML</h2><pre><code>package SecondWithProgrammingInScala
+
+/**
+  * 使用XML
+  *
+  * 读写/查询/拆解
+  * scala可以方便的操作xml ,并在里面嵌入代码 ,或是代码中描述xml
+  */
+
+import scala.xml.{Elem, Node, XML}
+
+abstract class CCTherm {
+  val description: String
+  val yearMade: Int
+  val dateObtained: Elem
+  val bookPrice: Int
+  val purchasePrice: Int
+  val condition: Int
+
+  override def toString: String = description
+
+  //序列化
+  def toXml =
+  &amp;lt;cctherm&gt;
+    &amp;lt;description&gt;
+      第二十四章 抽取器package SecondWithProgrammingInScala/**
+  * 抽取器
+  *
+  * 抽取器可以在匹配的同时进行分解 ,可以直接抽出里面的值
+  * 相当与 is是非语句 + get方法
+  * 通常配合模式匹配使用 ,在之前章节中匹配并获取数组值 Array(x,y)=&gt; x+y ,也是抽取器
+  *
+  * 之前的模式匹配和样本类 ,标注了case的样
+    &amp;lt;/description&gt;
+    &amp;lt;yearMade&gt;
+      {yearMade}
+    &amp;lt;/yearMade&gt;
+    &amp;lt;dateObtained&gt;
+      {dateObtained}
+    &amp;lt;/dateObtained&gt;
+    &amp;lt;bookPrice&gt;
+      {bookPrice}
+    &amp;lt;/bookPrice&gt;
+    &amp;lt;purchasePrice&gt;
+      {purchasePrice}
+    &amp;lt;/purchasePrice&gt;
+    &amp;lt;condition&gt;
+      {condition}
+    &amp;lt;/condition&gt;
+  &amp;lt;/cctherm&gt;
+
+  //反序列化(通过搜索节点)
+  def fromXML(node: Node): CCTherm =
+  new CCTherm {
+    override val condition: Int = {
+      node \ &quot;condition&quot;
+    }.text.trim.toInt
+    override val description: String = {
+      node \ &quot;description&quot;
+    }.text
+    override val bookPrice: Int = {
+      node \ &quot;bookPrice&quot;
+    }.text.trim.toInt
+    override val purchasePrice: Int = {
+      node \ &quot;purchasePrice&quot;
+    }.text.trim.toInt
+    override val yearMade: Int = {
+      node \ &quot;yearMade&quot;
+    }.text.trim.toInt
+    override val dateObtained: Elem = XML.loadString({
+      node \ &quot;dateObtained&quot;
+    }.toString.trim)
+  }
+}
+
+object XMLApp {
+
+  //保存到文件
+  def saveAsFile(fileName: String, node: Node) = {
+    XML.save(fileName + &quot;.xml&quot;, node, &quot;UTF-8&quot;, true, null)
+  }
+
+  //从文件读取
+  def getXMLFromFile(fileName: String): Elem = {
+    XML.loadFile(fileName + &quot;.xml&quot;)
+  }
+
+  //只匹配一层
+  def proc(node: Node): String =
+  node match {
+    case &amp;lt;dateObtained&gt;
+      {dateObtained}
+      &amp;lt;/dateObtained&gt; =&gt;
+      &quot;it&#39;s obtained in &quot; + {
+        dateObtained \\ &quot;year&quot;
+      }.toString.trim
+    case _ =&gt; &quot;unknow&quot;
+  }
+
+  def main(args: Array[String]): Unit = {
+    //匿名子类
+    val term = new CCTherm {
+      override val condition: Int = 9
+      override val description: String = &quot;hot dog #5&quot;
+      override val bookPrice: Int = 2199
+      override val purchasePrice: Int = 500
+      override val yearMade: Int = 1952
+      override val dateObtained: Elem =
+        &amp;lt;base&gt;
+          &amp;lt;year&gt;2006&amp;lt;/year&gt;
+          &amp;lt;month&gt;3&amp;lt;/month&gt;
+          &amp;lt;day&gt;12&amp;lt;/day&gt;
+          03.12.2006
+        &amp;lt;/base&gt;
+    }
+
+    //获取xml
+    val termXML = term.toXml
+    println(termXML)
+
+    //保存xml
+    saveAsFile(&quot;XMLUtilTest&quot;, termXML)
+    val xmlFromFile = getXMLFromFile(&quot;XMLUtilTest&quot;)
+
+    //转换成对象
+    val obj = term.fromXML(xmlFromFile)
+    println(obj)
+
+    //将xml转化成text文字
+    val termText = termXML.text
+    println(termText)
+
+    //通过签名找到xml子元素(只在根节点下查找)
+    val description = termXML \ &quot;description&quot;
+    println(description)
+    println(termXML \ &quot;day&quot;)
+
+    //深度搜索查找子元素
+    val dayOfDateObtained = termXML \\ &quot;day&quot;
+    println(dayOfDateObtained)
+
+    //模式匹配查找
+    println(proc(termXML))
+  }
+}
+</code></pre>
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span> PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span> UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

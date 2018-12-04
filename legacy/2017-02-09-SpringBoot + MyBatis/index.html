@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        SpringBoot + MyBatis 重构 Web 应用 - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i>  </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar">
+            <img src="/assets/avatar.jpeg" />
+        </div>
+        <div class="name">
+            <i>Anddd7</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SpringBoot"><span class="toc-text">SpringBoot</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#准备-pom-xml"><span class="toc-text">准备 - pom.xml</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#开始-Application-和-Configuration"><span class="toc-text">开始 - Application 和 Configuration</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#运行"><span class="toc-text">运行</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+        <div class="index-about-mobile">
+            <i>  </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        SpringBoot + MyBatis 重构 Web 应用
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2018-01-06 21:20:16</span></span>
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>　项目构建的时候是截取了另一个项目的部分功能形成的，截取出的功能代码少但项目结构比较复杂，依赖严重 。改写过后，不少代码成了”鸡肋”，搞不清楚谁是谁 。</p>
+<p> web/controller在一块，dao/domain独占一方 ; junit在6个pom。xml中出现了4次，版本还不一样 ; spring/mybatis的配置文件也有好几个，里面的xml代码也是长而杂 。</p>
+<p> <strong>Clean Code</strong>，之前专门买了一本书，讲述代码清洁之道 。 <strong>整洁的代码对项目的开发效率至关重要</strong>，宏观一点，项目结构的清晰，也对后续的开发有所帮助。</p>
+<h1 id="SpringBoot"><a href="#SpringBoot" class="headerlink" title="SpringBoot"></a>SpringBoot</h1><blockquote>
+</blockquote>
+<p>  GitHub示例 <a href="https://github.com/Anddd7/SSM-SpringBoot-Starter" target="_blank" rel="noopener">Anddd7/SSM-SpringBoot-Starter</a>`</p>
+<p> 前一段时间还没正式学习使用Spring时就听说了SpringBoot，还记得学生时代配置SSH，满篇的xml简直是童年阴影(- -如果xml节点还没对齐的话， 那 ……)。  <br><br> SpringBoot可以达到0配置 (- -当然这是不可能的) 快速启动一个Spring应用，对简化配置有显著提升。</p>
+<h1 id="准备-pom-xml"><a href="#准备-pom-xml" class="headerlink" title="准备 - pom.xml"></a>准备 - pom.xml</h1><ul>
+<li>首先还是从Maven配置入手</li>
+</ul>
+<pre><code>&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&amp;lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot;
+         xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+         xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
+    &amp;lt;modelVersion&gt;4.0.0&amp;lt;/modelVersion&gt;
+
+    &amp;lt;groupId&gt;anddd7.boot4ssh&amp;lt;/groupId&gt;
+    &amp;lt;artifactId&gt;SSM-SpringBoot-Starter&amp;lt;/artifactId&gt;
+    &amp;lt;version&gt;1.0-SNAPSHOT&amp;lt;/version&gt;
+    &amp;lt;packaging&gt;jar&amp;lt;/packaging&gt;
+
+    &amp;lt;!--官方推荐使用 spring-boot-starter-parent 包括一些预设配置:
+        1.使用java6编译级别&amp;lt;java.version&gt;1.8&amp;lt;/java.version&gt;
+        2.使用utf-8编码&amp;lt;project.build.sourceEncoding&gt;UTF-8&amp;lt;/project.build.sourceEncoding&gt;
+        3.实现了通用的测试框架 (JUnit, Hamcrest, Mockito).
+        4.智能资源过滤
+        5.智能的插件配置(exec plugin, surefire, Git commit ID, shade).
+
+        不继承也可使用dependcy引入 ,因为scope是import,不再允许在&amp;lt;properties&gt;覆盖第三方包版本
+        如果要使用其他版本，需要在上面的前面添加一个完整的dependency
+        &amp;lt;dependency&gt;
+            &amp;lt;groupId&gt;org.springframework.boot&amp;lt;/groupId&gt;
+            &amp;lt;artifactId&gt;spring-boot-dependencies&amp;lt;/artifactId&gt;
+            &amp;lt;version&gt;1.4.0.RELEASE&amp;lt;/version&gt;
+            &amp;lt;type&gt;pom&amp;lt;/type&gt;
+            &amp;lt;scope&gt;import&amp;lt;/scope&gt;
+        &amp;lt;/dependency&gt;
+    --&gt;
+    &amp;lt;parent&gt;
+        &amp;lt;groupId&gt;org.springframework.boot&amp;lt;/groupId&gt;
+        &amp;lt;artifactId&gt;spring-boot-starter-parent&amp;lt;/artifactId&gt;
+        &amp;lt;version&gt;RELEASE&amp;lt;/version&gt;
+        &amp;lt;relativePath/&gt;
+    &amp;lt;/parent&gt;
+
+    &amp;lt;properties&gt;
+        &amp;lt;project.build.sourceEncoding&gt;UTF-8&amp;lt;/project.build.sourceEncoding&gt;
+        &amp;lt;java.version&gt;1.8&amp;lt;/java.version&gt;
+        &amp;lt;mybatis.version&gt;3.4.2&amp;lt;/mybatis.version&gt;
+        &amp;lt;mybatis-spring.version&gt;1.3.1&amp;lt;/mybatis-spring.version&gt;
+        &amp;lt;spring-boot.version&gt;1.4.4.RELEASE&amp;lt;/spring-boot.version&gt;
+    &amp;lt;/properties&gt;
+
+    &amp;lt;!-- 对应模块的starter包含常用依赖 ,例如starter-web{spring-web,spring-mvc}--&gt;
+    &amp;lt;dependencies&gt;
+
+        &amp;lt;dependency&gt;
+            &amp;lt;groupId&gt;org.springframework.boot&amp;lt;/groupId&gt;
+            &amp;lt;artifactId&gt;spring-boot-starter-web&amp;lt;/artifactId&gt;
+        &amp;lt;/dependency&gt;
+
+        &amp;lt;dependency&gt;
+            &amp;lt;groupId&gt;org.springframework.boot&amp;lt;/groupId&gt;
+            &amp;lt;artifactId&gt;spring-boot-dependencies&amp;lt;/artifactId&gt;
+            &amp;lt;version&gt;${spring-boot.version}&amp;lt;/version&gt;
+            &amp;lt;type&gt;pom&amp;lt;/type&gt;
+            &amp;lt;scope&gt;import&amp;lt;/scope&gt;
+        &amp;lt;/dependency&gt;
+
+        &amp;lt;dependency&gt;
+            &amp;lt;groupId&gt;org.mybatis&amp;lt;/groupId&gt;
+            &amp;lt;artifactId&gt;mybatis&amp;lt;/artifactId&gt;
+            &amp;lt;version&gt;${mybatis.version}&amp;lt;/version&gt;
+        &amp;lt;/dependency&gt;
+        &amp;lt;dependency&gt;
+            &amp;lt;groupId&gt;org.mybatis&amp;lt;/groupId&gt;
+            &amp;lt;artifactId&gt;mybatis-spring&amp;lt;/artifactId&gt;
+            &amp;lt;version&gt;${mybatis-spring.version}&amp;lt;/version&gt;
+        &amp;lt;/dependency&gt;
+
+        &amp;lt;!-- springboot+mybatis官方连接包 --&gt;
+        &amp;lt;dependency&gt;
+            &amp;lt;groupId&gt;org.mybatis.spring.boot&amp;lt;/groupId&gt;
+            &amp;lt;artifactId&gt;mybatis-spring-boot-autoconfigure&amp;lt;/artifactId&gt;
+            &amp;lt;version&gt;1.1.1&amp;lt;/version&gt;
+        &amp;lt;/dependency&gt;
+
+        &amp;lt;dependency&gt;
+            &amp;lt;groupId&gt;org.mybatis.spring.boot&amp;lt;/groupId&gt;
+            &amp;lt;artifactId&gt;mybatis-spring-boot-starter&amp;lt;/artifactId&gt;
+            &amp;lt;version&gt;1.1.1&amp;lt;/version&gt;
+        &amp;lt;/dependency&gt;
+
+        &amp;lt;!-- dbcp 数据源 --&gt;
+        &amp;lt;dependency&gt;
+            &amp;lt;groupId&gt;commons-dbcp&amp;lt;/groupId&gt;
+            &amp;lt;artifactId&gt;commons-dbcp&amp;lt;/artifactId&gt;
+            &amp;lt;version&gt;1.4&amp;lt;/version&gt;
+        &amp;lt;/dependency&gt;
+
+        &amp;lt;dependency&gt;
+            &amp;lt;groupId&gt;mysql&amp;lt;/groupId&gt;
+            &amp;lt;artifactId&gt;mysql-connector-java&amp;lt;/artifactId&gt;
+            &amp;lt;version&gt;5.1.38&amp;lt;/version&gt;
+        &amp;lt;/dependency&gt;
+
+    &amp;lt;/dependencies&gt;
+
+    &amp;lt;build&gt;
+        &amp;lt;plugins&gt;
+            &amp;lt;!--用于将项目打包成fat jar（executable jar）--&gt;
+            &amp;lt;plugin&gt;
+                &amp;lt;groupId&gt;org.springframework.boot&amp;lt;/groupId&gt;
+                &amp;lt;artifactId&gt;spring-boot-maven-plugin&amp;lt;/artifactId&gt;
+            &amp;lt;/plugin&gt;
+            &amp;lt;!-- mybatis 工具 --&gt;
+            &amp;lt;plugin&gt;
+                &amp;lt;groupId&gt;org.mybatis.generator&amp;lt;/groupId&gt;
+                &amp;lt;artifactId&gt;mybatis-generator-maven-plugin&amp;lt;/artifactId&gt;
+                &amp;lt;version&gt;1.3.2&amp;lt;/version&gt;
+                &amp;lt;configuration&gt;
+                    &amp;lt;verbose&gt;true&amp;lt;/verbose&gt;
+                    &amp;lt;overwrite&gt;true&amp;lt;/overwrite&gt;
+                &amp;lt;/configuration&gt;
+            &amp;lt;/plugin&gt;
+        &amp;lt;/plugins&gt;
+    &amp;lt;/build&gt;
+&amp;lt;/project&gt;
+</code></pre><ul>
+<li>如果使用Jetty ，需要替换掉内置的Tomcat </li>
+</ul>
+<pre><code>&amp;lt;dependency&gt;
+    &amp;lt;groupId&gt;org.springframework.boot&amp;lt;/groupId&gt;
+    &amp;lt;artifactId&gt;spring-boot-starter-web&amp;lt;/artifactId&gt;
+    &amp;lt;version&gt;${spring-boot.version}&amp;lt;/version&gt;
+    &amp;lt;!-- 使用jetty启动 ,先移除tomcat组件 --&gt;
+    &amp;lt;exclusions&gt;
+        &amp;lt;exclusion&gt;
+        &amp;lt;groupId&gt;org.springframework.boot&amp;lt;/groupId&gt;
+        &amp;lt;artifactId&gt;spring-boot-starter-tomcat&amp;lt;/artifactId&gt;
+        &amp;lt;/exclusion&gt;
+    &amp;lt;/exclusions&gt;
+&amp;lt;/dependency&gt;
+
+&amp;lt;!-- 添加jetty支持 --&gt;
+&amp;lt;dependency&gt;
+    &amp;lt;groupId&gt;org.springframework.boot&amp;lt;/groupId&gt;
+    &amp;lt;artifactId&gt;spring-boot-starter-jetty&amp;lt;/artifactId&gt;
+    &amp;lt;version&gt;${spring-boot.version}&amp;lt;/version&gt;
+&amp;lt;/dependency&gt;
+</code></pre><h1 id="开始-Application-和-Configuration"><a href="#开始-Application-和-Configuration" class="headerlink" title="开始 - Application 和 Configuration"></a>开始 - Application 和 Configuration</h1><blockquote>
+</blockquote>
+<p>引入Maven后 ，准备一个Controller ，然后通过SpringApplication启动Spring就可以使用了 <a href="http://blog.csdn.net/xiaoyu411502/article/details/47864969" target="_blank" rel="noopener">Spring Boot 快速入门 </a>；需要对Spring进行一些配置的时候（和Mybatis融合、配置数据源等）就需要将Application单独出来 。</p>
+<ul>
+<li>1 Spring配置application.xml -&gt; application.yaml</li>
+</ul>
+<pre><code># application.yaml
+# Server settings (ServerProperties)
+# 以数据为中心的标记语言 ,易于读写 ,替代xml
+# springboot 默认是8080端口 ,没有项目地址
+
+# 服务器设置
+server:
+  port: 8080
+  address: 127.0.0.1
+  sessionTimeout: 30
+  contextPath: /testboot
+
+  # 内置tomcat设置
+tomcat:
+  accessLogEnabled: false
+  protocolHeader: x-forwarded-proto
+  remoteIpHeader: x-forwarded-for
+  basedir:
+  backgroundProcessorDelay: 30 # secs
+</code></pre><ul>
+<li>2 设置SpringBoot启动入口</li>
+</ul>
+<pre><code>package anddd7.springboot;
+
+import anddd7.springboot.configuration.MapperScannerConfiguration;
+import anddd7.springboot.configuration.MyBatisConfiguration;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Import;
+
+/**
+ * 将spring的启动和配置单独出来
+ *
+ * @SpringBootApplication 等价于 :
+ * -     @Configuration 通过@ImportResource引入xml文件,@Value读取键值 ,@Bean读取配置的bean实例
+ * -     @ComponentScan 同xml中的自动扫描组件
+ * -     @EnableAutoConfiguration
+ * @EnableAutoConfiguration 下包含了一系列自动配置类的清单 ,并按顺序执行 ,在Spring3时代就有@EnableWebMvc注解
+ * [SpringBoot之@EnableAutoConfiguration原理及自定义扩展 ](http://blog.csdn.net/xiaoyu411502/article/details/52770723)
+ * &amp;lt;p&gt;
+ * MongoAutoConfiguration.class为例 :
+ * -    使用了@Configuration ,标识是一个配置
+ * -    定义了必要的Mongo对象@Bean
+ * -    使用了@EnableConfigurationProperties ,将application.properties配置文件中的属性映射到Java类中 ,便于使用
+ * -    @ConditionOnClass表明加载条件 - Mongo.class位于类路径上
+ * -    @ConditionalOnMissingBean说明Spring Boot仅仅在当前上下文中不存在Mongo对象时，才会实例化一个Bean
+ */
+
+@Import({MyBatisConfiguration.class, MapperScannerConfiguration.class})
+@SpringBootApplication
+public class Application {
+
+    public static void main(String[] args) {
+
+        //一键自动启动
+        SpringApplication.run(Application.class, args);
+
+        //配置启动
+//        SpringApplication app = new SpringApplication();
+//        app.setBannerMode(Banner.Mode.OFF);
+
+        //链式API构建器
+//        new SpringApplicationBuilder()
+//                .bannerMode(Banner.Mode.OFF)
+//                .child(Application.class)
+//                .run();
+
+    }
+}
+</code></pre><blockquote>
+</blockquote>
+<p><strong>依旧是@SpringBootApplication，只不过@Import了一些配置类，使用过xml配置Mybatis和Spring的童鞋对这些类名一定很熟悉，其实就是将原来xml转化为了Java类配置 — <a href="http://www.w2bc.com/article/177173" target="_blank" rel="noopener">@Configuration注解</a></strong></p>
+<ul>
+<li>3.1 数据源</li>
+</ul>
+<pre><code>package anddd7.springboot.configuration;
+
+import org.apache.commons.dbcp.BasicDataSource;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+
+
+/**
+ * 对应xml中datasource的配置
+ */
+@Configuration
+@PropertySource(&quot;classpath:prop.properties&quot;)
+public class DataSourceConfiguration {
+    @Value(&quot;${jdbc.driver}&quot;)
+    private String driver;
+    @Value(&quot;${jdbc.url}&quot;)
+    private String url;
+    @Value(&quot;${jdbc.username}&quot;)
+    private String username;
+    @Value(&quot;${jdbc.password}&quot;)
+    private String password;
+    @Value(&quot;${jdbc.maxActive}&quot;)
+    private int maxActive;
+    @Value(&quot;${jdbc.maxIdel}&quot;)
+    private int maxIdel;
+    @Value(&quot;${jdbc.maxWait}&quot;)
+    private long maxWait;
+
+    @Bean(name = &quot;dataSource&quot;)
+    public BasicDataSource dataSource() {
+        BasicDataSource dataSource = new BasicDataSource();
+        dataSource.setDriverClassName(driver);
+        dataSource.setUrl(url);
+        dataSource.setUsername(username);
+        dataSource.setPassword(password);
+        dataSource.setMaxActive(maxActive);
+        dataSource.setMaxIdle(maxIdel);
+        dataSource.setMaxWait(maxWait);
+        dataSource.setValidationQuery(&quot;SELECT 1&quot;);
+        dataSource.setTestOnBorrow(true);
+        return dataSource;
+    }
+}
+</code></pre><ul>
+<li>3.2 prop.properties</li>
+</ul>
+<pre><code>#jdbc
+jdbc.driver=com.mysql.jdbc.Driver
+jdbc.url=jdbc:mysql://localhost:3306/testdb?useUnicode=true&amp;amp;characterEncoding=utf8
+jdbc.username=root
+jdbc.password=214124
+jdbc.maxActive=2335
+jdbc.maxIdel=120
+jdbc.maxWait=100
+</code></pre><ul>
+<li>4 MapperScanner</li>
+</ul>
+<pre><code>package anddd7.springboot.configuration;
+
+import org.mybatis.spring.mapper.MapperScannerConfigurer;
+import org.springframework.boot.autoconfigure.AutoConfigureAfter;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+/**
+ * 扫描mybatis的接口
+ */
+@Configuration
+// 因为这个对象的扫描，需要在MyBatisConfig的后面注入，所以加上下面的注解
+@AutoConfigureAfter(MyBatisConfiguration.class)
+public class MapperScannerConfiguration {
+    @Bean(name = &quot;mapperScannerConfigurer&quot;)
+    public MapperScannerConfigurer mapperScannerConfigurer() {
+        //创建内置的config
+        MapperScannerConfigurer mapperScannerConfigurer = new MapperScannerConfigurer();
+        //获取之前注入的beanName为sqlSessionFactory的对象
+        mapperScannerConfigurer.setSqlSessionFactoryBeanName(&quot;sqlSessionFactory&quot;);
+        //指定mapper接口的路径 ,批量加上@Mapper ,也可以手动加上 ,省略此配置
+        //会触发 No MyBatis mapper was found in &#39;[anddd7.springboot.controller, anddd7.springboot]&#39; package.  警告
+        //mapperScannerConfigurer.setBasePackage(&quot;anddd7.springboot.dao&quot;);
+        return mapperScannerConfigurer;
+    }
+}
+</code></pre><ul>
+<li>5.1 SqlSessionFactory</li>
+</ul>
+<pre><code>package anddd7.springboot.configuration;
+
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.mybatis.spring.SqlSessionFactoryBean;
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
+import org.springframework.core.io.DefaultResourceLoader;
+import org.springframework.core.io.ResourceLoader;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.core.io.support.ResourcePatternResolver;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.transaction.annotation.TransactionManagementConfigurer;
+
+import javax.sql.DataSource;
+import java.io.IOException;
+
+/**
+ * 对应xml中事务和sqlSessionFactory的配置
+ */
+@Configuration
+@EnableTransactionManagement
+@Import(DataSourceConfiguration.class)
+public class MyBatisConfiguration implements TransactionManagementConfigurer {
+
+    @Autowired
+    private DataSource dataSource;
+
+    @Override
+    public PlatformTransactionManager annotationDrivenTransactionManager() {
+        return new DataSourceTransactionManager(dataSource);
+    }
+
+    @Bean(name = &quot;sqlSessionFactory&quot;)
+    public SqlSessionFactory sqlSessionFactoryBean() {
+        SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
+        //设置数据源
+        bean.setDataSource(dataSource);
+        //设置config路径
+        ResourceLoader resourceLoader = new DefaultResourceLoader();
+        bean.setConfigLocation(resourceLoader.getResource(&quot;classpath:mybatis-configuration.xml &quot;));
+        //设置mapper.xml路径
+        ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+        try {
+            bean.setMapperLocations(resolver.getResources(&quot;classpath:anddd7/springboot/mapping/*.xml&quot;));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            return bean.getObject();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Bean
+    public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) {
+        return new SqlSessionTemplate(sqlSessionFactory);
+    }
+}
+</code></pre><ul>
+<li>5.2  mybatis-configuration.xml</li>
+</ul>
+<pre><code>&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
+&amp;lt;!DOCTYPE configuration
+    PUBLIC &quot;-//mybatis.org//DTD Config 3.0//EN&quot;
+    &quot;http://mybatis.org/dtd/mybatis-3-config.dtd&quot;&gt;
+&amp;lt;configuration&gt;
+    &amp;lt;settings&gt;
+        &amp;lt;setting name=&quot;cacheEnabled&quot; value=&quot;false&quot; /&gt;
+        &amp;lt;setting name=&quot;lazyLoadingEnabled&quot; value=&quot;false&quot; /&gt;
+        &amp;lt;setting name=&quot;multipleResultSetsEnabled&quot; value=&quot;true&quot; /&gt;
+        &amp;lt;setting name=&quot;useColumnLabel&quot; value=&quot;true&quot; /&gt;
+        &amp;lt;setting name=&quot;useGeneratedKeys&quot; value=&quot;false&quot; /&gt;
+        &amp;lt;setting name=&quot;defaultExecutorType&quot; value=&quot;SIMPLE&quot; /&gt;
+        &amp;lt;setting name=&quot;defaultStatementTimeout&quot; value=&quot;25000&quot; /&gt;
+    &amp;lt;/settings&gt;
+&amp;lt;/configuration&gt;
+</code></pre><ul>
+<li>6 除了application.xml还以properties或yaml存在，其他配置都Java化了，web.xml自然也不存在了（顺应servlet 3.0的注解方式）。</li>
+</ul>
+<pre><code>package anddd7.springboot.configuration;
+
+
+import anddd7.springboot.filter.LoginFilter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.servlet.DispatcherServlet;
+
+import javax.servlet.Filter;
+
+/**
+ * 对应web.xml中的所有设置
+ */
+public class WebXmlConfiguration {
+
+    @Bean(name = &quot;LoginFilter&quot;)
+    public Filter getLoginFilter() {
+        return new LoginFilter();
+    }
+
+    @Autowired
+    DispatcherServlet dispatcherServlet;
+
+    /*
+    新的springboot不需要再设置servlet -&gt; DispatcherServlet ,默认会拦截请求交给DispatcherServlet
+
+    @Bean
+    public ServletRegistrationBean defaultServletRegistration() {
+        ServletRegistrationBean registrationBean = new ServletRegistrationBean();
+        registrationBean.setServlet(dispatcherServlet);
+        registrationBean.addUrlMappings(&quot;*.ajax&quot;);
+        return registrationBean;
+    }
+    */
+
+    @Bean
+    public FilterRegistrationBean loginFilterRegistration() {
+        FilterRegistrationBean registrationBean = new FilterRegistrationBean();
+        registrationBean.setFilter(getLoginFilter());
+        registrationBean.setName(&quot;LoginFilter&quot;);
+        registrationBean.addUrlPatterns(&quot;*.html&quot;, &quot;*.ajax&quot;);
+        return registrationBean;
+    }
+}
+</code></pre><p>　<strong>从上面文件可以看到 ，通过<code>@Configuration</code>+<code>@Import</code>将xml转化成了容易理解的Java 。所以不是不需要配置，而是规范化、简单化的配置，而且启动方式上也简便不少。</strong> <br><br>　<strong>SpringBoot 将原来一些固定的启动方式打包在了一起 ，包含了很多自动化的配置 （<a href="http://blog.csdn.net/xiaoyu411502/article/details/52770723" target="_blank" rel="noopener">@Enable*注解系列</a>）; 采用易读写的yaml和Java，摒弃xml（真的头晕）。</strong> </p>
+<h1 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h1><p><code>Application.main()</code></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><blockquote>
+</blockquote>
+<p>GitHub示例 <a href="https://github.com/Anddd7/SSM-SpringBoot-Starter" target="_blank" rel="noopener">Anddd7/SSM-SpringBoot-Starter</a>`</p>
+<p>　如果要添加webapp（网页静态资源），重命名为resources放在源目录下 （SpringBoot默认查找resources/static/public作为静态目录）。熟练过后 ，配置一个可用的Spring要比之前快得多 ，而且配置文件减少 ，项目目录结构清晰不少 。 <br><br>　不过对Spring不熟悉 ，没有一条一条配过xml的入门者 ，这种一键式配置推荐使用不推荐学习 。封装太深 ，很难理解每一步的意义 ，所以使用过后还是对照xml一步步探究Spring所做的事 ，<strong>共勉</strong> 。</p>
+<p>　<strong>Next ，SpringBoot原理和Spring源码</strong></p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span> PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span> UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

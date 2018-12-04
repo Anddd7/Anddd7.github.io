@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        Java工作流引擎 - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i>  </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar">
+            <img src="/assets/avatar.jpeg" />
+        </div>
+        <div class="name">
+            <i>Anddd7</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#工作流引擎"><span class="toc-text">工作流引擎</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#工作方式"><span class="toc-text">工作方式</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+        <div class="index-about-mobile">
+            <i>  </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Java工作流引擎
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2018-08-15 00:00:00</span></span>
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h2 id="工作流引擎"><a href="#工作流引擎" class="headerlink" title="工作流引擎"></a>工作流引擎</h2><p>目前常用的几个工作流引擎，都支持Business Process Model and Notation(BPMN) ，使用同一的流程图进行描述。</p>
+<ul>
+<li>JBPM：没有怎么看，比较早更新缓慢</li>
+<li>Activiti：</li>
+<li>Flowable：<ul>
+<li>以上三个都由同一批人开发的，所以架构和使用方式大同小异</li>
+<li>Activiti/Flowable可以通过SpringBoot进行集成；也有Cloud产品，Docker启动，Rest进行交互</li>
+<li>流程设计器不太好用：Eclipse插件；WebUI编辑器是集成在其他组件上的，没法单独使用</li>
+</ul>
+</li>
+<li>camunda：<ul>
+<li>看了Demo过后发现API和上面几个也是一样的</li>
+<li>流程设计器也是开源的，可以单独部署(前端应用)</li>
+</ul>
+</li>
+</ul>
+<h3 id="工作方式"><a href="#工作方式" class="headerlink" title="工作方式"></a>工作方式</h3><ul>
+<li>设计BPMN2流程图<ul>
+<li>包括分支、流转的参数、 监听回调</li>
+</ul>
+</li>
+<li>部署流程<ul>
+<li>启用应用，会自动在数据库中建立相关table</li>
+<li>编译流程图，序列化到应用和数据库中，作为一个流程模板definition</li>
+</ul>
+</li>
+<li>启动流程<ul>
+<li>实例化流程instance</li>
+<li>由流程引擎(定时线程扫描)检查并推动流程的流转<ul>
+<li>例如当前节点完成后，由流程引擎执行到下一个节点的逻辑：状态变更、参数传递、方法执行、条件判断</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>执行任务<ul>
+<li>部分流程执行完成后会等待用户的操作task</li>
+<li>由外部提交任务执行情况commitTask(name,vars)，引擎根据模板中的规则进行判断和流转</li>
+</ul>
+</li>
+<li>流程、任务会关联到用户权限(用户、用户组)</li>
+<li>整个过程中，用户可以通过各种参数查询流程和任务</li>
+</ul>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span> PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span> UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

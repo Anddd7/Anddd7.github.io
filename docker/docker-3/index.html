@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        （三）Docker高级应用 - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i>  </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar">
+            <img src="/assets/avatar.jpeg" />
+        </div>
+        <div class="name">
+            <i>Anddd7</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker中的文件和数据"><span class="toc-text">Docker中的文件和数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据卷-Volume-为什么是特殊的目录"><span class="toc-text">数据卷(Volume) - 为什么是特殊的目录?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#如何初始化卷"><span class="toc-text">如何初始化卷?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用数据容器的场景"><span class="toc-text">使用数据容器的场景?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实践操作"><span class="toc-text">实践操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mount挂载"><span class="toc-text">Mount挂载</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#卷插件"><span class="toc-text">卷插件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#卷的应用场景"><span class="toc-text">卷的应用场景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Tips"><span class="toc-text">Tips</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#网络管理"><span class="toc-text">网络管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Bridge-网桥模式"><span class="toc-text">Bridge 网桥模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#网络和Links"><span class="toc-text">网络和Links</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#容器网络模型-组件"><span class="toc-text">容器网络模型 - 组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#网络实战"><span class="toc-text">网络实战</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#网络插件"><span class="toc-text">网络插件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#容器安全"><span class="toc-text">容器安全</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#安全最佳实践"><span class="toc-text">安全最佳实践</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多主机部署和管理"><span class="toc-text">多主机部署和管理</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+        <div class="index-about-mobile">
+            <i>  </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        （三）Docker高级应用
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2018-08-10 00:00:00</span></span>
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h2 id="Docker中的文件和数据"><a href="#Docker中的文件和数据" class="headerlink" title="Docker中的文件和数据"></a>Docker中的文件和数据</h2><p>Docker镜像通过UnionFS进行分层存储(可以通过<code>docker history</code>查看)，一个Docker镜像本质上是一组文件，默认存储在<code>/var/lib/docker/&lt;storage-driver&gt;</code>中。</p>
+<p>而Docker 容器其实是在镜像的最上层加了一层读写层，通常也称为容器层。在运行中的容器里所做的改动，如写新文件、修改已有文件、删除文件等操作其实都写到了容器层。容器层删除了，最上层的读写层跟着也删除了，改动自然也丢失了。</p>
+<p>若要持久化这些改动，一是通过 <code>docker commit &lt;containerId&gt; [repository[:tag]]</code>将当前容器保存成为一个新镜像。若想将持久化数据，或是多个容器间共享数据，需将数据存储主机的文件系统中。</p>
+<p><img src="/images/types-of-mounts.png" alt=""></p>
+<h2 id="数据卷-Volume-为什么是特殊的目录"><a href="#数据卷-Volume-为什么是特殊的目录" class="headerlink" title="数据卷(Volume) - 为什么是特殊的目录?"></a>数据卷(Volume) - 为什么是特殊的目录?</h2><ul>
+<li>处于UFS(Union File System)之外</li>
+<li>主机文件系统中的普通目录</li>
+<li>在卷上的I/O性能应与主机上的完全相同</li>
+<li>卷的内容不包含在Docker镜像中</li>
+<li>任何对卷内容的修改不是镜像的一部分</li>
+<li>可被多个容器共享和重用</li>
+<li>持久化数据（即使容器已被删除）</li>
+</ul>
+<h3 id="如何初始化卷"><a href="#如何初始化卷" class="headerlink" title="如何初始化卷?"></a>如何初始化卷?</h3><p><img src="/images/volume-data-container.png" alt=""></p>
+<ul>
+<li><p>从主机上挂载卷: 与容器共享主机目录</p>
+<ul>
+<li>Docker卷允许在主机操作系统和容器之间共享任意目录/文件</li>
+<li>需要确保在主机操作系统上外部配置文件是可访问的</li>
+<li>动态伸缩的约束</li>
+</ul>
+</li>
+<li><p>从其他容器挂载卷(数据容器)：数据容器会作为一个接口, 向其他容器提供访问卷的途径</p>
+<ul>
+<li>容器可处理一组卷</li>
+<li>能限制访问权限，如只读或读写: <code>docker run --volume-from some-container</code></li>
+<li>在多个容器间共享卷</li>
+<li>卷内容会保持同步</li>
+<li>底层使用相同的目录</li>
+</ul>
+</li>
+</ul>
+<h3 id="使用数据容器的场景"><a href="#使用数据容器的场景" class="headerlink" title="使用数据容器的场景?"></a>使用数据容器的场景?</h3><ul>
+<li><p>存储持久化数据库</p>
+<ul>
+<li>启动数据容器</li>
+<li>启动基于数据库镜像的数据库容器</li>
+<li>外部化数据目录 - 通过从数据容器挂载卷</li>
+<li>安排数据容器的备份计划</li>
+</ul>
+</li>
+<li><p>配置文件</p>
+</li>
+<li><p>数据文件</p>
+</li>
+</ul>
+<h3 id="实践操作"><a href="#实践操作" class="headerlink" title="实践操作"></a>实践操作</h3><ol start="0">
+<li>访问Docker Host虚拟机<blockquote>
+<p>因为在MacOS上的Docker实际是运行在一个虚拟环境下的，所以<code>/var/lib/docker</code>路径无法在Mac上找到。我们需要连接到Docker Host虚拟机，才能查看到Docker的默认目录。</p>
+<pre><code class="bash">$ screen ~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/tty
+linuxkit-025000000001:~# ls /var/lib/docker/
+builder     containers  network     plugins     swarm       trust
+containerd  image       overlay2    runtimes    tmp         volumes
+linuxkit-025000000001:~# ls /var/lib/docker/volumes/
+metadata.db
+</code></pre>
+</blockquote>
+</li>
+</ol>
+<ol>
+<li>在”主机”上挂载一个卷<pre><code class="bash"># 创建匿名卷
+$ docker volume create
+4997a11f62aff64766a2ce490debf1770a0c3f29dae57326579fefd0c3668673
+# 创建卷
+$ docker volume create my-volume
+my-volume
+</code></pre>
+<blockquote>
+<p>这样创建的卷会默认在<code>/var/lib/docker/volumes/</code>下，可以使用<code>docker volume</code>进行统一管理</p>
+</blockquote>
+</li>
+</ol>
+<ol start="2">
+<li><p>使用卷</p>
+<pre><code class="bash"># 启动容器，挂载my-volume卷到容器的/data；
+$ docker run -dit --name c-my-volume -v my-volume:/data busybox
+a9ee3a9c98009a64865eb98da92f7bdd052634e44861f59d42051fe7015dbcd0
+# 查看是否挂载成功；
+$ docker exec c-my-volume ls | grep data
+data
+# 启动容器，自动生成匿名卷并挂载到容器的/data；
+$ docker run -dit --name c-anonymous -v :/data busybox
+ede60b7d7c514ef3b8d5f4d94cfa994b19da7680f13a5539ac64948fe65deb0e
+# 查看匿名卷对应的目录；
+$ docker inspect -f {{.Mounts}} c-anonymous
+</code></pre>
+</li>
+<li><p>向卷中写入数据</p>
+</li>
+</ol>
+<ul>
+<li>宿主机（Docker Host）向卷写入数据<pre><code class="bash">linuxkit-025000000001:/var/lib/docker/volumes/my-volume/_data# touch test
+linuxkit-025000000001:/var/lib/docker/volumes/my-volume/_data# echo &quot;Hello&quot; &gt; test
+</code></pre>
+</li>
+<li>容器卷中检查修改文件<pre><code class="bash">$ docker exec c-my-volume cat /data/test
+Hello
+$ docker exec -it c-my-volume sh
+/ # echo &quot;Hi&quot; &gt; /data/test
+</code></pre>
+</li>
+<li>宿主机（Docker Host）检查<pre><code class="bash">linuxkit-025000000001:/var/lib/docker/volumes/my-volume/_data# cat test
+Hi
+</code></pre>
+</li>
+</ul>
+<ol start="4">
+<li>使用数据容器</li>
+</ol>
+<ul>
+<li><p>Dockerfile</p>
+<pre><code class="Dockerfile">FROM busybox
+VOLUME /config # 声明卷的挂载点
+CMD ls /config
+</code></pre>
+</li>
+<li><p>Shell</p>
+<pre><code class="bash">$ docker build -t data-container -f Dockerfile-2
+# 创建数据容器
+$ docker create --name data-container data-container
+610dc7f0df53adec4a8ee02e7f8f2a4856a29f5be3007c1fb69e9863d7960af1
+$ docker inspect -f {{.Mounts}} data-container
+[{volume e715b7a35b3f70b536a5eab136815d0deb4926b7b782b99168471c648ffc5ffa /var/lib/docker/volumes/e715b7a35b3f70b536a5eab136815d0deb4926b7b782b99168471c648ffc5ffa/_data /config local  true }]
+# 启动服务容器，引用数据容器
+$ docker run -dit --name service-container --volumes-from data-container busybox
+# 文件系统中修改
+linuxkit-025000000001:/var/lib/docker/volumes/e715b7a35b3f70b536a5eab136815d0deb4926b7b782b99168471c648ffc5ffa/_data# touch test
+# 查看服务容器
+$ docker exec service-container ls /config
+</code></pre>
+</li>
+</ul>
+<ol start="5">
+<li>运行时添加文件<pre><code class="bash"># 复制文件到docker容器中
+$ touch test-2
+$ docker cp test-2 service-container:/config/
+# 文件系统中查看
+linuxkit-025000000001:/var/lib/docker/volumes/e715b7a35b3f70b536a5eab136815d0deb4926b7b782b99168471c648ffc5ffa/_data# ls
+test    test-2
+</code></pre>
+</li>
+</ol>
+<h2 id="Mount挂载"><a href="#Mount挂载" class="headerlink" title="Mount挂载"></a>Mount挂载</h2><p>文件挂载有多种方式，Volume卷只是提供了统一的管理方式。我们可以使用<code>mount</code>进行自定义配置，包括绑定任意文件目录，设置读写规则等。</p>
+<ul>
+<li><code>--mount</code>：由多个键值对组成，由逗号分隔，每一个由 <key>=<value> 元祖组成。键值对没有顺序。<ul>
+<li><code>type</code>，可以是 bind，volume，tmpfs。</li>
+<li><code>source</code>，主机上的文件或目录的路径。可能用 src，source 指定。</li>
+<li><code>destination</code>，容器中的文件或目录的路径。可能用 destination，dst，target 指定。</li>
+<li><code>readonly</code>，如果存在，将更改 Propagation，可以是一个 rprivate。</li>
+<li><code>consistency</code>，如果存在，可以是 consistent，delegated 或 cached，只在 Mac 版有效。</li>
+<li><code>--mount</code> 标志不支持 z 或 Z 修改 selinux。</li>
+</ul>
+</value></key></li>
+<li><code>-v 绝对路径:容器内路径</code>：默认使用<code>bind</code>模式挂载目录</li>
+</ul>
+<ol>
+<li>直接挂载主机目录<pre><code class="bash"># 启动容器，挂载本机目录（绝对路径）到容器的/data；
+$ docker run -dit --name c-temp-path -v /temp:/data busybox
+a9ee3a9c98009a64865eb98da92f7bdd052634e44861f59d42051fe7015dbcd0
+# 查看是否挂载成功；
+$ docker exec c-temp-path ls /data
+Shared
+username
+$ docker inspect c-temp-path
+...
+&quot;Mounts&quot;: [
+ {
+     &quot;Type&quot;: &quot;bind&quot;,
+     &quot;Source&quot;: &quot;/Users&quot;,
+     &quot;Destination&quot;: &quot;/data&quot;,
+     &quot;Mode&quot;: &quot;&quot;,
+     &quot;RW&quot;: true,
+     &quot;Propagation&quot;: &quot;rprivate&quot;
+ }
+],
+...
+</code></pre>
+<blockquote>
+<p>可以挂载任意路径，但是无法用volume进行管理。</p>
+</blockquote>
+</li>
+</ol>
+<h4 id="卷插件"><a href="#卷插件" class="headerlink" title="卷插件"></a><strong><em>卷插件</em></strong></h4><p>卷插件允许第三方数据管理解决方案接入<br>在不修改应用的情况下，可以用另一个插件替换当前插件</p>
+<ul>
+<li>Flocker</li>
+<li>Convoy</li>
+<li>Blockbridge</li>
+<li>GlusterFS</li>
+<li>Netshare</li>
+<li>Openstorage</li>
+</ul>
+<h4 id="卷的应用场景"><a href="#卷的应用场景" class="headerlink" title="卷的应用场景"></a>卷的应用场景</h4><p>配置文件: 一次构建，多处部署</p>
+<ul>
+<li>将配置文件植入到容器<ul>
+<li>在 Dockerfile 中使用 ‘COPY’ 指令</li>
+<li>在镜像构建时使用 ‘RUN’ 指令修改配置</li>
+<li>最简方案(静态配置的情况下)</li>
+<li>任何对配置文件的修改都需要重新构建镜像</li>
+</ul>
+</li>
+<li>使用环境变量, 动态传入到容器<ul>
+<li>当启动容器时传入环境变量: <code>docker run -e USERNAME=zzz PASSWORD=...</code></li>
+<li>简单配置情况下运行良好</li>
+</ul>
+</li>
+<li>查询键-值存储<ul>
+<li>利用键-值存储获取配置信息</li>
+<li>很多可选项，如 consul, etcd, zookeeper</li>
+<li>使得配置更加动态化</li>
+<li>引入外部依赖，可用性更加重要</li>
+</ul>
+</li>
+<li>从主机上挂载卷</li>
+<li>从其他容器挂载卷</li>
+</ul>
+<h4 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h4><ul>
+<li>Volumes!=Persistance(卷并不意味着持久化)</li>
+<li>卷并不会被垃圾回收</li>
+<li>针对有状态的容器(如数据库)和相应的数据容器，可以使用相同的镜像</li>
+<li>为数据容器制定备份计划</li>
+<li>将带有敏感数据的容器放在的当前主机上</li>
+<li>尽可能缓存镜像，因为下载很耗时</li>
+</ul>
+<h2 id="网络管理"><a href="#网络管理" class="headerlink" title="网络管理"></a>网络管理</h2><p><img src="/images/docker-networks.png" alt=""></p>
+<blockquote>
+<p>Docker 为我们提供了四种不同的网络模式</p>
+<ul>
+<li><code>bridge</code>：未指定网络时, 容器默认在<code>bridge</code>网络下</li>
+<li><code>container:CONTAINER_NAME</code>：重用某容器的网络配置(ip/mac)，等同于在同一容器内</li>
+<li><code>host</code>：（唯一）共享了宿主机的网络, 使用相同的ip</li>
+<li><code>none</code>：（唯一）关闭所有网络连接</li>
+</ul>
+</blockquote>
+<p><code>docker network ls</code>中包含了默认的<code>host、none</code>和一个<code>bridge</code>网络，当启动的容器没有指定网络时，会默认加入到<code>bridge</code>网络中</p>
+<h3 id="Bridge-网桥模式"><a href="#Bridge-网桥模式" class="headerlink" title="Bridge 网桥模式"></a>Bridge 网桥模式</h3><p><img src="/images/net-bridge.png" alt=""></p>
+<ul>
+<li>启动Docker时会在主机上创建一个名为<code>docker0</code>的虚拟网桥接口</li>
+<li>docker0 会为每一个容器分配一个新的 IP 地址并将 docker0 的 IP 地址设置为默认的网关</li>
+<li>docker0 通过 iptables 中的配置与宿主机器上的网卡相连，所有符合条件的请求都会通过 iptables 转发到 docker0 并由网桥分发给对应的机器</li>
+<li>端口映射通过修改 iptables 再将对端口的访问重定向到 docker0，实现对容器的访问<br><img src="/images/network-bridge-forward.png" alt=""></li>
+</ul>
+<pre><code class="bash"># 启动容器并映射端口
+$ docker run -dit --name bridge-container -p 5000 busybox
+cb52033e0b8f9c5a8e4c18e5a1fe0ac6d01809393575c1c85b3cdd5aacea437f
+# 查看容器服务的端口
+$ docker port bridge-container 
+5000/tcp -&gt; 0.0.0.0:32771
+# 查看容器的IP地址
+$ docker inspect --format &#39;{{ .NetworkSettings.IPAddress }}&#39; bridge-container
+172.17.0.2
+# 查看默认网络配置和其中的容器
+$ docker network inspect bridge
+...
+&quot;IPAM&quot;: {
+    ...
+    &quot;Config&quot;: [
+        {
+            &quot;Subnet&quot;: &quot;172.17.0.0/16&quot;,
+            &quot;Gateway&quot;: &quot;172.17.0.1&quot;
+        }
+    ]
+},
+&quot;Containers&quot;: {
+    &quot;cb52033e0b8f9c5a8e4c18e5a1fe0ac6d01809393575c1c85b3cdd5aacea437f&quot;: {
+        &quot;Name&quot;: &quot;bridge-container&quot;,
+        &quot;EndpointID&quot;: &quot;b4af63f885a783563aeabdb70806983cb519a497835209686954a599fb81bc7a&quot;,
+        &quot;MacAddress&quot;: &quot;02:42:ac:11:00:02&quot;,
+        &quot;IPv4Address&quot;: &quot;172.17.0.2/16&quot;,
+        &quot;IPv6Address&quot;: &quot;&quot;
+    }
+},
+...
+</code></pre>
+<h3 id="网络和Links"><a href="#网络和Links" class="headerlink" title="网络和Links"></a>网络和Links</h3><ul>
+<li><code>docker run --link &lt;target container&gt; &lt;image&gt;</code><ul>
+<li>Links只能对同一主机上的容器生效</li>
+<li>容器在重新部署时会断开与其他容器的连接</li>
+<li>容器在创建后才能被相互Link </li>
+</ul>
+</li>
+</ul>
+<h3 id="容器网络模型-组件"><a href="#容器网络模型-组件" class="headerlink" title="容器网络模型 - 组件"></a>容器网络模型 - 组件</h3><p><img src="/images/container-network-model.png" alt=""></p>
+<ul>
+<li>沙箱<ul>
+<li>包含容器网络堆栈配置信息：容器的接口、路由表和 DNS 设置</li>
+<li>可能包含多网络的多个端点：连接的每一个网络都有一个不同的端点</li>
+</ul>
+</li>
+<li>网络<ul>
+<li>一组端点之间能够相互直接交流</li>
+<li>实现可以是Linux网桥或重叠网(Overlay)</li>
+</ul>
+</li>
+<li>容器<ul>
+<li>容器能够作为任意一个或多个网络的一部分</li>
+<li>能够同时对接桥接网络和重叠网络</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>在某个特定网络下的所有容器都能够自由地互相通信</li>
+<li>多个网络有助于分散容器之间的流量传输</li>
+<li>多个端点允许一个容器加入到多个网络中</li>
+</ul>
+</blockquote>
+<p>用户可创建的网络有2种类型:</p>
+<ul>
+<li>bridge: 用于同一主机的不同容器进行连接</li>
+<li>overlay: 跨主机网络连接<ul>
+<li><a href="https://community.qingcloud.com/topic/328/docker-1-9%E7%9A%84%E6%96%B0%E7%BD%91%E7%BB%9C%E7%89%B9%E6%80%A7-%E4%BB%A5%E5%8F%8Aoverlay%E8%AF%A6%E8%A7%A3/2" target="_blank" rel="noopener">Docker 网络特性</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="网络实战"><a href="#网络实战" class="headerlink" title="网络实战"></a>网络实战</h3><ol start="0">
+<li>默认的<code>bridge</code>网络也是网桥网络，应用场景相同。</li>
+</ol>
+<ol>
+<li>创建新的Bridge网络<pre><code class="bash"># 创建2个Bridge网络并创建容器连接网络
+$ docker network create my-net1
+$ docker run -itd --net=my-net1 --name service0 busybox
+$ docker run -itd --net=my-net1 --name service1 busybox
+$ docker network create my-net2
+$ docker run -itd --net=my-net2 --name service2 busybox
+# 查看网络, 获取容器ip地址等信息
+$ docker network ls
+$ docker network inspect my-net1
+$ docker network inspect my-net2
+</code></pre>
+</li>
+</ol>
+<ol start="2">
+<li>容器进行网络访问</li>
+</ol>
+<pre><code class="bash"># 同网络容器Ping：成功
+$ docker exec service0 ping service1 # 172.18.0.2
+# 不同网络容器Ping：失败
+$ docker exec service1 ping service2
+$ docker exec service1 ping 172.19.0.2 # 无连接
+</code></pre>
+<ol start="3">
+<li>为容器配置新的网络</li>
+</ol>
+<pre><code class="bash"># 将容器连接到另一个网络
+$ docker network connect my-net2 service1
+$ docker network inspect my-net2
+# 此时service1在2个网络各自有一个ip
+$ docker exec service0 ping service1  # 172.18.0.3
+$ docker exec service1 ping service0  # 172.18.0.2
+$ docker exec service1 ping service2  # 172.19.0.2
+$ docker exec service2 ping service1  # 172.19.0.3
+</code></pre>
+<blockquote>
+<p>此时，<code>service1</code>容器中的沙箱就具有2个Endpoints，对应不同的网络。访问时会根据网络配置决定应该走哪一个网络进行传输。 </p>
+</blockquote>
+<ol start="4">
+<li>使用Host网络</li>
+</ol>
+<pre><code class="bash">$ docker run -itd --net=host --name service-host busybox
+$ docker inspect service-host
+</code></pre>
+<blockquote>
+<p>这时候容器就和本机运行的进程相同了，只要暴露了端口就能通过localhost:port进行访问。</p>
+</blockquote>
+<ol start="5">
+<li>使用None网络：即关闭所有网络连接</li>
+</ol>
+<h3 id="网络插件"><a href="#网络插件" class="headerlink" title="网络插件"></a>网络插件</h3><ul>
+<li>允许第三方的容器网络方案连接到容器网络中</li>
+<li>降低了不同类型主机上容器通信的难度</li>
+<li>扩展由Docker提供的核心网络功能</li>
+</ul>
+<p>可用的网络插件来自于：</p>
+<ul>
+<li>Weave</li>
+<li>Project Calico</li>
+<li>Nuage Networks</li>
+<li>Cisco</li>
+<li>VMware</li>
+<li>Microsoft</li>
+<li>Midokura</li>
+</ul>
+<h3 id="容器安全"><a href="#容器安全" class="headerlink" title="容器安全"></a>容器安全</h3><p>在容器中的root权限对应宿主机的一个普通用户, 但当容器开启<code>--privileged</code>特权后, 就可以使用root对宿主机进行操作</p>
+<pre><code class="bash"># 重要文件映射到容器中
+$ docker run -v /:/hostfs busybox cat /hostfs/etc/paths 
+        # 部分文件不可见
+# 容器中修改主机重要文件
+$ docker run -it -v /:/hostfs busybox touch /hostfs/threat-on-the-way
+        # 无法创建
+</code></pre>
+<h4 id="安全最佳实践"><a href="#安全最佳实践" class="headerlink" title="安全最佳实践"></a>安全最佳实践</h4><ul>
+<li>主机:<ul>
+<li>保持内核及时更新</li>
+<li>增强主机保护</li>
+<li>保持Docker及时更新</li>
+</ul>
+</li>
+<li>Docker守护进程: <ul>
+<li>只允许受信用户控制Docker守护进程</li>
+<li>不使用不受信的镜像仓库</li>
+<li>必要时请为Docker守护进程应用TLS认证 </li>
+<li>限制容器之间的网络通信</li>
+</ul>
+</li>
+<li>镜像:<ul>
+<li>在Dockerfile中为容器创建一个非root用户</li>
+<li>以非root用户运行容器进程</li>
+<li>只使用受信的基础镜像</li>
+<li>仅安装必要的包</li>
+<li>重新构建镜像时需要包含安全补丁</li>
+</ul>
+</li>
+<li>容器运行时<ul>
+<li>限制容器使用Linux内核能力</li>
+<li>不要使用privileged容器</li>
+<li>限制容器上的资源使用</li>
+<li>指定容器重启策略为on-failure</li>
+<li>使用AppArmor/SELinux保证额外的安全层</li>
+</ul>
+</li>
+<li>其他<ul>
+<li>为Docker挂载点创建单独的分区</li>
+<li>不要到产品环境中使用任何开发者工具(boot2docker, kinematic)</li>
+<li>建立本地仓库镜像</li>
+<li>使用供应商最支持的存储驱动程序</li>
+<li>aufs是唯一的允许容器共享执行文件的存储驱动，但可能会导致严重的内核崩溃</li>
+<li>为Docker守护进程设置受限的控制资源权限(ulimit)</li>
+<li>由最小基础镜像开始(Busybox, Alpine)</li>
+</ul>
+</li>
+</ul>
+<h2 id="多主机部署和管理"><a href="#多主机部署和管理" class="headerlink" title="多主机部署和管理"></a>多主机部署和管理</h2><p>Docker本身只关注单主机（Docker Host），对镜像、容器进行管理。在多主机部署时，主要是利用其它组件、工具进行服务发现、服务注册、网络传输。只是由外部程序来接管多主机的协调工作，对于Docker来说是透明的。例如：</p>
+<ul>
+<li>将Docker容器放在Host网络/映射Docker容器的端口到Host上</li>
+<li>利用服务发现（Consul/Eureka）自动发布、获取IP:PORT</li>
+<li>利用Http通信</li>
+</ul>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span> PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span> UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

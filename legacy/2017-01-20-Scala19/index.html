@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        Scala学习整理[第三十二章 GUI编程][Programming In Scala] - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i>  </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar">
+            <img src="/assets/avatar.jpeg" />
+        </div>
+        <div class="name">
+            <i>Anddd7</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第三十二章-GUI编程"><span class="toc-text">第三十二章 GUI编程</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+        <div class="index-about-mobile">
+            <i>  </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Scala学习整理[第三十二章 GUI编程][Programming In Scala]
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2018-01-06 21:20:16</span></span>
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h2 id="第三十二章-GUI编程"><a href="#第三十二章-GUI编程" class="headerlink" title="第三十二章 GUI编程"></a>第三十二章 GUI编程</h2><pre><code>package SecondWithProgrammingInScala
+
+import java.io.File
+
+import scala.swing.{TextField, _}
+import scala.swing.event.{ButtonClicked, EditDone}
+
+/**
+  * GUI 编程
+  * 大致的使用和实际效果和JavaSwing没啥区别
+  * 之前使用过Swing和Vaadin(Java-&gt;Html/js) ,相比浏览器流派 ,Java客户端适用性还是低一些的
+  *
+  *
+  * 使用swing时候出现了版本问题
+  * scala在2.10以后对模块进行了比较大的划分 ,不少包被拆分成了不同的模块
+  * 使用maven关联要注意
+  * 以scala-library为核心 ,核心版本号2.12去关联其他模块包
+  * 官方还提供了一个scala-lang-all ,包括了之前拆分出去的包
+  *
+  */
+object ScalaSwingApp extends SimpleSwingApplication {
+  /**
+    * 和Java编写方式不同 ,Java大多将参数通过构造函数传递进去
+    * Button okBtn = new Button(text = ok)
+    * scala而多是使用{}直接重载里面的属性(实质是匿名子类) ,更符合实际 ,不同功能的按钮就是不同的类.
+    * val okBtn = new Button{override text = ok}
+    * :  new OkButton{override text = ok} extends Button
+    */
+  //设置程序主窗口
+  override def top: Frame = new MainFrame {
+    //窗口标题
+    title = &quot;Scala Swing App&quot;
+    //注册组件
+    val clickBtn = new Button {
+      text = &quot;Click me&quot;
+    }
+    val clickBlueBtn = new Button {
+      background = java.awt.Color.BLUE
+      text = &quot;Click me&quot;
+    }
+    val tipL = new Label {
+      text = &quot;No button clicks registered&quot;
+    }
+    //设置窗口内容(布局){组件}
+    contents = new BoxPanel(Orientation.Vertical) {
+      //这里的contents是指BoxPanel布局的内容
+      contents += clickBtn
+      contents += clickBlueBtn
+      contents += tipL
+      border = Swing.EmptyBorder(30, 30, 10, 30)
+    }
+    //设置监听
+    listenTo(clickBtn, clickBlueBtn)
+    //设置监听回调函数
+    var nClicks = 0
+    reactions += {
+      case ButtonClicked(btn) =&gt; {
+        nClicks += 1
+        if (btn == clickBlueBtn) tipL.text = &quot;You just Click the Blue Button:&quot; + nClicks
+        else tipL.text = &quot;Number of button Clicks:&quot; + nClicks
+      }
+    }
+  }
+}
+
+/**
+  * 简单计算器
+  */
+object Calculation extends SimpleSwingApplication {
+  override def top: Frame = new MainFrame {
+    title = &quot;简单计算器&quot;
+
+    //文本组件
+    object Elem1 extends TextField {
+      columns = 5
+    }
+
+    object Elem2 extends TextField {
+      columns = 5
+    }
+
+    object Func extends TextField {
+      columns = 2
+    }
+
+    object Result extends TextField {
+      columns = 20
+    }
+
+    //提示组件
+    val tips_defualt = &quot;请输入要计算的值[0-9]和运算符[+-*/]&quot;
+    val tipsL = new Label(tips_defualt)
+    //设置布局
+    contents = new BoxPanel(Orientation.Vertical) {
+      //设置提示
+      contents += tipsL
+      //设置输入框
+      contents += new BoxPanel(Orientation.Horizontal) {
+        contents += Elem1
+        contents += new Label(&quot;     &quot;)
+        contents += Func
+        contents += new Label(&quot;     &quot;)
+        contents += Elem2
+      }
+      //设置结果
+      contents += Result
+      border = Swing.EmptyBorder(30, 30, 30, 30)
+    }
+    //设置动作
+    var errors = 0
+    listenTo(Elem1, Elem2, Func)
+
+    reactions += {
+      //输入完成
+      case EditDone(_) =&gt; calculate
+    }
+
+    //设置计算函数
+    def calculate: Unit = {
+      try {
+        //复原提示
+        tipsL.text = tips_defualt
+        //检查运算符并试图转换数值
+        Func.text match {
+          case &quot;+&quot; =&gt; Result.text = (Elem1.text.toInt + Elem2.text.toInt).toString
+          case &quot;-&quot; =&gt; Result.text = (Elem1.text.toInt - Elem2.text.toInt).toString
+          case &quot;*&quot; =&gt; Result.text = (Elem1.text.toInt * Elem2.text.toInt).toString
+          case &quot;/&quot; =&gt; Result.text = (Elem1.text.toInt / Elem2.text.toInt).toString
+          case _ =&gt; tipsL.text_=(&quot;运算符输入错误 ,请重新输入&quot;)
+        }
+      } catch {
+        //数值转换出错
+        case e: NumberFormatException =&gt; tipsL.text_=(&quot;数值输出错误 ,请重新输入&quot;)
+        case e =&gt; tipsL.text_=(e.getMessage)
+      }
+    }
+  }
+}
+</code></pre>
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span> PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span> UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

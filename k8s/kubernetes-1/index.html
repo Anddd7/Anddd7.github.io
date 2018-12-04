@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        （一）Kubernetes入门 - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i>  </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar">
+            <img src="/assets/avatar.jpeg" />
+        </div>
+        <div class="name">
+            <i>Anddd7</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#环境准备"><span class="toc-text">环境准备</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装Kubernetes"><span class="toc-text">安装Kubernetes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hello-World-Kubernetes官方教程"><span class="toc-text">Hello World (Kubernetes官方教程)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#使用默认label查询"><span class="toc-text">使用默认label查询</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#新增一个label"><span class="toc-text">新增一个label</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#minikube-dashboard"><span class="toc-text">minikube dashboard`</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#k8s-基本概念"><span class="toc-text">k8s 基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#管理角色"><span class="toc-text">管理角色</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#资源对象"><span class="toc-text">资源对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Node-IP、Pod-IP、Cluster-IP"><span class="toc-text">Node IP、Pod IP、Cluster IP</span></a></li></ol></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+        <div class="index-about-mobile">
+            <i>  </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        （一）Kubernetes入门
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2018-08-28 00:00:00</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#k8s" title="k8s">k8s</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h1 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h1><h3 id="安装Kubernetes"><a href="#安装Kubernetes" class="headerlink" title="安装Kubernetes"></a>安装Kubernetes</h3><p>最新版的Docker for Mac内置了Kubernetes，可以直接启动一个单节点的Kubernetes集群。<br><img src="/images/k8s-docker4mac.png" alt="k8s-docker4mac"></p>
+<pre><code class="bash"># 可以看到k8s的相关容器
+$ docker container ls --format &quot;table{{.Names}}\t{{.Image }}\t{{.Command}}&quot;
+</code></pre>
+<h3 id="Hello-World-Kubernetes官方教程"><a href="#Hello-World-Kubernetes官方教程" class="headerlink" title="Hello World (Kubernetes官方教程)"></a>Hello World (Kubernetes官方教程)</h3><ul>
+<li>minikube：<code>minikube start</code>启动一个虚拟机，组成一个集群 1 Master(Host) + 1 Node(虚拟机)<pre><code class="bash"># 查看节点
+$ kubectl get node
+NAME       STATUS    ROLES     AGE       VERSION
+minikube   Ready     master    2h        v1.10.0
+</code></pre>
+</li>
+<li>启动项目：通过run指令以Deployment方式启动<pre><code class="bash">$ kubectl run kubernetes-bootcamp --image=gcr.io/google-samples/kubernetes-bootcamp:v1 --port=8080
+</code></pre>
+</li>
+<li>查看项目：在工作节点(虚拟机)上可以查看到实际运行的容器<ul>
+<li>查看Pod<pre><code class="bash">  $ kubectl get pod
+NAME                                   READY     STATUS    RESTARTS   AGE
+kubernetes-bootcamp-5c69669756-cwpx7   1/1       Running   0          1h
+</code></pre>
+</li>
+<li>查看容器：在工作节点(虚拟机)上实际运行的容器<pre><code class="bash">$ minikube ssh
+# 进入虚拟机
+$ docker ps
+CONTAINER ID        IMAGE                                       COMMAND                  CREATED             STATUS              PORTS               NAMES
+8f7ab88ebba1        gcr.io/google-samples/kubernetes-bootcamp   &quot;/bin/sh -c &#39;node se…&quot;   18 minutes ago      Up 18 minutes                           k8s_kubernetes-bootcamp_kubernetes-bootcamp-5c69669756-t6zb6_default_2b6082af-a5ce-11e8-b3be-080027de9b8c_0
+</code></pre>
+</li>
+</ul>
+</li>
+<li>访问项目<ul>
+<li>kube-proxy：proxy会给每个pod生成一个访问的url<pre><code class="bash">$ kubectl get pod
+NAME                                   READY     STATUS    RESTARTS   AGE
+kubernetes-bootcamp-5c69669756-t6zb6   1/1       Running   0          25m
+$ kubectl proxy
+</code></pre>
+<blockquote>
+<p>因为工作节点在内部网络中，无法直接访问<br>获取 POD_NAME=kubernetes-bootcamp-5c69669756-t6zb6<br>访问 <a href="http://localhost:8001/api/v1/namespaces/default/pods/$POD_NAME/proxy/" target="_blank" rel="noopener">http://localhost:8001/api/v1/namespaces/default/pods/$POD_NAME/proxy/</a></p>
+</blockquote>
+</li>
+<li>查看日志<pre><code class="bash">$ kubectl logs kubernetes-bootcamp-5c69669756-cwpx7
+Kubernetes Bootcamp App Started At: 2018-08-27T03:10:03.955Z | Running On:  kubernetes-bootcamp-5c69669756-cwpx7
+Running On: kubernetes-bootcamp-5c69669756-cwpx7 | Total Requests: 1 | App Uptime: 779.466 seconds | Log Time: 2018-08-27T03:23:03.424Z
+Running On: kubernetes-bootcamp-5c69669756-cwpx7 | Total Requests: 2 | App Uptime: 804.088 seconds | Log Time: 2018-08-27T03:23:28.043Z
+</code></pre>
+</li>
+<li>在Pod中执行指令<pre><code class="bash">  $ kubectl exec -ti kubernetes-bootcamp-5c69669756-cwpx7 bash
+  root@kubernetes-bootcamp-5c69669756-cwpx7:/# cat server.js
+</code></pre>
+</li>
+</ul>
+</li>
+<li>暴露服务<pre><code class="bash"># 在工作节点上直接暴露
+$ kubectl expose deployment kubernetes-bootcamp --type=&quot;NodePort&quot; --port 8080
+service &quot;kubernetes-bootcamp&quot; exposed
+# 查询服务端口
+$ $ kubectl get svc
+NAME                  TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
+kubernetes            ClusterIP   10.96.0.1      &lt;none&gt;        443/TCP          5d
+kubernetes-bootcamp   NodePort    10.101.38.77   &lt;none&gt;        8080:31019/TCP   4m
+# 查询hello服务在集群中的url
+$ minikube service kubernetes-bootcamp --url
+http://192.168.99.100:31019
+</code></pre>
+<blockquote>
+<p>使用<code>expose</code>将Deployment暴露成为Service，以NodePort方式在工作节点上为其随机映射一个端口<br>访问 <a href="http://192.168.99.100:31019" target="_blank" rel="noopener">http://192.168.99.100:31019</a> 或 <a href="http://localhost:8001/api/v1/namespaces/default/pods/$POD_NAME/proxy/" target="_blank" rel="noopener">http://localhost:8001/api/v1/namespaces/default/pods/$POD_NAME/proxy/</a></p>
+</blockquote>
+</li>
+<li>使用Label<blockquote>
+<p>Labels:run=kubernetes-bootcamp<br>  <code>`</code>bash</p>
+</blockquote>
+<h1 id="使用默认label查询"><a href="#使用默认label查询" class="headerlink" title="使用默认label查询"></a>使用默认label查询</h1>  $ kubectl get pods -l run=kubernetes-bootcamp<br>  $ kubectl get svc -l run=kubernetes-bootcamp<h1 id="新增一个label"><a href="#新增一个label" class="headerlink" title="新增一个label"></a>新增一个label</h1>  $ kubectl label pod kubernetes-bootcamp-5c69669756-cwpx7 app=v1<br>  <code>`</code></li>
+<li>Scale应用：扩展Pod replicas<pre><code class="bash">  $ kubectl scale deployments/kubernetes-bootcamp --replicas=4
+deployment.extensions &quot;kubernetes-bootcamp&quot; scaled
+$ kubectl get deployments
+NAME                  DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
+kubernetes-bootcamp   4         4         4            4           2h
+​```bash
+$ kubectl get pods -o wide
+NAME                                   READY     STATUS    RESTARTS   AGE       IP           NODE
+kubernetes-bootcamp-5c69669756-9wmqv   1/1       Running   0          1m        172.17.0.7   minikube
+kubernetes-bootcamp-5c69669756-cwpx7   1/1       Running   0          2h        172.17.0.4   minikube
+kubernetes-bootcamp-5c69669756-nvkt6   1/1       Running   0          1m        172.17.0.5   minikube
+kubernetes-bootcamp-5c69669756-pnq2m   1/1       Running   0          1m        172.17.0.6   minikube
+</code></pre>
+<blockquote>
+<p>访问service时会按照load-balance进行负载均衡</p>
+</blockquote>
+</li>
+<li>热更新<pre><code class="bash">  $ kubectl set image deployments/kubernetes-bootcamp kubernetes-bootcamp=jocatalin/kubernetes-bootcamp:v2
+  # 查看状态
+  $ kubectl rollout status deployments/kubernetes-bootcamp
+  # 回退
+  $ kubectl rollout undo deployments/kubernetes-bootcamp
+</code></pre>
+</li>
+</ul>
+<h3 id="minikube-dashboard"><a href="#minikube-dashboard" class="headerlink" title="minikube dashboard`"></a>minikube dashboard`</h3><p><img src="/images/k8s-dashboard.png" alt="k8s-dashboard"></p>
+<blockquote>
+<p>启动了一个k8s集群：Mac-Master Minikube虚拟机-Node<br>Node上启动了2个pod：</p>
+<ul>
+<li>bootcamp：容器*1，端口-8080</li>
+<li>hello：容器*1，端口-80<br>在Master上使用Proxy访问Pod：<a href="http://localhost:8001/api/v1/namespaces/default/pods/$POD_NAME/proxy/" target="_blank" rel="noopener">http://localhost:8001/api/v1/namespaces/default/pods/$POD_NAME/proxy/</a><br>在Master上使用Node地址访问已暴露的服务：<a href="http://192.168.99.100:31019" target="_blank" rel="noopener">http://192.168.99.100:31019</a></li>
+</ul>
+</blockquote>
+<h2 id="k8s-基本概念"><a href="#k8s-基本概念" class="headerlink" title="k8s 基本概念"></a>k8s 基本概念</h2><h3 id="管理角色"><a href="#管理角色" class="headerlink" title="管理角色"></a>管理角色</h3><ul>
+<li>Master：命令执行，集群的管理和控制<ul>
+<li>kube-apiserver：对集群资源CURD的唯一入口，提供HTTP Rest接口</li>
+<li>kube-controller-manager：资源对象控制中心</li>
+<li>kube-scheduler：资源(pod)调度</li>
+<li>etcd：资源的信息保存</li>
+</ul>
+</li>
+<li>Node：工作负载节点(Docker容器)，由Master控制<ul>
+<li>kubelet：负责Pod对应容器的创建、暂停(配合Docker)</li>
+<li>kube-proxy：负责service的通信和负载均衡</li>
+<li>docker：负责当前节点的容器管理<blockquote>
+<p>Node通过<code>kubelet</code>向Master注册自己，并通过心跳报告自身情况；当Node不可用时，Master会触发“工作负载转移”的流程</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="资源对象"><a href="#资源对象" class="headerlink" title="资源对象"></a>资源对象</h3><ul>
+<li><p>Pod：对一组业务容器的统一管理(类似docker-compose)</p>
+<ul>
+<li>containers：包含的容器组<ul>
+<li>Pause(缺省)：根容器，代表整个Pod(其他所有容器)的状态</li>
+<li>n*业务容器：共享Pause的网络、volume，即网络和文件访问都由Pause容器控制<blockquote>
+<p>我们希望使用容器管理一组业务，但是又希望他们作为一个整体进行运行(保证高效的网络传输、具有高度的依赖)</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>volumes：卷配置<ul>
+<li>emptyDir：临时目录</li>
+<li>hostPath：宿主机目录</li>
+<li>gcePersisentDisk/awsElasticBlockStore：GCE/AWS的组件支持<br>   NFS：网络文件挂载    </li>
+</ul>
+</li>
+<li>…</li>
+</ul>
+</li>
+<li><p>Label：对资源进行标记的多个键值对，作为LabelSelector搜索Pod的条件，类似SQL查询</p>
+</li>
+<li><p>Annotation：类似Label，多用于记录补充信息</p>
+</li>
+<li><p>ReplicationController(rc:deprecated)：管理控制Pod的副本建立</p>
+<ul>
+<li>replicas：副本数</li>
+<li>selector：被管理Pod的Labels</li>
+<li>template：目标Pod的创建模板</li>
+</ul>
+</li>
+<li><p>ReplicationSet(rs)：RC升级版，selector提供IN/Exsit等组操作</p>
+</li>
+<li><p>Deployment：RS升级版</p>
+<ul>
+<li>部署状态：可以查询各Pod的部署状态</li>
+<li>包含历史：可以回滚到之前版本</li>
+</ul>
+</li>
+<li><p><em>Horizontal Pod Autoscaler</em></p>
+</li>
+<li><p><em>StatefulSet</em></p>
+</li>
+<li><p><a href="#Node IP、Pod IP、Cluster IP"><strong>Service</strong></a>：</p>
+<ul>
+<li>type：<ul>
+<li>ClusterIP(default)：内部IP，只能在cluster中访问</li>
+<li>NodePort：将Pod的端口映射到Node主机上</li>
+<li>LoadBalancer：使用外部负载均衡(例如谷歌云提供的插件)</li>
+<li>ExternalName：使用CNAME进行访问(需要kube-dns支持)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Volume：见Pod.volumes</p>
+</li>
+<li><p>Persisent Volume：网络存储，不属于Node但可以被所有Node访问；独立于Pod的资源</p>
+</li>
+<li><p>NameSpace：</p>
+</li>
+</ul>
+<h3 id="Node-IP、Pod-IP、Cluster-IP"><a href="#Node-IP、Pod-IP、Cluster-IP" class="headerlink" title="Node IP、Pod IP、Cluster IP"></a>Node IP、Pod IP、Cluster IP</h3><p>k8s网络连接涉及以下几个IP地址：</p>
+<ul>
+<li><code>NodeIP</code>：即Node节点的宿主机IP地址，可以ping的互联网上的真实IP<ul>
+<li>即主机IP</li>
+</ul>
+</li>
+<li><code>PodIP</code>：在k8s集群中为每一个Pod生成的IP，随Pod而生死<ul>
+<li>一个Pod中的容器共享网络，因此可以使用PodIP进行容器互连(容器ping容器 Y)</li>
+<li>仅限于Pod(容器间)访问，外部无法通过此IP访问(主机ping容器 X)</li>
+</ul>
+</li>
+<li><code>ClusterIP</code>：创建Service时会赋予一个虚拟IP，无实际作用<ul>
+<li>ClusterIP只是一个类似标签的作用，无法作为IP使用(主机/容器均无法ping)</li>
+<li><code>ClusterIP:Port</code>作为一条”路由规则”，由kube-proxy解析并负载均衡到具体的<code>PodIP:Port</code>上(能够<code>curl ClusterIP:Port</code>)</li>
+</ul>
+</li>
+</ul>
+<p><strong>查看Node IP</strong></p>
+<pre><code class="bash">$ minikube ip
+192.168.99.100
+$ ping 192.168.99.100
+# 成功连接
+</code></pre>
+<p><strong>查看Pod IP</strong></p>
+<pre><code class="bash">$ kubectl get pods -o wide
+NAME                                   READY     STATUS    RESTARTS   AGE       IP            NODE
+kubernetes-bootcamp-7799cbcb86-9hznw   1/1       Running   0          1d        172.17.0.5    minikube
+kubernetes-bootcamp-7799cbcb86-9sz9j   1/1       Running   0          1d        172.17.0.6    minikube
+$ ping 172.17.0.5
+# 无法连接
+</code></pre>
+<p><strong>容器互连</strong></p>
+<pre><code class="bash"># ssh 192.168.99.100 &amp; 查询容器kubernetes-bootcamp
+minikube$ docker ps
+...
+8248aa62f471        b6556396ebd4                    &quot;/bin/sh -c &#39;node se…&quot;   25 hours ago        Up 25 hours                             k8s_kubernetes-bootcamp_kubernetes-bootcamp-7799cbcb86-9sz9j_default_fda0378f-a9bc-11e8-a9bf-080027de9b8c_0
+...
+# 容器中连接其他容器
+minikube$ docker exec -it 8248aa62f471 ping 172.17.0.5
+# 成功连接
+</code></pre>
+<blockquote>
+<p>这里可以发现Deployment:Name，Pod:Name，Container:Name有额外的随机字符，因此只能通过IP访问其他容器</p>
+</blockquote>
+<p><strong>查询Service</strong></p>
+<pre><code class="bash">$ kubectl get svc
+NAME                  TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)             AGE
+kubernetes            ClusterIP   10.96.0.1        &lt;none&gt;        443/TCP             6d
+kubernetes-bootcamp   NodePort    10.101.38.77     &lt;none&gt;        8080:31019/TCP      1d
+$ ping 10.101.38.77
+# 无法连接
+</code></pre>
+<p><strong>容器Service互连</strong></p>
+<pre><code class="bash"># ssh 192.168.99.100 &amp; 查询容器kubernetes-bootcamp
+# 容器中连接service
+minikube$ docker exec -it 8248aa62f471 ping kubernetes-bootcamp
+# 连接失败
+minikube$ docker exec -it 8248aa62f471 ping 10.101.38.77
+# 连接失败
+# 容器中基于clusterIP:port进行访问
+minikube$ docker exec -it 8248aa62f471 curl http://kubernetes-bootcamp:8080
+Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-7799cbcb86-9hznw | v=2
+minikube$ docker exec -it 8248aa62f471 curl http://10.101.38.77:8080
+Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-7799cbcb86-9hznw | v=2
+</code></pre>
+<p><strong>容器外连接</strong></p>
+<pre><code class="bash">$ curl http://192.168.99.100:31019
+Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-7799cbcb86-9hznw | v=2
+</code></pre>
+<p>因此：</p>
+<ul>
+<li>容器互连：需要知道彼此的PodIP<ul>
+<li>缺陷：PodIP会随Pod的生死而改变</li>
+</ul>
+</li>
+<li>Service：使用<code>ServiceName:Port/ClusterIP:Port</code>作为DNS访问一组Pod<ul>
+<li>缺陷：虚拟IP外部无法访问</li>
+</ul>
+</li>
+<li>外部连接：使用NodePort暴露Pod端口，通过<code>NodeIP:ExposedPort</code>进行访问<ul>
+<li>缺陷：Pod无法得知所在NodeIP -&gt; 依赖外部服务注册组件</li>
+</ul>
+</li>
+</ul>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span> PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span> UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

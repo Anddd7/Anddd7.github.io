@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        Scala学习整理[第十七-十八章 集合和有状态对象][Programming In Scala] - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i>  </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar">
+            <img src="/assets/avatar.jpeg" />
+        </div>
+        <div class="name">
+            <i>Anddd7</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+        <div class="index-about-mobile">
+            <i>  </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Scala学习整理[第十七-十八章 集合和有状态对象][Programming In Scala]
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2018-01-06 21:20:16</span></span>
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <blockquote>
+</blockquote>
+<p>这两章内容之前有所提到 ,因此不再赘述</p>
+<pre><code>package SecondWithProgrammingInScala
+
+
+import scala.collection.mutable
+import scala.collection.mutable.Stack
+import scala.collection.mutable.{ArrayBuffer, ListBuffer}
+
+/**
+  * 集合库
+  * mutable 元素可变(+/=操作是对元素进行修改)
+  * immutable  元素不可变(使用var 和 +/=操作符实质是改变的变量指向 ,而不是元素变化)
+  *
+  */
+class Collection {
+  //基本序列
+  val array = Array(1, 2, 3)
+  val list = List(4, 5, 6)
+  //缓存序列
+  val arrayBuffer = ArrayBuffer(1, 2, 3)
+  val listBuffer = ListBuffer(4, 5, 6)
+  //队列
+  val queue = new mutable.Queue[Int]
+  queue.enqueue(1)
+  queue.dequeue
+  //栈
+  val stack = new Stack[Int]
+  stack.push(1, 2, 3)
+  stack.pop
+
+  //集合
+  val set = Set(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;)
+  //映射
+  val map = Map(1 -&gt; &quot;a&quot;, 2 -&gt; &quot;b&quot;)
+  //有序的集合和映射
+  val treeSet = mutable.TreeSet(3, 11, 2, 77, 4, 62, 1)
+  val treeMap = mutable.TreeMap(5 -&gt; &quot;asf1&quot;, 33 -&gt; &quot;asf2&quot;, 2 -&gt; &quot;asf3&quot;)
+  //同步Synchronized的集合和映射 -&gt; Synchronized包下的类
+
+  //初始化多采用工厂模式 ,会自动调用apply方法
+
+  //元组 -&gt; 同第三章
+
+}
+
+</code></pre><pre><code>/**
+  * 有状态对象
+  *
+  * 之前的章节都是描述函数化编程 ,使用了大量的val和递归
+  * 所有参数变量进出函数后和原参数已经无关
+  * 但在Java面向对象的编程方法中 ,常常会将一个对象一层一层穿过多个函数 ,状态随之改变
+  *
+  * 本章其实是使用scala的var变量 ,书写有状态的对象
+  */
+</code></pre>
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span> PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span> UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

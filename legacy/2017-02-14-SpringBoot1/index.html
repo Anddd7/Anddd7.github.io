@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        SpringBoot学习-第一章 新的Spring基础-[Spring Boot 实战] - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i>  </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar">
+            <img src="/assets/avatar.jpeg" />
+        </div>
+        <div class="name">
+            <i>Anddd7</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring配置方式"><span class="toc-text">Spring配置方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring组件"><span class="toc-text">Spring组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring生态圈（独立项目）"><span class="toc-text">Spring生态圈（独立项目）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring原则"><span class="toc-text">Spring原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#依赖注入-（IOC-DI）"><span class="toc-text">依赖注入 （IOC+DI）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JAVA配置"><span class="toc-text">JAVA配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用Aspectj实现AOP"><span class="toc-text">使用Aspectj实现AOP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#启用AOP"><span class="toc-text">启用AOP</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+        <div class="index-about-mobile">
+            <i>  </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        SpringBoot学习-第一章 新的Spring基础-[Spring Boot 实战]
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2018-01-06 21:20:16</span></span>
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <blockquote>
+</blockquote>
+<p>Spring Boot学习，熟悉注解和Java式的配置。源代码见<a href="https://github.com/Anddd7/SSM-SpringBoot-Starter" target="_blank" rel="noopener">Source-Sample-GitHub</a>。</p>
+<h2 id="Spring配置方式"><a href="#Spring配置方式" class="headerlink" title="Spring配置方式"></a>Spring配置方式</h2><ul>
+<li>配置文件<code>xml</code>（Spring 1.x） 》》 </li>
+<li>注解<code>@annotation</code>（Spring 2.x+Jdk1.5）》》</li>
+<li>Java配置（Spring 3/4）</li>
+</ul>
+<p><strong><code>SpringBoot</code>就是基于Java配置（注解的应用）</strong></p>
+<h2 id="Spring组件"><a href="#Spring组件" class="headerlink" title="Spring组件"></a>Spring组件</h2><p><li>核心组件（Core） <br></li></p>
+<p><ul>- -Core：核心工具类，Spring其他模块的主要依赖</ul></p>
+<ul>
+<li>-Bean：对<code>bean</code>的支持</li>
+<li>-Context：运行时容器</li>
+<li>-Context-Support：容器对第三方包的集成支持</li>
+<li>-Expression：使用表达式语言查询操作运行时的对象- -AOP：基于代理的AOP支持</li>
+<li>-Aspects：基于AspectJ的AOP支持- -Messaging：对消息架构和协议的支持- -Web：基础的集成功能，为Web项目提供Spring容器</li>
+<li>-Webmvc：基于Servlet的Spring MVC</li>
+<li>-WebSocket：提供WebSocket功能</li>
+<li>-Webmvc-Portlet：支持Portlet环境- -JDBC：以JDBC方式访问数据库</li>
+<li>-TX：事务支持</li>
+<li>-ORM：对象关系映射支持</li>
+<li>-OXM：对象xml映射支持</li>
+<li><p>-JMS：对JMS的支持</p>
+<h2 id="Spring生态圈（独立项目）"><a href="#Spring生态圈（独立项目）" class="headerlink" title="Spring生态圈（独立项目）"></a>Spring生态圈（独立项目）</h2></li>
+<li><p>-Boot：使用默认配置快速开发</p>
+</li>
+<li>-XD：简化大数据应用开发</li>
+<li>-Cloud：分布式系统开发工具集</li>
+<li>-Data：对主流关系型/NoSql数据库的支持</li>
+<li>-Integration：通过消息机制对企业集成模式的支持</li>
+<li>-Batch：简化优化大数据批处理</li>
+<li>-Security：认证授权</li>
+<li>-Social：与社交网络API的继承</li>
+<li>-Mobile：对手机设备的识别</li>
+<li>-Web Services：基于协议有限的SOAP/Web服务</li>
+<li>-Session：提供API管理用户会话</li>
+<li>…</li>
+</ul>
+<h2 id="Spring原则"><a href="#Spring原则" class="headerlink" title="Spring原则"></a>Spring原则</h2><ul>
+<li>使用POJO进行轻量级和最小侵入式开发</li>
+<li>通过依赖注入和基于接口编程降低耦合</li>
+<li>通过AOP和默认习惯进行声明式编程</li>
+<li>使用AOP和模板减少模式化（重复的）代码</li>
+</ul>
+<h2 id="依赖注入-（IOC-DI）"><a href="#依赖注入-（IOC-DI）" class="headerlink" title="依赖注入 （IOC+DI）"></a>依赖注入 （IOC+DI）</h2><p>即由Spring容器创建管理Bean（POJO类），通过注解/XML/JAVA告诉容器应该将Bean何时放在何地。</p>
+<p>声明Bean： <br></p>
+<ul>
+<li>@Component 通用 <br></li>
+<li>@Service 在业务逻辑层使用 <br></li>
+<li>@Repository 数据访问层使用 <br></li>
+<li>@Controller 展现层使用</li>
+</ul>
+<p>引入Bean： <br></p>
+<ul>
+<li>@Autowired Spring提供的注解 <br></li>
+<li>@Inject/@Resource JSR-330/JSR-250提供的注解</li>
+</ul>
+<h2 id="JAVA配置"><a href="#JAVA配置" class="headerlink" title="JAVA配置"></a>JAVA配置</h2><p>@Configuration 表示这个类是一个配置类，等效于一个xml文件 <br><br>@Bean 注解一个方法，将方法返回值注册为一个bean</p>
+<ul>
+<li>配置注解化</li>
+</ul>
+<pre><code>&lt;context:component-scan base-package=&quot;com.controller&quot;&gt;&lt;/context:component-scan&gt;
+</code></pre><pre><code>@ComponentScan(&quot;com.controller&quot;) 
+</code></pre><ul>
+<li>配置Java化</li>
+</ul>
+<pre><code>&lt;bean class=&quot;com.util.MySwaggerConfig&quot;/&gt;
+</code></pre><pre><code>@Configuration
+public class JavaConfig{
+    @Bean
+    public MySwaggerConfig mySwaggerConfig(){
+        return new MySwaggerConfig();
+    } 
+}
+</code></pre><h2 id="使用Aspectj实现AOP"><a href="#使用Aspectj实现AOP" class="headerlink" title="使用Aspectj实现AOP"></a>使用Aspectj实现AOP</h2><p>有两种方式，一个是监听方法（通过配置目标路径），一个是监听注解（在目标方法上放置特殊注解） <br></p>
+<ul>
+<li>定义注解，作为被监听的标识</li>
+</ul>
+<pre><code>/**
+ * 注解本身是没有作用的，只是作为一个规则，关联拦截者和被拦截者
+ */
+@Target(ElementType.METHOD)//用于方法
+@Retention(RetentionPolicy.RUNTIME)//可用于运行时
+@Documented
+public @interface AopAction {
+    String name();
+}
+</code></pre><ul>
+<li>书写被拦截的Service(注解式拦截，需要注解Service的方法)</li>
+</ul>
+<pre><code>/**
+ * 注解式拦截，在对应方法上加上@AopAction，在拦截时通过检查注解进行拦截
+ */
+@Service
+public class DemoAnnotationAopService {
+    @AopAction(name = &quot;注解式AOP&quot;)
+    public String say() {
+        return &quot;Hello,Annotation World.&quot;;
+    }
+}
+
+@Service
+public class DemoMethodAopService {
+    public String say() {
+        return &quot;Hello, Normal World.&quot;;
+    }
+}
+</code></pre><ul>
+<li>定义拦截器实现，定义拦截的对象和处理方法</li>
+</ul>
+<pre><code>/**
+ * Aop实现的地方
+ */
+@Aspect//声明一个切面
+@Component//托管给Spring容器
+public class AspectAopImpl {
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
+    /**
+     * 注解式，通过检查注解位置来拦截
+     */
+    @Pointcut(&quot;@annotation(demo.springboot.aop.impl.AopAction)&quot;)
+    public void annotationPointCut() {}
+
+    @Before(&quot;annotationPointCut()&quot;)
+    public void logBefore() { log.info(&quot;logBefore:现在时间是:&quot; + new Date()); }
+
+    /**
+     * 通过指定拦截位置和具体方法
+     */
+    @Pointcut(&quot;execution(* demo.springboot.aop.service.DemoMethodAopService.*(..))&quot;)
+    private void methodPointCut() {}
+
+    @After(&quot;methodPointCut()&quot;)
+    public void logAfter() { log.info(&quot;logAfter:现在时间是:&quot; + new Date()); }
+}
+</code></pre><h2 id="启用AOP"><a href="#启用AOP" class="headerlink" title="启用AOP"></a>启用AOP</h2><p>注入配置文件，开启AspectJ</p>
+<pre><code>/**
+* 用注解代替了xml
+* &lt;aop:aspectj-autoproxy proxy-target-class=&quot;true&quot;/&gt;
+*/
+@EnableAspectJAutoProxy
+@Configuration
+@ComponentScan(&quot;demo.springboot.aop&quot;)//在Application入口整体扫描，可省略此行
+public class AopConfiguration {
+    public static void main(String[] args) {
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AopConfig.class);
+         /**
+         * 测试两种Aop
+         */
+         DemoAnnotationAopService annotationAopService = context.getBean(DemoAnnotationAopService.class);
+        DemoMethodAopService methodAopService = context.getBean(DemoMethodAopService.class);
+
+        System.out.println(annotationAopService.say());
+        System.out.println(methodAopService.say());
+        context.close();
+    }
+}
+</code></pre>
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span> PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span> UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

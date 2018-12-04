@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        AWS-工作坊 - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i>  </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar">
+            <img src="/assets/avatar.jpeg" />
+        </div>
+        <div class="name">
+            <i>Anddd7</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Day1-AWS部署Web服务"><span class="toc-text">Day1 - AWS部署Web服务</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Identity-and-Access-Management-IAM"><span class="toc-text">Identity and Access Management(IAM)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#EC2-Elastic-Compute-Cloud-（Aliyun-ECS）"><span class="toc-text">EC2(Elastic Compute Cloud)（Aliyun ECS）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#注册Instance"><span class="toc-text">注册Instance</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#登录EC2"><span class="toc-text">登录EC2</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#VPC"><span class="toc-text">VPC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Route53（Aliyun-域名解析）"><span class="toc-text">Route53（Aliyun 域名解析）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cloud-Formation"><span class="toc-text">Cloud Formation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#S3-Simple-Storage-Service"><span class="toc-text">S3(Simple Storage Service)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#脚本化"><span class="toc-text">脚本化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vagrant-vs-Docker"><span class="toc-text">vagrant vs Docker</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他"><span class="toc-text">其他</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+        <div class="index-about-mobile">
+            <i>  </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        AWS-工作坊
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2018-08-19 00:00:00</span></span>
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h1 id="Day1-AWS部署Web服务"><a href="#Day1-AWS部署Web服务" class="headerlink" title="Day1 - AWS部署Web服务"></a>Day1 - AWS部署Web服务</h1><h3 id="Identity-and-Access-Management-IAM"><a href="#Identity-and-Access-Management-IAM" class="headerlink" title="Identity and Access Management(IAM)"></a>Identity and Access Management(IAM)</h3><p>AWS 权限管理中心</p>
+<ul>
+<li>multi-factor authentication (MFA)：额外验证方式，保证只有用户本人可以访问<ul>
+<li>vitrual：Google Authenticator扫描二维码，通过连续2个随机码进行验证<ul>
+<li>针对一个服务(aws)的账户(用户)，生成一个二维码(随机码生成算法)</li>
+<li>随机码生成工具(Authenticator)保存生成算法，并实时的计算出随机码</li>
+<li>可以由多个人扫描验证：(+)备份；(-)多人访问</li>
+</ul>
+</li>
+<li>device：…<blockquote>
+<p>提供额外的验证手段，破解难度 = 账号密码*验证设备<br>密码丢失：user -&gt; root -&gt; AWS</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>AccessKey：免密码登录(慎重使用，随用随删)<ul>
+<li>一个受保护的虚拟机：内部使用AccessKey(不会暴露出来)</li>
+<li>Programmatic access：<ul>
+<li>awsapps 可以统一管理多个aws账号</li>
+</ul>
+</li>
+<li>awscli：命令行工具<pre><code class="bash">pip install awscli
+aws configure
+# 输入key_id和secret_id在~/.aws
+aws iam list-users # aws &lt;service&gt; &lt;command&gt;
+</code></pre>
+</li>
+</ul>
+</li>
+<li><a href="http://www.cloudping.info/" target="_blank" rel="noopener">CloudPing</a>：各服务延迟<ul>
+<li>耗时不太准确，以浏览器request cost为准</li>
+<li>亚洲：东京(电信更快)、首尔、新加坡</li>
+<li>AWS China：不属于global，无法跨region</li>
+</ul>
+</li>
+<li>CloudTrail：(需要手动开启) 记录用户的操作</li>
+<li>accout setting：<ul>
+<li>password policy</li>
+<li>可访问的region</li>
+</ul>
+</li>
+<li>权限模型：<ul>
+<li>User：root(最大权限)、admin(默认用户)、users<ul>
+<li>permission</li>
+<li>groups：对应的组</li>
+</ul>
+</li>
+<li>Group：<ul>
+<li>users：管理的user</li>
+<li>permission：遵守的policy</li>
+<li>access advisor：操作权限</li>
+</ul>
+</li>
+<li>Role：<ul>
+<li>permission：遵守的policy</li>
+<li>access advisor：操作权限<blockquote>
+<p>Role -&gt; Group -&gt; User、Role-&gt;User<br>User是实体，Role和Group用来限定一批Users的权限；User也具有细粒度的权限，最后综合权限设置</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="EC2-Elastic-Compute-Cloud-（Aliyun-ECS）"><a href="#EC2-Elastic-Compute-Cloud-（Aliyun-ECS）" class="headerlink" title="EC2(Elastic Compute Cloud)（Aliyun ECS）"></a>EC2(Elastic Compute Cloud)（Aliyun ECS）</h3><p>EC2是AWS提供的IAAS服务，提供一台预装操作系统的主机</p>
+<h4 id="注册Instance"><a href="#注册Instance" class="headerlink" title="注册Instance"></a>注册Instance</h4><ul>
+<li>type<ul>
+<li>常用：t</li>
+<li>计算优化：c</li>
+<li>内存优化：x，大内存+SSD<ul>
+<li>局部性原理：部分程序和存储会被重复的访问</li>
+<li>CPU曲线增长，内存线性增长</li>
+<li>监控：CPU/内存、ALB Response Time</li>
+<li>扩容：快增慢减…</li>
+</ul>
+</li>
+<li>加速：p</li>
+<li>存储：h<blockquote>
+<p>tips：GB = 1000 MB, GIB = 1024 MiB</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>VPC(Virtual Private Cloud)<ul>
+<li>CIDR Classless Inter-Domain Routing：IP/掩码</li>
+<li>不可跨Region，可跨AZ</li>
+<li>虚拟子网<a href="https://docs.aws.amazon.com/zh_cn/AmazonVPC/latest/UserGuide/VPC_Introduction.html" target="_blank" rel="noopener">VPC</a>，将主机加到一个子网中</li>
+</ul>
+</li>
+<li>SecurityGroup：内外网络访问策略<ul>
+<li>主机(port/protocol)可被谁(ip/ip段)访问</li>
+</ul>
+</li>
+</ul>
+<h4 id="登录EC2"><a href="#登录EC2" class="headerlink" title="登录EC2"></a>登录EC2</h4><p>EC2默认开放SSH:22端口，可以使用ssh+security登录默认用户<code>ec2-user</code></p>
+<blockquote>
+<p>linux权限：owner other group, read write execute</p>
+<pre><code class="bash">chmod 400 adliao.pem # pem文件权限不能过大
+ssh -i adliao.pem ec2-user@ec2-13-58-16-70.us-east-2.compute.amazonaws.com
+</code></pre>
+</blockquote>
+<ul>
+<li>安装Ngnix<pre><code class="bash">sudo yum install -y nginx # sudo amazon-linux-extras install nginx1.12
+sudo services nginx start
+curl -v http://localhost # 200
+</code></pre>
+</li>
+<li>Hexo博客<pre><code class="bash">npm install hexo-cli -g
+hexo init &lt;project_name&gt;
+hexo g # 编译
+hexo s # 启动
+</code></pre>
+</li>
+<li>SCP将博客上传到服务器<pre><code class="bash"># scp -i &quot;adliao.pem&quot; -r hexo-sample/site ec2-user@ec2-13-58-16-70.us-east-2.compute.amazonaws.com:~
+sudo scp -i &quot;adliao.pem&quot; -r hexo-sample/site/public ec2-user@ec2-13-58-16-70.us-east-2.compute.amazonaws.com:~/hexo-sample
+</code></pre>
+</li>
+<li>使Ngnix可以访问目标服务<pre><code class="bash"># 复制到ngnix默认目录
+sudo cp ~/hexo-sample/. /usr/share/nginx/html
+# 修改ngnix默认目录
+</code></pre>
+</li>
+<li>修改SecurityGroup 开放80端口 ，访问<a href="http://ec2-13-58-16-70.us-east-2.compute.amazonaws.com" target="_blank" rel="noopener">http://ec2-13-58-16-70.us-east-2.compute.amazonaws.com</a></li>
+</ul>
+<h2 id="VPC"><a href="#VPC" class="headerlink" title="VPC"></a>VPC</h2><h2 id="Route53（Aliyun-域名解析）"><a href="#Route53（Aliyun-域名解析）" class="headerlink" title="Route53（Aliyun 域名解析）"></a>Route53（Aliyun 域名解析）</h2><p>DNS域名解析系统</p>
+<ul>
+<li>hosted zone:<ul>
+<li>SOA(默认)：访问域名的起始位置</li>
+<li>NS(默认)：子域名服务器的位置</li>
+<li>NS/A/CNAME：各种类型的解析方式</li>
+</ul>
+</li>
+<li>TTL，域名缓存留存时间</li>
+</ul>
+<blockquote>
+<p>一个Hosted Zone就代表一个域名服务器组，里面可以包含多条Record进行域名解析<br>也可以使用NS关联多个Hosted Zone</p>
+</blockquote>
+<h2 id="Cloud-Formation"><a href="#Cloud-Formation" class="headerlink" title="Cloud Formation"></a>Cloud Formation</h2><p>使用模板进行资源的创建和控制</p>
+<ul>
+<li>资源使用<code>{Type:...,Properties:...}</code>进行描述</li>
+<li>使用<code>&quot;Ref&quot;:...</code>或者<code>!Ref</code>进行资源引用<ul>
+<li>会优先创建Ref的资源；会延后删除Ref的资源</li>
+<li>并返回引用</li>
+</ul>
+</li>
+<li>使用DependOn：与Ref相同，但不包括引用</li>
+<li>基于<code>MVR</code>（最小可用版本），逐步添加需要的资源</li>
+<li>提供参数 <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/parameters-section-structure.html" target="_blank" rel="noopener">Parameters</a></li>
+<li>使用CLI工具使用cloud formation<pre><code class="bash">aws cloudformation delete-stack --stack-name=adliao-stack
+aws cloudformation update-stack --stack-name adliao-stack --template-body file://ec2.yaml
+aws cloudformation create-stack --stack-name adliao-stack
+</code></pre>
+</li>
+</ul>
+<h2 id="S3-Simple-Storage-Service"><a href="#S3-Simple-Storage-Service" class="headerlink" title="S3(Simple Storage Service)"></a>S3(Simple Storage Service)</h2><ul>
+<li>全球通用访问<ul>
+<li>需要选择物理region(同region会更快)</li>
+<li>多点备份需要额外购买服务</li>
+</ul>
+</li>
+<li><strong>CloudFormation和S3</strong> <ul>
+<li>CloudFromation上传的模板实际存储在S3中</li>
+<li><code>上传到S3 -&gt; 内部解析YAML -&gt; CloudFormation运行</code>·</li>
+</ul>
+</li>
+<li>S3有private和public权限<ul>
+<li>private：只有本人能够访问(或者有full access的用户)</li>
+<li>public：可以被所有人访问（包括外界），S3可以作为静态站点使用<a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/HowDoIWebsiteConfiguration.html" target="_blank" rel="noopener">Website Configuration</a></li>
+<li>AccessControl管理权限(legacy)</li>
+<li>BucketPolicy管理资源权限</li>
+<li><pre><code class="properties">{
+&quot;Version&quot;: &quot;2012-10-17&quot;,
+&quot;Statement&quot;: [
+    {
+        &quot;Sid&quot;: &quot;Stmt1534648780717&quot;,
+        &quot;Effect&quot;: &quot;Allow&quot;,
+        &quot;Principal&quot;: &quot;*&quot;,
+        &quot;Action&quot;: &quot;s3:GetObject&quot;,
+        &quot;Resource&quot;: &quot;arn:aws:s3:::adliao.workshop.oc-tw.net/*&quot;
+    }
+]
+}
+</code></pre>
+</li>
+</ul>
+</li>
+<li>使用Route53路由时，Bucket name需要和DNS domian一致<blockquote>
+<p>使用S3会更方便快捷，成本更小(相比EC2)</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="脚本化"><a href="#脚本化" class="headerlink" title="脚本化"></a>脚本化</h2><ul>
+<li>Cloud Formation</li>
+<li>aws cli</li>
+<li>shell</li>
+</ul>
+<h2 id="vagrant-vs-Docker"><a href="#vagrant-vs-Docker" class="headerlink" title="vagrant vs Docker"></a>vagrant vs Docker</h2><p>用来配置统一的环境</p>
+<ul>
+<li>虚拟机、容器的统一配置、初始化</li>
+<li>DockerFile：docker run | VargrantFile：vargrant init</li>
+</ul>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><ul>
+<li>AWS绘图工具<a href="https://cloudcraft.co/" target="_blank" rel="noopener">Cloud Craft</a></li>
+<li>cloud checker</li>
+<li>drawio</li>
+<li>ping cloud</li>
+<li>dig +trace</li>
+</ul>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span> PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span> UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

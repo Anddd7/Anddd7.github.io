@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        Jenkins with Docker - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i>  </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar">
+            <img src="/assets/avatar.jpeg" />
+        </div>
+        <div class="name">
+            <i>Anddd7</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Jenkins"><span class="toc-text">Jenkins</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#使用Jenkins发布博客镜像"><span class="toc-text">使用Jenkins发布博客镜像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用Jenkins编译Hexo博客"><span class="toc-text">使用Jenkins编译Hexo博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#打包镜像"><span class="toc-text">打包镜像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Docker-Outside-of-Docker"><span class="toc-text">Docker Outside of Docker</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装内嵌Docker的Jenkins"><span class="toc-text">安装内嵌Docker的Jenkins</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#为什么会失败"><span class="toc-text">为什么会失败</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#为容器用户添加权限"><span class="toc-text">为容器用户添加权限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用Vagrant搭建Linux虚拟机"><span class="toc-text">使用Vagrant搭建Linux虚拟机</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+        <div class="index-about-mobile">
+            <i>  </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Jenkins with Docker
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2018-08-23 00:00:00</span></span>
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <p>在容器化广泛运用的时代，Docker镜像作为新的构建产物有着众多的优点。我们希望CI/CD能够直接输出Docker镜像，使我们流水线的部署更加的方便快捷。</p>
+<p>同时，CI/CD作为基础设施，我们也希望能够快速的部署到我们的各个环境中，因此容器化的Jenkins也成为我们的选择之一。</p>
+<h2 id="Jenkins"><a href="#Jenkins" class="headerlink" title="Jenkins"></a>Jenkins</h2><p>Jenkins是一个持续集成的工具，并且拥有大量实用的插件(Maven、Gradle、Git)，可以对不同风格的软件进行持续集成的管理。</p>
+<p><img src="/images/jenkins-new.png" alt="jenkins-new"></p>
+<h3 id="使用Jenkins发布博客镜像"><a href="#使用Jenkins发布博客镜像" class="headerlink" title="使用Jenkins发布博客镜像"></a>使用Jenkins发布博客镜像</h3><p>要发布一个博客镜像需要进行以下步骤</p>
+<ul>
+<li>拉取源码：from github</li>
+<li>编译：hexo g<ul>
+<li>需要npm环境</li>
+<li>需要hexo-cli</li>
+<li>需要依赖包：npm install</li>
+</ul>
+</li>
+<li>打包镜像<ul>
+<li>将编译出的html打包到nginx里面</li>
+</ul>
+</li>
+<li>运行/发布镜像</li>
+</ul>
+<h3 id="使用Jenkins编译Hexo博客"><a href="#使用Jenkins编译Hexo博客" class="headerlink" title="使用Jenkins编译Hexo博客"></a>使用Jenkins编译Hexo博客</h3><ul>
+<li>安装并启动Jenkins<pre><code class="bash">$ docker run -d \
+-v /Users/Shared/jenkins_home:/var/jenkins_home \
+-p 8080:8080 -p 50000:50000 \
+--name jenkins jenkins/jenkins
+</code></pre>
+</li>
+<li><p>配置项目</p>
+<ul>
+<li>Git插件：拉取指定项目</li>
+<li>Nodejs插件：自动安装nodejs和npm，可以在shell直接使用</li>
+</ul>
+</li>
+<li><p>触发构建</p>
+<ul>
+<li>手动</li>
+<li>定时启动cron</li>
+</ul>
+</li>
+</ul>
+<p><img src="/images/jenkins-console.png" alt="jenkins-console"></p>
+<h3 id="打包镜像"><a href="#打包镜像" class="headerlink" title="打包镜像"></a>打包镜像</h3><p>现在我们已经有了一个前端工程的构建产物-<code>public</code>，我们需要直接构建出Docker镜像。</p>
+<ul>
+<li>添加Dockerfile<pre><code class="Dockerfile">  FROM nginx:stable-alpine
+  COPY public /usr/share/nginx/html
+  EXPOSE 80
+  CMD [&quot;nginx&quot;,&quot;-g&quot;,&quot;daemon off;&quot;]
+</code></pre>
+</li>
+<li>执行<code>docker build</code>生成镜像</li>
+</ul>
+<h3 id="Docker-Outside-of-Docker"><a href="#Docker-Outside-of-Docker" class="headerlink" title="Docker Outside of Docker"></a>Docker Outside of Docker</h3><p>Build镜像要求我们在Jenkins主机(容器)上可以使用Docker：</p>
+<ul>
+<li>在安装Jenkins的容器中再安装一个Docker，即<code>Docker In Docker</code><ul>
+<li>所执行的<code>docker</code>是在Jenkins容器中安装的，所以依赖的镜像等都需要重新拉取到DID中</li>
+<li>最外面的Docker只能管理Jenkins，而里面的容器只能由Jenkins容器来管理</li>
+</ul>
+</li>
+<li>将主机上的<code>docker</code>工具引入到Jenkins容器中，使其编译创建<code>兄弟容器</code>而不是<code>父子</code><ul>
+<li>最外面的Docker可以统一管理所有镜像</li>
+</ul>
+</li>
+</ul>
+<p><strong>Docker进行通信控制的主要程序是<code>/var/run/docker.sock</code>，因此只要将这个sock导入到容器中即可；如果需要更多的控制，可以将<code>/var/docker</code>也共享到容器中。</strong></p>
+<pre><code class="bash"># 启动一个新容器，将主机的docker环境挂载进去
+$ docker run 
+-v /var/run/docker.sock:/var/run/docker.sock 
+-v $(which docker):/bin/docker 
+--name docker-manager -it ubuntu
+# 容器内启动其他容器(兄弟容器)
+root@fd83341d1e5b:/# docker run busybox echo &quot;Hello&quot;
+Hello
+</code></pre>
+<h3 id="安装内嵌Docker的Jenkins"><a href="#安装内嵌Docker的Jenkins" class="headerlink" title="安装内嵌Docker的Jenkins"></a>安装内嵌Docker的Jenkins</h3><pre><code class="bash">$ docker run -d \
+-v /Users/Shared/jenkins_home:/var/jenkins_home \
+-v /var/run/docker.sock:/var/run/docker.sock \
+-v $(which docker):/usr/bin/docker \
+-p 8080:8080 -p 50000:50000 \
+--name jenkins jenkins/jenkins
+</code></pre>
+<blockquote>
+<p>本机创建一个工作目录<code>/Users/Shared/jenkins_home</code>，需要提供访问权限<br>绑定<code>jenkins</code>和<code>docker</code>的相关目录到镜像中</p>
+</blockquote>
+<p><img src="/images/jenkins-failed.png" alt="jenkins-failed"></p>
+<h3 id="为什么会失败"><a href="#为什么会失败" class="headerlink" title="为什么会失败"></a>为什么会失败</h3><ul>
+<li>容器默认使用root用户执行操作<pre><code class="bash">$ docker run -it --rm ubuntu whoami
+root
+$ docker run -it --rm ubuntu id
+uid=0(root) gid=0(root) groups=0(root)
+</code></pre>
+<ul>
+<li>Dockerfile:USER 可以切换工作用户<pre><code class="Dockerfile">FROM ubuntu
+RUN whoami &amp; id
+RUN groupadd -r jenkins &amp;&amp; useradd -r -g jenkins jenkins
+USER jenkins
+RUN whoami &amp; id
+CMD whoami
+</code></pre>
+<pre><code class="bash">$ docker build -t users/jenkins -f Dockerfile-jenkins .
+Sending build context to Docker daemon  2.048kB
+Step 1/6 : FROM ubuntu
+---&gt; 74f8760a2a8b
+Step 2/6 : RUN whoami &amp; id
+---&gt; Running in 7767256e7526
+root
+uid=0(root) gid=0(root) groups=0(root)
+doRemoving intermediate container 7767256e7526
+---&gt; 9574d455d2b3
+Step 3/6 : RUN groupadd -r jenkins &amp;&amp; useradd -r -g jenkins jenkins
+---&gt; Running in a54e12e8a424
+dRemoving intermediate container a54e12e8a424
+---&gt; eade256f4b1e
+Step 4/6 : USER jenkins
+---&gt; Running in 00e7bffa42cf
+Removing intermediate container 00e7bffa42cf
+---&gt; c1acfe462d20
+Step 5/6 : RUN whoami &amp; id
+---&gt; Running in b7dac9067b80
+jenkins
+uid=999(jenkins) gid=999(jenkins) groups=999(jenkins)
+Removing intermediate container b7dac9067b80
+---&gt; d27cc6c129a8
+Step 6/6 : CMD whoami
+---&gt; Running in 9f4a70001504
+Removing intermediate container 9f4a70001504
+---&gt; 71deff170f16
+Successfully built 71deff170f16
+Successfully tagged users/jenkins:latest
+</code></pre>
+<ul>
+<li><code>--user</code>可以指定容器用户<pre><code class="bash">$ docker run -it --rm users/jenkins
+jenkins
+$ docker run -it --rm --user root users/jenkins
+root
+</code></pre>
+<blockquote>
+<p>容器内的root用户和主机用户是一致的(部分权限被限制)<br>(可以开启namespace进行分隔)<br>jenkins镜像使用内建的jenkins用户进行操作，而这个用户是没有操作docker的权限的</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="为容器用户添加权限"><a href="#为容器用户添加权限" class="headerlink" title="为容器用户添加权限"></a>为容器用户添加权限</h3><pre><code class="Dockerfile">FROM jenkins/jenkins
+USER root
+# Mac上访问sock需要root(0)
+# RUN useradd -G root jenkins
+# Linux上访问sock通常是docker(999)用户(通过脚本安装)
+ RUN useradd -G docker jenkins
+USER jenkins
+</code></pre>
+<p><img src="/images/jenkins-success.png" alt="jenkins-success"></p>
+<h3 id="使用Vagrant搭建Linux虚拟机"><a href="#使用Vagrant搭建Linux虚拟机" class="headerlink" title="使用Vagrant搭建Linux虚拟机"></a>使用Vagrant搭建Linux虚拟机</h3><p>因为MacOS上的Docker是运行在一个Linux虚拟机中的，会造成用户、权限、文件的混乱，因此我们使用一台Linux虚拟机作为Docker4Jenkins的宿主机。</p>
+<ul>
+<li>使用vagrant初始化虚拟机<pre><code class="bash">$ vagrant init
+# 修改 Vagrantfile，配置镜像、网络
+$ vagrant up
+$ vagrant ssh
+</code></pre>
+</li>
+<li>安装Docker<pre><code class="bash">vagrant@vagrant-ubuntu-trusty-64:~$ curl -fsSL https://get.docker.com -o get-docker.sh
+vagrant@vagrant-ubuntu-trusty-64:~$ sudo sh get-docker.sh
+</code></pre>
+</li>
+</ul>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span> PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span> UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

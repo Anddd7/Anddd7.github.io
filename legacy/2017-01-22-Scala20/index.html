@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        Scala学习整理[总结篇][Programming In Scala] - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i>  </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar">
+            <img src="/assets/avatar.jpeg" />
+        </div>
+        <div class="name">
+            <i>Anddd7</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#第二课细读Scala"><span class="toc-text">第二课细读Scala</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#任务完成"><span class="toc-text">任务完成</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#个人看法"><span class="toc-text">个人看法</span></a></li></ol></li></ol></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+        <div class="index-about-mobile">
+            <i>  </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Scala学习整理[总结篇][Programming In Scala]
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2018-01-06 21:20:16</span></span>
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h1 id="第二课细读Scala"><a href="#第二课细读Scala" class="headerlink" title="第二课细读Scala"></a>第二课细读Scala</h1><p><strong>SecondWIthProgrammingInScala</strong></p>
+<p>结合之前的学习和感想 ,顺序细读一遍Scala的书 ,整理</p>
+<ul>
+<li>为了方便查看和管理代码 ,书中包含的脚本/Scala解释器部分我都用mian函数去测试 ,方便记录</li>
+<li>当然Scala的解释器和脚本运行方式也是要去尝试一下的 ,也是很特别的</li>
+</ul>
+<h2 id="任务完成"><a href="#任务完成" class="headerlink" title="任务完成"></a>任务完成</h2><ul>
+<li>利用这段空闲时间阅读完了Programming In Scala中文版的书 ,对Scala有了一个大致的了解 .中文版的书一共33章(第33是综合章节 ,书写一个GUI) ,都通过代码+注释的方式进行了阅读和理解</li>
+</ul>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><ul>
+<li>作为一个以Java入门的程序猿 ,Scala给我的印象非常深 .在写Java的时候可能需要写很大一片代码 ,才能描述清楚一个继承关系/接口定义/工厂类 .使用Scala的话 ,从语法上就较少了冗余(比如类型定义).</li>
+<li>Scala提倡的函数式思想 ,val+递归的使用也耗费了我不少脑细胞去思考如何重构(虽然效率上需要谨慎考虑).显然 ,这是一门”随性的”语言 ,不同的人写出来的代码是非常不一样的. </li>
+</ul>
+<h4 id="个人看法"><a href="#个人看法" class="headerlink" title="个人看法"></a>个人看法</h4><ul>
+<li>关于语言的争论 ,从 语言种类&gt;2 时候就开始了 ,特别是Java是被吐槽的最多的 ,”一次编译 ,全平台运行”这个最初的特点也被不少人嘲笑 .现在一些新的语言在很多方面确实优于Java或是其他语言 ,但是”存在即合理”</li>
+<li>Scala ,可以充分发挥程序猿自己的能力 ,你有多了解这门语言/了解JVM/了解JAVA/了解计算机结构 ,你就能重构你的代码 ,甚至制定你自己的编译规则(语法糖) ,对你自己来说可以减少非常多的工作量 .</li>
+<li>不过 ,个性化的东西越多 ,当另一个人接手的时候需要花更多的时间去熟悉”你的规则”</li>
+<li>在工程开发中 ,语言只是一个工具 ,选择一个工具 ,依赖的应该是成本(包括人力/技术/附属产品) ,这也是Java语言不怎么样 ,但是Java生态圈确是主流的原因 .</li>
+</ul>
+<p>Scala ,可以充分发挥程序猿自己的能力 ,你有多了解这门语言/了解JVM/了解JAVA/了解计算机结构 ,你就能重构你的代码 ,甚至制定你自己的编译规则(语法糖) ,对你自己来说可以减少非常多的工作量 .</p>
+<blockquote>
+</blockquote>
+<p>不管怎么样 ,往广度走 “技多不压身” ,有充分的选择 ;往深度走 ,”学而精” ,用命令行都能写出操作系统.</p>
+<pre><code>package SecondWithProgrammingInScala
+
+import java.awt.Font
+import java.io._
+import javax.swing.border._
+
+import scala.collection.mutable.ListBuffer
+import scala.swing.{BoxPanel, _}
+import scala.swing.event.ButtonClicked
+import scala.util.Random
+
+
+object WhereEatDinner extends SimpleSwingApplication {
+
+  override def top: Frame = new MainFrame {
+    preferredSize_=(new Dimension(500, 600))
+    //参数
+    var optionList = DinnerOption.getOptionsFromFile
+
+    //控件
+    val optionArea = new BoxPanel(Orientation.Vertical)
+
+    val scrollArea = new ScrollPane(optionArea) {
+      border = new CompoundBorder(new TitledBorder(&quot;候选食堂&quot;), new EmptyBorder(10, 10, 10, 10))
+      maximumSize_=(new Dimension(300, 400))
+      minimumSize_=(maximumSize)
+    }
+    showOptions
+
+    val goBtn = new Button {
+      font = new Font(&quot;微软雅黑&quot;, 2, 20)
+      text = &quot;试试手气&quot;
+      margin = new Insets(5, 5, 5, 5)
+    }
+    val addBtn = new Button {
+      text = &quot;添加&quot;
+    }
+    val resultLable = new Label {
+      text = &quot;...&quot;
+      font = new Font(&quot;微软雅黑&quot;, 1, 30)
+    }
+    //标题
+    title = &quot;\&quot;今晚去哪吃\&quot;究极终端分期解决器v1.0&quot;
+    //主窗口
+    contents = new BoxPanel(Orientation.Vertical) {
+
+      border = new EmptyBorder(30, 30, 30, 30)
+      //上部功能
+      val funcElem = new BoxPanel(Orientation.Horizontal) {
+        border = new EmptyBorder(0, 0, 20, 0)
+        //按钮组
+        val btnGroup = new BoxPanel(Orientation.Vertical) {
+          border = new EmptyBorder(10, 10, 10, 10)
+          //动作
+          listenTo(goBtn, addBtn)
+          reactions += {
+            case ButtonClicked(x) =&gt; if (x == addBtn) toggleAddWindow else if (x == goBtn) goSelection
+          }
+          contents += goBtn
+          contents += addBtn
+        }
+        contents += scrollArea
+        contents += btnGroup
+      }
+
+      val resultElem = resultLable
+      contents += funcElem
+      contents += resultElem
+    }
+
+
+    def toggleAddWindow: Unit = {
+      dialog.open()
+    }
+
+    val dialog = new Dialog {
+      val newFiled = new TextField {
+        columns = 10
+      }
+      val okBtn = new Button {
+        text = &quot;确定&quot;
+      }
+      contents = new BoxPanel(Orientation.Vertical) {
+        contents += newFiled
+        contents += okBtn
+      }
+
+      listenTo(newFiled, okBtn)
+      reactions += {
+        case ButtonClicked(_) =&gt; {
+          if (newFiled.text.isEmpty) Dialog.showConfirmation(top, &quot;餐馆名不能为空&quot;)
+          else DinnerOption.saveOptions(new DinnerOption(optionList.size, newFiled.text))
+          showOptions
+          this.close
+        }
+      }
+    }
+
+    def goSelection: Unit = {
+      val random = new Random(System.currentTimeMillis())
+      val point = Math.abs(random.nextInt % optionList.size)
+      val opt = optionList(point)
+      resultLable.text = opt.name
+    }
+
+    def showOptions: Unit = {
+      optionList.foreach(opt =&gt; optionArea.contents += new Label(opt.toString))
+      optionArea.repaint
+    }
+  }
+}
+
+class DinnerOption(val lineNumber: Int, val name: String) {
+  override def toString: String = name
+}
+
+object DinnerOption {
+
+  /**
+    * 工厂构造方法
+    *
+    * @param lineNumber
+    * @param name
+    * @return
+    */
+  def apply(lineNumber: Int, name: String): DinnerOption = new DinnerOption(lineNumber, name)
+
+
+  /**
+    * 目标文件名
+    */
+  val fileName = &quot;WhereEatDinner-Options.txt&quot;
+  /**
+    * 文件操作对象
+    */
+  val file = getFile
+
+  def getOptionsFromFile: List[DinnerOption] = {
+    val fileReader = new FileReader(file)
+    val lineReader = new LineNumberReader(fileReader)
+    val options = new ListBuffer[DinnerOption]
+
+    var end = false
+    while (!end) {
+      val lineStr = lineReader.readLine()
+      if (lineStr == null || lineStr.isEmpty) end = true
+      else options.append(new DinnerOption(lineReader.getLineNumber, lineStr))
+    }
+
+    fileReader.close()
+    lineReader.close()
+    options.toList
+  }
+
+  /**
+    * 保存新的Option
+    *
+    * @param opts
+    */
+  def saveOptions(opts: DinnerOption*): Unit = {
+    val fileWriter = new FileWriter(file, true)
+    opts.filter(!_.name.isEmpty).foreach(x =&gt;
+      fileWriter.append(x.name + &quot;\n&quot;)
+    )
+    fileWriter.close()
+  }
+
+  /**
+    * 暂时没有发现删除 ,解决方案 ,内存List删除目标 ,然后保存刷新剩下的
+    *
+    * @param opts
+    */
+  def deleteOptions(opts: DinnerOption*): Unit = {
+    val fileWriter = new FileWriter(file)
+    opts.filter(!_.name.isEmpty).sortWith(_.lineNumber &amp;lt; _.lineNumber).foreach(x =&gt;
+      fileWriter.append(x.name + &quot;\n&quot;)
+    )
+    fileWriter.close()
+  }
+
+  /**
+    * 获取文件
+    *
+    * 原本想使用Option[T] ,将结果转化为List ,可以使用for/foreach等操作 ,会自动规避None的选项 ,而不必判断null
+    * 但是对于获取指定的资源(单个的) ,使用for过后还是只会取第一个 ,与其for+get(0) ,还是判断null来的直观简便
+    * 对于返回不止一个资源 ,并且可能为空的时候 ,使用Option
+    *
+    * @return
+    */
+  private def getFile: File = {
+    new File(fileName)
+  }
+}
+</code></pre>
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span> PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span> UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>
