@@ -1,130 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="keyword"  content="">
-    <link rel="shortcut icon" href="/img/favicon.ico">
-
-    <title>
-        
-        Jenkins with Docker - undefined
-        
-    </title>
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/aircloud.css">
-    <link rel="stylesheet" href="/css/gitment.css">
-    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
-    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
-    <!-- ga & ba script hoook -->
-    <script></script>
-</head>
-
-<body>
-
-<div class="site-nav-toggle" id="site-nav-toggle">
-    <button>
-        <span class="btn-bar"></span>
-        <span class="btn-bar"></span>
-        <span class="btn-bar"></span>
-    </button>
-</div>
-
-<div class="index-about">
-    <i>  </i>
-</div>
-
-<div class="index-container">
-    
-    <div class="index-left">
-        
-<div class="nav" id="nav">
-    <div class="avatar-name">
-        <div class="avatar">
-            <img src="/assets/avatar.jpeg" />
-        </div>
-        <div class="name">
-            <i>Anddd7</i>
-        </div>
-    </div>
-    <div class="contents" id="nav-content">
-        <ul>
-            <li >
-                <a href="/">
-                    <i class="iconfont icon-shouye1"></i>
-                    <span>主页</span>
-                </a>
-            </li>
-            <li >
-                <a href="/tags">
-                    <i class="iconfont icon-biaoqian1"></i>
-                    <span>标签</span>
-                </a>
-            </li>
-            <li >
-                <a href="/archives">
-                    <i class="iconfont icon-guidang2"></i>
-                    <span>存档</span>
-                </a>
-            </li>
-            <li >
-                <a href="/about/">
-                    <i class="iconfont icon-guanyu2"></i>
-                    <span>关于</span>
-                </a>
-            </li>
-            
-        </ul>
-    </div>
-    
-        <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Jenkins"><span class="toc-text">Jenkins</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#使用Jenkins发布博客镜像"><span class="toc-text">使用Jenkins发布博客镜像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用Jenkins编译Hexo博客"><span class="toc-text">使用Jenkins编译Hexo博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#打包镜像"><span class="toc-text">打包镜像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Docker-Outside-of-Docker"><span class="toc-text">Docker Outside of Docker</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装内嵌Docker的Jenkins"><span class="toc-text">安装内嵌Docker的Jenkins</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#为什么会失败"><span class="toc-text">为什么会失败</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#为容器用户添加权限"><span class="toc-text">为容器用户添加权限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用Vagrant搭建Linux虚拟机"><span class="toc-text">使用Vagrant搭建Linux虚拟机</span></a></li></ol></li></ol>
-</div>
-    
-</div>
-
-
-<div class="search-field" id="search-field">
-    <div class="search-container">
-        <div class="search-input">
-            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
-            <input id="search-input"/>
-            <span id="begin-search">搜索</span>
-        </div>
-        <div class="search-result-container" id="search-result-container">
-
-        </div>
-    </div>
-</div>
-        <div class="index-about-mobile">
-            <i>  </i>
-        </div>
-    </div>
-    
-    <div class="index-middle">
-        <!-- Main Content -->
-        
-
-
-<div class="post-container">
-    <div class="post-title">
-        Jenkins with Docker
-    </div>
-
-    <div class="post-meta">
-        <span class="attr">发布于：<span>2018-08-23 00:00:00</span></span>
-        
-        </span>
-        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
-</span>
-</span>
-    </div>
-    <div class="post-content ">
-        <p>在容器化广泛运用的时代，Docker镜像作为新的构建产物有着众多的优点。我们希望CI/CD能够直接输出Docker镜像，使我们流水线的部署更加的方便快捷。</p>
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="Anddd7"><title>Jenkins with Docker · Anddd7's Planet</title><meta name="description" content="在容器化广泛运用的时代，Docker镜像作为新的构建产物有着众多的优点。我们希望CI/CD能够直接输出Docker镜像，使我们流水线的部署更加的方便快捷。
+同时，CI/CD作为基础设施，我们也希望能够快速的部署到我们的各个环境中，因此容器化的Jenkins也成为我们的选择之一。
+JenkinsJen"><meta name="keywords"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/assets/avatar.jpeg" style="width:127px;"><h3 title=""><a href="/">Anddd7's Planet</a></h3><div class="description"><p>Level Up! Programmer~</p></div></div></div><ul class="social-links"><li><a href="http://github.com/Anddd7"><i class="fa fa-github"></i></a></li></ul><div class="footer"><a target="_blank" href="/"><span>Nice Theme of </span></a><a href="https://github.com/Ben02/hexo-theme-Anatole">Anatole</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/archives">归档</a></li><li><a href="/about">关于</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li></div><div class="avatar"><img src="/assets/avatar.jpeg"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>Jenkins with Docker</a></h3></div><div class="post-content"><p>在容器化广泛运用的时代，Docker镜像作为新的构建产物有着众多的优点。我们希望CI/CD能够直接输出Docker镜像，使我们流水线的部署更加的方便快捷。</p>
 <p>同时，CI/CD作为基础设施，我们也希望能够快速的部署到我们的各个环境中，因此容器化的Jenkins也成为我们的选择之一。</p>
 <h2 id="Jenkins"><a href="#Jenkins" class="headerlink" title="Jenkins"></a>Jenkins</h2><p>Jenkins是一个持续集成的工具，并且拥有大量实用的插件(Maven、Gradle、Git)，可以对不同风格的软件进行持续集成的管理。</p>
 <p><img src="/images/jenkins-new.png" alt="jenkins-new"></p>
@@ -144,11 +20,8 @@
 <li>运行/发布镜像</li>
 </ul>
 <h3 id="使用Jenkins编译Hexo博客"><a href="#使用Jenkins编译Hexo博客" class="headerlink" title="使用Jenkins编译Hexo博客"></a>使用Jenkins编译Hexo博客</h3><ul>
-<li>安装并启动Jenkins<pre><code class="bash">$ docker run -d \
--v /Users/Shared/jenkins_home:/var/jenkins_home \
--p 8080:8080 -p 50000:50000 \
---name jenkins jenkins/jenkins
-</code></pre>
+<li><p>安装并启动Jenkins</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -d \</span><br><span class="line">-v /Users/Shared/jenkins_home:/var/jenkins_home \</span><br><span class="line">-p 8080:8080 -p 50000:50000 \</span><br><span class="line">--name jenkins jenkins/jenkins</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>配置项目</p>
 <ul>
@@ -166,13 +39,11 @@
 <p><img src="/images/jenkins-console.png" alt="jenkins-console"></p>
 <h3 id="打包镜像"><a href="#打包镜像" class="headerlink" title="打包镜像"></a>打包镜像</h3><p>现在我们已经有了一个前端工程的构建产物-<code>public</code>，我们需要直接构建出Docker镜像。</p>
 <ul>
-<li>添加Dockerfile<pre><code class="Dockerfile">  FROM nginx:stable-alpine
-  COPY public /usr/share/nginx/html
-  EXPOSE 80
-  CMD [&quot;nginx&quot;,&quot;-g&quot;,&quot;daemon off;&quot;]
-</code></pre>
+<li><p>添加Dockerfile</p>
+  <figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> nginx:stable-alpine</span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> public /usr/share/nginx/html</span></span><br><span class="line"><span class="bash">EXPOSE 80</span></span><br><span class="line"><span class="bash">CMD [<span class="string">"nginx"</span>,<span class="string">"-g"</span>,<span class="string">"daemon off;"</span>]</span></span><br></pre></td></tr></table></figure>
 </li>
-<li>执行<code>docker build</code>生成镜像</li>
+<li><p>执行<code>docker build</code>生成镜像</p>
+</li>
 </ul>
 <h3 id="Docker-Outside-of-Docker"><a href="#Docker-Outside-of-Docker" class="headerlink" title="Docker Outside of Docker"></a>Docker Outside of Docker</h3><p>Build镜像要求我们在Jenkins主机(容器)上可以使用Docker：</p>
 <ul>
@@ -186,166 +57,37 @@
 </ul>
 </li>
 </ul>
-<p><strong>Docker进行通信控制的主要程序是<code>/var/run/docker.sock</code>，因此只要将这个sock导入到容器中即可；如果需要更多的控制，可以将<code>/var/docker</code>也共享到容器中。</strong></p>
-<pre><code class="bash"># 启动一个新容器，将主机的docker环境挂载进去
-$ docker run 
--v /var/run/docker.sock:/var/run/docker.sock 
--v $(which docker):/bin/docker 
---name docker-manager -it ubuntu
-# 容器内启动其他容器(兄弟容器)
-root@fd83341d1e5b:/# docker run busybox echo &quot;Hello&quot;
-Hello
-</code></pre>
-<h3 id="安装内嵌Docker的Jenkins"><a href="#安装内嵌Docker的Jenkins" class="headerlink" title="安装内嵌Docker的Jenkins"></a>安装内嵌Docker的Jenkins</h3><pre><code class="bash">$ docker run -d \
--v /Users/Shared/jenkins_home:/var/jenkins_home \
--v /var/run/docker.sock:/var/run/docker.sock \
--v $(which docker):/usr/bin/docker \
--p 8080:8080 -p 50000:50000 \
---name jenkins jenkins/jenkins
-</code></pre>
+<p><strong>Docker进行通信控制的主要程序是<code>/var/run/docker.sock</code>，因此只要将这个sock导入到容器中即可；如果需要更多的控制，可以将<code>/var/docker</code>也共享到容器中。</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 启动一个新容器，将主机的docker环境挂载进去</span></span><br><span class="line">$ docker run </span><br><span class="line">-v /var/run/docker.sock:/var/run/docker.sock </span><br><span class="line">-v $(<span class="built_in">which</span> docker):/bin/docker </span><br><span class="line">--name docker-manager -it ubuntu</span><br><span class="line"><span class="comment"># 容器内启动其他容器(兄弟容器)</span></span><br><span class="line">root@fd83341d1e5b:/<span class="comment"># docker run busybox echo "Hello"</span></span><br><span class="line">Hello</span><br></pre></td></tr></table></figure></p>
+<h3 id="安装内嵌Docker的Jenkins"><a href="#安装内嵌Docker的Jenkins" class="headerlink" title="安装内嵌Docker的Jenkins"></a>安装内嵌Docker的Jenkins</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -d \</span><br><span class="line">-v /Users/Shared/jenkins_home:/var/jenkins_home \</span><br><span class="line">-v /var/run/docker.sock:/var/run/docker.sock \</span><br><span class="line">-v $(<span class="built_in">which</span> docker):/usr/bin/docker \</span><br><span class="line">-p 8080:8080 -p 50000:50000 \</span><br><span class="line">--name jenkins jenkins/jenkins</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>本机创建一个工作目录<code>/Users/Shared/jenkins_home</code>，需要提供访问权限<br>绑定<code>jenkins</code>和<code>docker</code>的相关目录到镜像中</p>
 </blockquote>
 <p><img src="/images/jenkins-failed.png" alt="jenkins-failed"></p>
 <h3 id="为什么会失败"><a href="#为什么会失败" class="headerlink" title="为什么会失败"></a>为什么会失败</h3><ul>
-<li>容器默认使用root用户执行操作<pre><code class="bash">$ docker run -it --rm ubuntu whoami
-root
-$ docker run -it --rm ubuntu id
-uid=0(root) gid=0(root) groups=0(root)
-</code></pre>
+<li><p>容器默认使用root用户执行操作</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -it --rm ubuntu whoami</span><br><span class="line">root</span><br><span class="line">$ docker run -it --rm ubuntu id</span><br><span class="line">uid=0(root) gid=0(root) groups=0(root)</span><br></pre></td></tr></table></figure>
 <ul>
-<li>Dockerfile:USER 可以切换工作用户<pre><code class="Dockerfile">FROM ubuntu
-RUN whoami &amp; id
-RUN groupadd -r jenkins &amp;&amp; useradd -r -g jenkins jenkins
-USER jenkins
-RUN whoami &amp; id
-CMD whoami
-</code></pre>
-<pre><code class="bash">$ docker build -t users/jenkins -f Dockerfile-jenkins .
-Sending build context to Docker daemon  2.048kB
-Step 1/6 : FROM ubuntu
----&gt; 74f8760a2a8b
-Step 2/6 : RUN whoami &amp; id
----&gt; Running in 7767256e7526
-root
-uid=0(root) gid=0(root) groups=0(root)
-doRemoving intermediate container 7767256e7526
----&gt; 9574d455d2b3
-Step 3/6 : RUN groupadd -r jenkins &amp;&amp; useradd -r -g jenkins jenkins
----&gt; Running in a54e12e8a424
-dRemoving intermediate container a54e12e8a424
----&gt; eade256f4b1e
-Step 4/6 : USER jenkins
----&gt; Running in 00e7bffa42cf
-Removing intermediate container 00e7bffa42cf
----&gt; c1acfe462d20
-Step 5/6 : RUN whoami &amp; id
----&gt; Running in b7dac9067b80
-jenkins
-uid=999(jenkins) gid=999(jenkins) groups=999(jenkins)
-Removing intermediate container b7dac9067b80
----&gt; d27cc6c129a8
-Step 6/6 : CMD whoami
----&gt; Running in 9f4a70001504
-Removing intermediate container 9f4a70001504
----&gt; 71deff170f16
-Successfully built 71deff170f16
-Successfully tagged users/jenkins:latest
-</code></pre>
+<li>Dockerfile:USER 可以切换工作用户<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> ubuntu</span><br><span class="line"> <span class="keyword">RUN</span><span class="bash"> whoami &amp; id</span></span><br><span class="line"><span class="bash"> RUN groupadd -r jenkins &amp;&amp; useradd -r -g jenkins jenkins</span></span><br><span class="line"><span class="bash"> USER jenkins</span></span><br><span class="line"><span class="bash"> RUN whoami &amp; id</span></span><br><span class="line"><span class="bash"> CMD whoami</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">$ docker build -t users/jenkins -f Dockerfile-jenkins .</span><br><span class="line">Sending build context to Docker daemon  2.048kB</span><br><span class="line">Step 1/6 : FROM ubuntu</span><br><span class="line"> ---&gt; 74f8760a2a8b</span><br><span class="line">Step 2/6 : RUN whoami &amp; id</span><br><span class="line"> ---&gt; Running <span class="keyword">in</span> 7767256e7526</span><br><span class="line">root</span><br><span class="line">uid=0(root) gid=0(root) groups=0(root)</span><br><span class="line">doRemoving intermediate container 7767256e7526</span><br><span class="line"> ---&gt; 9574d455d2b3</span><br><span class="line">Step 3/6 : RUN groupadd -r jenkins &amp;&amp; useradd -r -g jenkins jenkins</span><br><span class="line"> ---&gt; Running <span class="keyword">in</span> a54e12e8a424</span><br><span class="line">dRemoving intermediate container a54e12e8a424</span><br><span class="line"> ---&gt; eade256f4b1e</span><br><span class="line">Step 4/6 : USER jenkins</span><br><span class="line"> ---&gt; Running <span class="keyword">in</span> 00e7bffa42cf</span><br><span class="line">Removing intermediate container 00e7bffa42cf</span><br><span class="line"> ---&gt; c1acfe462d20</span><br><span class="line">Step 5/6 : RUN whoami &amp; id</span><br><span class="line"> ---&gt; Running <span class="keyword">in</span> b7dac9067b80</span><br><span class="line">jenkins</span><br><span class="line">uid=999(jenkins) gid=999(jenkins) groups=999(jenkins)</span><br><span class="line">Removing intermediate container b7dac9067b80</span><br><span class="line"> ---&gt; d27cc6c129a8</span><br><span class="line">Step 6/6 : CMD whoami</span><br><span class="line"> ---&gt; Running <span class="keyword">in</span> 9f4a70001504</span><br><span class="line">Removing intermediate container 9f4a70001504</span><br><span class="line"> ---&gt; 71deff170f16</span><br><span class="line">Successfully built 71deff170f16</span><br><span class="line">Successfully tagged users/jenkins:latest</span><br></pre></td></tr></table></figure>
 <ul>
-<li><code>--user</code>可以指定容器用户<pre><code class="bash">$ docker run -it --rm users/jenkins
-jenkins
-$ docker run -it --rm --user root users/jenkins
-root
-</code></pre>
+<li><code>--user</code>可以指定容器用户<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> $ docker run -it --rm users/jenkins</span><br><span class="line">jenkins</span><br><span class="line"> $ docker run -it --rm --user root users/jenkins</span><br><span class="line">root</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
 <blockquote>
 <p>容器内的root用户和主机用户是一致的(部分权限被限制)<br>(可以开启namespace进行分隔)<br>jenkins镜像使用内建的jenkins用户进行操作，而这个用户是没有操作docker的权限的</p>
 </blockquote>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="为容器用户添加权限"><a href="#为容器用户添加权限" class="headerlink" title="为容器用户添加权限"></a>为容器用户添加权限</h3><pre><code class="Dockerfile">FROM jenkins/jenkins
-USER root
-# Mac上访问sock需要root(0)
-# RUN useradd -G root jenkins
-# Linux上访问sock通常是docker(999)用户(通过脚本安装)
- RUN useradd -G docker jenkins
-USER jenkins
-</code></pre>
+<h3 id="为容器用户添加权限"><a href="#为容器用户添加权限" class="headerlink" title="为容器用户添加权限"></a>为容器用户添加权限</h3><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> jenkins/jenkins</span><br><span class="line"><span class="keyword">USER</span> root</span><br><span class="line"><span class="comment"># Mac上访问sock需要root(0)</span></span><br><span class="line"><span class="comment"># RUN useradd -G root jenkins</span></span><br><span class="line"><span class="comment"># Linux上访问sock通常是docker(999)用户(通过脚本安装)</span></span><br><span class="line"> <span class="keyword">RUN</span><span class="bash"> useradd -G docker jenkins</span></span><br><span class="line"><span class="bash">USER jenkins</span></span><br></pre></td></tr></table></figure>
 <p><img src="/images/jenkins-success.png" alt="jenkins-success"></p>
 <h3 id="使用Vagrant搭建Linux虚拟机"><a href="#使用Vagrant搭建Linux虚拟机" class="headerlink" title="使用Vagrant搭建Linux虚拟机"></a>使用Vagrant搭建Linux虚拟机</h3><p>因为MacOS上的Docker是运行在一个Linux虚拟机中的，会造成用户、权限、文件的混乱，因此我们使用一台Linux虚拟机作为Docker4Jenkins的宿主机。</p>
 <ul>
-<li>使用vagrant初始化虚拟机<pre><code class="bash">$ vagrant init
-# 修改 Vagrantfile，配置镜像、网络
-$ vagrant up
-$ vagrant ssh
-</code></pre>
+<li><p>使用vagrant初始化虚拟机</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ vagrant init</span><br><span class="line"><span class="comment"># 修改 Vagrantfile，配置镜像、网络</span></span><br><span class="line">$ vagrant up</span><br><span class="line">$ vagrant ssh</span><br></pre></td></tr></table></figure>
 </li>
-<li>安装Docker<pre><code class="bash">vagrant@vagrant-ubuntu-trusty-64:~$ curl -fsSL https://get.docker.com -o get-docker.sh
-vagrant@vagrant-ubuntu-trusty-64:~$ sudo sh get-docker.sh
-</code></pre>
-</li>
+<li><p>安装Docker</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vagrant@vagrant-ubuntu-trusty-64:~$ curl -fsSL https://get.docker.com -o get-docker.sh</span><br><span class="line">vagrant@vagrant-ubuntu-trusty-64:~$ sudo sh get-docker.sh</span><br></pre></td></tr></table></figure></li>
 </ul>
-
-        
-        <br />
-        <div id="comment-container">
-        </div>
-        <div id="disqus_thread"></div>
-
-        <div id="lv-container">
-        </div>
-
-    </div>
-</div>
-    </div>
-</div>
-
-
-<footer class="footer">
-    <ul class="list-inline text-center">
-        
-        
-
-        
-
-        
-
-        
-
-        
-
-    </ul>
-    
-    <p>
-        <span id="busuanzi_container_site_pv">
-            <span id="busuanzi_value_site_pv"></span> PV
-        </span>
-        <span id="busuanzi_container_site_uv">
-            <span id="busuanzi_value_site_uv"></span> UV
-        </span>
-        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
-</footer>
-
-
-
-
-</body>
-
-<script>
-    // We expose some of the variables needed by the front end
-    window.hexo_search_path = ""
-    window.hexo_root = "/"
-    window.isPost = true
-</script>
-<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-
-
-
-</html>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2018-08-23</span><i class="fa fa-tag"></i></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" href="http://twitter.com/home?status=,https://anddd7.github.io/docker/jenkins-in-docker/,Anddd7's Planet,Jenkins with Docker,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/k8s/kubernetes-1/" title="（一）Kubernetes入门">上一篇</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/aws/aws-workshop/" title="AWS-工作坊">下一篇</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>

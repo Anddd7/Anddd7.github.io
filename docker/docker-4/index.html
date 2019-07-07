@@ -1,130 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="keyword"  content="">
-    <link rel="shortcut icon" href="/img/favicon.ico">
-
-    <title>
-        
-        （四）多主机部署和服务发现 - undefined
-        
-    </title>
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/aircloud.css">
-    <link rel="stylesheet" href="/css/gitment.css">
-    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
-    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
-    <!-- ga & ba script hoook -->
-    <script></script>
-</head>
-
-<body>
-
-<div class="site-nav-toggle" id="site-nav-toggle">
-    <button>
-        <span class="btn-bar"></span>
-        <span class="btn-bar"></span>
-        <span class="btn-bar"></span>
-    </button>
-</div>
-
-<div class="index-about">
-    <i>  </i>
-</div>
-
-<div class="index-container">
-    
-    <div class="index-left">
-        
-<div class="nav" id="nav">
-    <div class="avatar-name">
-        <div class="avatar">
-            <img src="/assets/avatar.jpeg" />
-        </div>
-        <div class="name">
-            <i>Anddd7</i>
-        </div>
-    </div>
-    <div class="contents" id="nav-content">
-        <ul>
-            <li >
-                <a href="/">
-                    <i class="iconfont icon-shouye1"></i>
-                    <span>主页</span>
-                </a>
-            </li>
-            <li >
-                <a href="/tags">
-                    <i class="iconfont icon-biaoqian1"></i>
-                    <span>标签</span>
-                </a>
-            </li>
-            <li >
-                <a href="/archives">
-                    <i class="iconfont icon-guidang2"></i>
-                    <span>存档</span>
-                </a>
-            </li>
-            <li >
-                <a href="/about/">
-                    <i class="iconfont icon-guanyu2"></i>
-                    <span>关于</span>
-                </a>
-            </li>
-            
-        </ul>
-    </div>
-    
-        <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#多主机部署与服务发现"><span class="toc-text">多主机部署与服务发现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#动态服务发现"><span class="toc-text">动态服务发现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Consul"><span class="toc-text">Consul</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#练习"><span class="toc-text">练习</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Registrator"><span class="toc-text">Registrator</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多主机部署"><span class="toc-text">多主机部署</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#DOCKER-SWARM"><span class="toc-text">DOCKER SWARM</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#SWARM-调度策略"><span class="toc-text">SWARM - 调度策略</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SWARM-FILTER-选项"><span class="toc-text">SWARM - FILTER 选项</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Swarm-中缺少了什么功能？"><span class="toc-text">Swarm 中缺少了什么功能？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#其他集群管理方案…"><span class="toc-text">其他集群管理方案…</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#监控-管理-追踪"><span class="toc-text">监控/管理/追踪</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#DOCKER日志"><span class="toc-text">DOCKER日志</span></a></li></ol></li></ol></li></ol>
-</div>
-    
-</div>
-
-
-<div class="search-field" id="search-field">
-    <div class="search-container">
-        <div class="search-input">
-            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
-            <input id="search-input"/>
-            <span id="begin-search">搜索</span>
-        </div>
-        <div class="search-result-container" id="search-result-container">
-
-        </div>
-    </div>
-</div>
-        <div class="index-about-mobile">
-            <i>  </i>
-        </div>
-    </div>
-    
-    <div class="index-middle">
-        <!-- Main Content -->
-        
-
-
-<div class="post-container">
-    <div class="post-title">
-        （四）多主机部署和服务发现
-    </div>
-
-    <div class="post-meta">
-        <span class="attr">发布于：<span>2018-08-10 00:00:00</span></span>
-        
-        </span>
-        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
-</span>
-</span>
-    </div>
-    <div class="post-content ">
-        <h1 id="多主机部署与服务发现"><a href="#多主机部署与服务发现" class="headerlink" title="多主机部署与服务发现"></a><strong>多主机部署与服务发现</strong></h1><p>多主机部署时主要考虑的就是如何让不同主机上的容器可以通过网络访问。一是要知道主机的位置 - 服务发现，二是协调容器的相互访问。</p>
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="Anddd7"><title>（四）多主机部署和服务发现 · Anddd7's Planet</title><meta name="description" content="多主机部署与服务发现多主机部署时主要考虑的就是如何让不同主机上的容器可以通过网络访问。一是要知道主机的位置 - 服务发现，二是协调容器的相互访问。
+比如，最简单的方式是我已知主机的IP地址，然后设置容器与主机的端口转发，我就可以在容器中通过HostIP:ContainerForwardPort进行访"><meta name="keywords"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/assets/avatar.jpeg" style="width:127px;"><h3 title=""><a href="/">Anddd7's Planet</a></h3><div class="description"><p>Level Up! Programmer~</p></div></div></div><ul class="social-links"><li><a href="http://github.com/Anddd7"><i class="fa fa-github"></i></a></li></ul><div class="footer"><a target="_blank" href="/"><span>Nice Theme of </span></a><a href="https://github.com/Ben02/hexo-theme-Anatole">Anatole</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/archives">归档</a></li><li><a href="/about">关于</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li></div><div class="avatar"><img src="/assets/avatar.jpeg"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>（四）多主机部署和服务发现</a></h3></div><div class="post-content"><h1 id="多主机部署与服务发现"><a href="#多主机部署与服务发现" class="headerlink" title="多主机部署与服务发现"></a><strong>多主机部署与服务发现</strong></h1><p>多主机部署时主要考虑的就是如何让不同主机上的容器可以通过网络访问。一是要知道主机的位置 - 服务发现，二是协调容器的相互访问。</p>
 <p>比如，最简单的方式是我已知主机的IP地址，然后设置容器与主机的端口转发，我就可以在容器中通过<a href="HostIP:ContainerForwardPort" target="_blank" rel="noopener">HostIP:ContainerForwardPort</a>进行访问。</p>
 <p>当然实际应用中我们需要更灵活的方式，比如动态的服务发现 - 获取指定服务所在的容器地址和连接方式，集中化管理、监控、日志记录等操作。</p>
 <h2 id="动态服务发现"><a href="#动态服务发现" class="headerlink" title="动态服务发现"></a>动态服务发现</h2><p>客户端/服务端是如何确定其他服务的 IP 地址/端口？由于服务会根据需求动态伸缩，会导致静态配置不起作用</p>
@@ -147,70 +22,23 @@
 </li>
 </ul>
 <p><img src="/images/docker-consul.png" alt=""></p>
-<h4 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h4><pre><code class="bash"># 启动consul server作为node1
-docker run -d \
--e &#39;CONSUL_LOCAL_CONFIG={&quot;skip_leave_on_interrupt&quot;: true}&#39; \
---name=node1 consul \
-agent -server -bind=172.17.0.2  -bootstrap-expect=3 -node=node1 # consul CLI 参数
-</code></pre>
+<h4 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 启动consul server作为node1</span></span><br><span class="line">docker run -d \</span><br><span class="line">-e <span class="string">'CONSUL_LOCAL_CONFIG=&#123;"skip_leave_on_interrupt": true&#125;'</span> \</span><br><span class="line">--name=node1 consul \</span><br><span class="line">agent -server -<span class="built_in">bind</span>=172.17.0.2  -bootstrap-expect=3 -node=node1 <span class="comment"># consul CLI 参数</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>node：节点的名称</li>
 <li>bind：绑定的一个地址，用于节点之间通信的地址，可以是内外网，必须是可以访问到的地址</li>
 <li>server：这个就是表示这个节点是个SERVER</li>
 <li>bootstrap-expect：这个就是表示期望提供的SERVER节点数目，数目一达到，它就会被激活，然后就是LEADER了</li>
 </ul>
-<pre><code class="bash"># 启动其他server节点
-docker run -d -e &#39;CONSUL_LOCAL_CONFIG={&quot;skip_leave_on_interrupt&quot;: true}&#39; --name=node2 consul agent -server -bind=172.17.0.3  -join=172.17.0.2 -node-id=$(uuidgen | awk &#39;{print tolower($0)}&#39;)  -node=node2
-docker run -d -e &#39;CONSUL_LOCAL_CONFIG={&quot;skip_leave_on_interrupt&quot;: true}&#39; --name=node3 consul agent -server -bind=172.17.0.4  -join=172.17.0.2 -node-id=$(uuidgen | awk &#39;{print tolower($0)}&#39;)  -node=node3 -client=172.17.0.4
-# 启动client节点
-docker run -d -e &#39;CONSUL_LOCAL_CONFIG={&quot;leave_on_terminate&quot;: true}&#39; --name=node4 consul agent -bind=172.17.0.5 -retry-join=172.17.0.2 -node-id=$(uuidgen | awk &#39;{print tolower($0)}&#39;)
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 启动其他server节点</span></span><br><span class="line">docker run -d -e <span class="string">'CONSUL_LOCAL_CONFIG=&#123;"skip_leave_on_interrupt": true&#125;'</span> --name=node2 consul agent -server -<span class="built_in">bind</span>=172.17.0.3  -join=172.17.0.2 -node-id=$(uuidgen | awk <span class="string">'&#123;print tolower($0)&#125;'</span>)  -node=node2</span><br><span class="line">docker run -d -e <span class="string">'CONSUL_LOCAL_CONFIG=&#123;"skip_leave_on_interrupt": true&#125;'</span> --name=node3 consul agent -server -<span class="built_in">bind</span>=172.17.0.4  -join=172.17.0.2 -node-id=$(uuidgen | awk <span class="string">'&#123;print tolower($0)&#125;'</span>)  -node=node3 -client=172.17.0.4</span><br><span class="line"><span class="comment"># 启动client节点</span></span><br><span class="line">docker run -d -e <span class="string">'CONSUL_LOCAL_CONFIG=&#123;"leave_on_terminate": true&#125;'</span> --name=node4 consul agent -<span class="built_in">bind</span>=172.17.0.5 -retry-join=172.17.0.2 -node-id=$(uuidgen | awk <span class="string">'&#123;print tolower($0)&#125;'</span>)</span><br></pre></td></tr></table></figure>
 <ul>
 <li>join：这个表示启动的时候，要加入到哪个集群内，这里就是说要加入到node-1的集群</li>
 <li>node-id：这个貌似版本8才加入的，这里用这个来指定唯一的节点ID</li>
 <li>client：这个表示注册或者查询等一系列客户端对它操作的IP，如果不指定这个IP，默认是127.0.0.1。</li>
 </ul>
-<pre><code class="bash"># 查询集群配置
-CNadliao:~ adliao$ docker exec -t node1 consul members
-Node          Address          Status  Type    Build  Protocol  DC   Segment
-node1         172.17.0.2:8301  alive   server  1.2.1  2         dc1  &lt;all&gt;
-node2         172.17.0.3:8301  alive   server  1.2.1  2         dc1  &lt;all&gt;
-node3         172.17.0.4:8301  alive   server  1.2.1  2         dc1  &lt;all&gt;
-588d5e0a42ef  172.17.0.5:8301  alive   client  1.2.1  2         dc1  &lt;default&gt;
-# 查询当前leader
-CNadliao:~ adliao$ docker exec -t node2 curl http://172.17.0.4:8500/v1/status/leader
-&quot;172.17.0.4:8300&quot;
-</code></pre>
-<pre><code class="bash"># 将consul的端口映射到主机上
-docker run -d -p 8500:8500 -h server-node --name server-node consul agent -server -bootstrap-expect=1 -node=server-node -client=0.0.0.0 -ui -datacenter=dc2
-# 获取server的内网地址
-JOIN_IP=$(docker inspect -f &#39;{{.NetworkSettings.IPAddress}}&#39; server-node) # 172.17.0.6
-# 启动client
-docker run -d -p 8600:8600 -p 18500:8500 -p 8600:53/udp --name client-node -h client-node consul agent -node=client-node -join=172.17.0.6 -datacenter=dc2
-
-# 查看
-docker exec -t server-node consul members
-docker exec -t client-node curl http://172.17.0.6:8500/v1/status/leader
-
-curl http://localhost:8500/v1/status/leader
-curl http://localhost:18500/v1/status/leader
-
-http://localhost:8500/ui
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查询集群配置</span></span><br><span class="line">CNadliao:~ adliao$ docker <span class="built_in">exec</span> -t node1 consul members</span><br><span class="line">Node          Address          Status  Type    Build  Protocol  DC   Segment</span><br><span class="line">node1         172.17.0.2:8301  alive   server  1.2.1  2         dc1  &lt;all&gt;</span><br><span class="line">node2         172.17.0.3:8301  alive   server  1.2.1  2         dc1  &lt;all&gt;</span><br><span class="line">node3         172.17.0.4:8301  alive   server  1.2.1  2         dc1  &lt;all&gt;</span><br><span class="line">588d5e0a42ef  172.17.0.5:8301  alive   client  1.2.1  2         dc1  &lt;default&gt;</span><br><span class="line"><span class="comment"># 查询当前leader</span></span><br><span class="line">CNadliao:~ adliao$ docker <span class="built_in">exec</span> -t node2 curl http://172.17.0.4:8500/v1/status/leader</span><br><span class="line"><span class="string">"172.17.0.4:8300"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将consul的端口映射到主机上</span></span><br><span class="line">docker run -d -p 8500:8500 -h server-node --name server-node consul agent -server -bootstrap-expect=1 -node=server-node -client=0.0.0.0 -ui -datacenter=dc2</span><br><span class="line"><span class="comment"># 获取server的内网地址</span></span><br><span class="line">JOIN_IP=$(docker inspect -f <span class="string">'&#123;&#123;.NetworkSettings.IPAddress&#125;&#125;'</span> server-node) <span class="comment"># 172.17.0.6</span></span><br><span class="line"><span class="comment"># 启动client</span></span><br><span class="line">docker run -d -p 8600:8600 -p 18500:8500 -p 8600:53/udp --name client-node -h client-node consul agent -node=client-node -join=172.17.0.6 -datacenter=dc2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看</span></span><br><span class="line">docker <span class="built_in">exec</span> -t server-node consul members</span><br><span class="line">docker <span class="built_in">exec</span> -t client-node curl http://172.17.0.6:8500/v1/status/leader</span><br><span class="line"></span><br><span class="line">curl http://localhost:8500/v1/status/leader</span><br><span class="line">curl http://localhost:18500/v1/status/leader</span><br><span class="line"></span><br><span class="line">http://localhost:8500/ui</span><br></pre></td></tr></table></figure>
 <h3 id="Registrator"><a href="#Registrator" class="headerlink" title="Registrator"></a>Registrator</h3><p><a href="https://github.com/gliderlabs/registrator" target="_blank" rel="noopener">Registrator</a> 是一个为Docker设计的服务注册工具, 可以自动注册服务，且不需要通过增加代码来与 Consul REST API 通信</p>
-<pre><code class="bash"># 启动registrator
-docker run -d \
-    --name=registrator \
-    --net=host \
-    --volume=/var/run/docker.sock:/tmp/docker.sock \
-    gliderlabs/registrator:latest \
-      consul://172.17.0.6:8500
-# 查看服务(前面已映射8500到本机)
-http://localhost:8500/v1/catalog/services/
-http://localhost:8500/ui
-# 启动其他服务(需要开放端口)
-docker run -d -it --name service1 -p 5000 busybox
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 启动registrator</span></span><br><span class="line">docker run -d \</span><br><span class="line">    --name=registrator \</span><br><span class="line">    --net=host \</span><br><span class="line">    --volume=/var/run/docker.sock:/tmp/docker.sock \</span><br><span class="line">    gliderlabs/registrator:latest \</span><br><span class="line">      consul://172.17.0.6:8500</span><br><span class="line"><span class="comment"># 查看服务(前面已映射8500到本机)</span></span><br><span class="line">http://localhost:8500/v1/catalog/services/</span><br><span class="line">http://localhost:8500/ui</span><br><span class="line"><span class="comment"># 启动其他服务(需要开放端口)</span></span><br><span class="line">docker run -d -it --name service1 -p 5000 busybox</span><br></pre></td></tr></table></figure>
 <h2 id="多主机部署"><a href="#多主机部署" class="headerlink" title="多主机部署"></a>多主机部署</h2><p>在生产环境中，我们需要多台主机运行应用程序和服务 </p>
 <p>目标:</p>
 <ul>
@@ -277,63 +105,4 @@ docker run -d -it --name service1 -p 5000 busybox
 </ul>
 </li>
 </ul>
-
-        
-        <br />
-        <div id="comment-container">
-        </div>
-        <div id="disqus_thread"></div>
-
-        <div id="lv-container">
-        </div>
-
-    </div>
-</div>
-    </div>
-</div>
-
-
-<footer class="footer">
-    <ul class="list-inline text-center">
-        
-        
-
-        
-
-        
-
-        
-
-        
-
-    </ul>
-    
-    <p>
-        <span id="busuanzi_container_site_pv">
-            <span id="busuanzi_value_site_pv"></span> PV
-        </span>
-        <span id="busuanzi_container_site_uv">
-            <span id="busuanzi_value_site_uv"></span> UV
-        </span>
-        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
-</footer>
-
-
-
-
-</body>
-
-<script>
-    // We expose some of the variables needed by the front end
-    window.hexo_search_path = ""
-    window.hexo_root = "/"
-    window.isPost = true
-</script>
-<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-
-
-
-</html>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2018-08-10</span><i class="fa fa-tag"></i></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" href="http://twitter.com/home?status=,https://anddd7.github.io/docker/docker-4/,Anddd7's Planet,（四）多主机部署和服务发现,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/docker/docker-2/" title="（二）Docker基本操作">上一篇</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/docker/docker-3/" title="（三）Docker高级应用">下一篇</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>

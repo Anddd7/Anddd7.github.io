@@ -1,229 +1,58 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="keyword"  content="">
-    <link rel="shortcut icon" href="/img/favicon.ico">
-
-    <title>
-        
-        （一）Kubernetes入门 - undefined
-        
-    </title>
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/aircloud.css">
-    <link rel="stylesheet" href="/css/gitment.css">
-    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
-    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
-    <!-- ga & ba script hoook -->
-    <script></script>
-</head>
-
-<body>
-
-<div class="site-nav-toggle" id="site-nav-toggle">
-    <button>
-        <span class="btn-bar"></span>
-        <span class="btn-bar"></span>
-        <span class="btn-bar"></span>
-    </button>
-</div>
-
-<div class="index-about">
-    <i>  </i>
-</div>
-
-<div class="index-container">
-    
-    <div class="index-left">
-        
-<div class="nav" id="nav">
-    <div class="avatar-name">
-        <div class="avatar">
-            <img src="/assets/avatar.jpeg" />
-        </div>
-        <div class="name">
-            <i>Anddd7</i>
-        </div>
-    </div>
-    <div class="contents" id="nav-content">
-        <ul>
-            <li >
-                <a href="/">
-                    <i class="iconfont icon-shouye1"></i>
-                    <span>主页</span>
-                </a>
-            </li>
-            <li >
-                <a href="/tags">
-                    <i class="iconfont icon-biaoqian1"></i>
-                    <span>标签</span>
-                </a>
-            </li>
-            <li >
-                <a href="/archives">
-                    <i class="iconfont icon-guidang2"></i>
-                    <span>存档</span>
-                </a>
-            </li>
-            <li >
-                <a href="/about/">
-                    <i class="iconfont icon-guanyu2"></i>
-                    <span>关于</span>
-                </a>
-            </li>
-            
-        </ul>
-    </div>
-    
-        <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#环境准备"><span class="toc-text">环境准备</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装Kubernetes"><span class="toc-text">安装Kubernetes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hello-World-Kubernetes官方教程"><span class="toc-text">Hello World (Kubernetes官方教程)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#使用默认label查询"><span class="toc-text">使用默认label查询</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#新增一个label"><span class="toc-text">新增一个label</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#minikube-dashboard"><span class="toc-text">minikube dashboard`</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#k8s-基本概念"><span class="toc-text">k8s 基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#管理角色"><span class="toc-text">管理角色</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#资源对象"><span class="toc-text">资源对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Node-IP、Pod-IP、Cluster-IP"><span class="toc-text">Node IP、Pod IP、Cluster IP</span></a></li></ol></li></ol></li></ol>
-</div>
-    
-</div>
-
-
-<div class="search-field" id="search-field">
-    <div class="search-container">
-        <div class="search-input">
-            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
-            <input id="search-input"/>
-            <span id="begin-search">搜索</span>
-        </div>
-        <div class="search-result-container" id="search-result-container">
-
-        </div>
-    </div>
-</div>
-        <div class="index-about-mobile">
-            <i>  </i>
-        </div>
-    </div>
-    
-    <div class="index-middle">
-        <!-- Main Content -->
-        
-
-
-<div class="post-container">
-    <div class="post-title">
-        （一）Kubernetes入门
-    </div>
-
-    <div class="post-meta">
-        <span class="attr">发布于：<span>2018-08-28 00:00:00</span></span>
-        
-        <span class="attr">标签：/
-        
-        <a class="tag" href="/tags/#k8s" title="k8s">k8s</a>
-        <span>/</span>
-        
-        
-        </span>
-        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
-</span>
-</span>
-    </div>
-    <div class="post-content ">
-        <h1 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h1><h3 id="安装Kubernetes"><a href="#安装Kubernetes" class="headerlink" title="安装Kubernetes"></a>安装Kubernetes</h3><p>最新版的Docker for Mac内置了Kubernetes，可以直接启动一个单节点的Kubernetes集群。<br><img src="/images/k8s-docker4mac.png" alt="k8s-docker4mac"></p>
-<pre><code class="bash"># 可以看到k8s的相关容器
-$ docker container ls --format &quot;table{{.Names}}\t{{.Image }}\t{{.Command}}&quot;
-</code></pre>
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="Anddd7"><title>（一）Kubernetes入门 · Anddd7's Planet</title><meta name="description" content="环境准备安装Kubernetes最新版的Docker for Mac内置了Kubernetes，可以直接启动一个单节点的Kubernetes集群。
+12# 可以看到k8s的相关容器$ docker container ls --format &quot;table&amp;#123;&amp;#123;.Names&amp;#125"><meta name="keywords"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/assets/avatar.jpeg" style="width:127px;"><h3 title=""><a href="/">Anddd7's Planet</a></h3><div class="description"><p>Level Up! Programmer~</p></div></div></div><ul class="social-links"><li><a href="http://github.com/Anddd7"><i class="fa fa-github"></i></a></li></ul><div class="footer"><a target="_blank" href="/"><span>Nice Theme of </span></a><a href="https://github.com/Ben02/hexo-theme-Anatole">Anatole</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/archives">归档</a></li><li><a href="/about">关于</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li></div><div class="avatar"><img src="/assets/avatar.jpeg"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>（一）Kubernetes入门</a></h3></div><div class="post-content"><h1 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h1><h3 id="安装Kubernetes"><a href="#安装Kubernetes" class="headerlink" title="安装Kubernetes"></a>安装Kubernetes</h3><p>最新版的Docker for Mac内置了Kubernetes，可以直接启动一个单节点的Kubernetes集群。<br><img src="/images/k8s-docker4mac.png" alt="k8s-docker4mac"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 可以看到k8s的相关容器</span></span><br><span class="line">$ docker container ls --format <span class="string">"table&#123;&#123;.Names&#125;&#125;\t&#123;&#123;.Image &#125;&#125;\t&#123;&#123;.Command&#125;&#125;"</span></span><br></pre></td></tr></table></figure>
 <h3 id="Hello-World-Kubernetes官方教程"><a href="#Hello-World-Kubernetes官方教程" class="headerlink" title="Hello World (Kubernetes官方教程)"></a>Hello World (Kubernetes官方教程)</h3><ul>
-<li>minikube：<code>minikube start</code>启动一个虚拟机，组成一个集群 1 Master(Host) + 1 Node(虚拟机)<pre><code class="bash"># 查看节点
-$ kubectl get node
-NAME       STATUS    ROLES     AGE       VERSION
-minikube   Ready     master    2h        v1.10.0
-</code></pre>
+<li><p>minikube：<code>minikube start</code>启动一个虚拟机，组成一个集群 1 Master(Host) + 1 Node(虚拟机)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看节点</span></span><br><span class="line">$ kubectl get node</span><br><span class="line">NAME       STATUS    ROLES     AGE       VERSION</span><br><span class="line">minikube   Ready     master    2h        v1.10.0</span><br></pre></td></tr></table></figure>
 </li>
-<li>启动项目：通过run指令以Deployment方式启动<pre><code class="bash">$ kubectl run kubernetes-bootcamp --image=gcr.io/google-samples/kubernetes-bootcamp:v1 --port=8080
-</code></pre>
+<li><p>启动项目：通过run指令以Deployment方式启动</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl run kubernetes-bootcamp --image=gcr.io/google-samples/kubernetes-bootcamp:v1 --port=8080</span><br></pre></td></tr></table></figure>
 </li>
-<li>查看项目：在工作节点(虚拟机)上可以查看到实际运行的容器<ul>
-<li>查看Pod<pre><code class="bash">  $ kubectl get pod
-NAME                                   READY     STATUS    RESTARTS   AGE
-kubernetes-bootcamp-5c69669756-cwpx7   1/1       Running   0          1h
-</code></pre>
+<li><p>查看项目：在工作节点(虚拟机)上可以查看到实际运行的容器</p>
+<ul>
+<li><p>查看Pod</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl get pod</span><br><span class="line">  NAME                                   READY     STATUS    RESTARTS   AGE</span><br><span class="line">  kubernetes-bootcamp-5c69669756-cwpx7   1/1       Running   0          1h</span><br></pre></td></tr></table></figure>
 </li>
-<li>查看容器：在工作节点(虚拟机)上实际运行的容器<pre><code class="bash">$ minikube ssh
-# 进入虚拟机
-$ docker ps
-CONTAINER ID        IMAGE                                       COMMAND                  CREATED             STATUS              PORTS               NAMES
-8f7ab88ebba1        gcr.io/google-samples/kubernetes-bootcamp   &quot;/bin/sh -c &#39;node se…&quot;   18 minutes ago      Up 18 minutes                           k8s_kubernetes-bootcamp_kubernetes-bootcamp-5c69669756-t6zb6_default_2b6082af-a5ce-11e8-b3be-080027de9b8c_0
-</code></pre>
+<li><p>查看容器：在工作节点(虚拟机)上实际运行的容器</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ minikube ssh</span><br><span class="line"><span class="comment"># 进入虚拟机</span></span><br><span class="line">$ docker ps</span><br><span class="line">CONTAINER ID        IMAGE                                       COMMAND                  CREATED             STATUS              PORTS               NAMES</span><br><span class="line">8f7ab88ebba1        gcr.io/google-samples/kubernetes-bootcamp   <span class="string">"/bin/sh -c 'node se…"</span>   18 minutes ago      Up 18 minutes                           k8s_kubernetes-bootcamp_kubernetes-bootcamp-5c69669756-t6zb6_default_2b6082af-a5ce-11e8-b3be-080027de9b8c_0</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
-<li>访问项目<ul>
-<li>kube-proxy：proxy会给每个pod生成一个访问的url<pre><code class="bash">$ kubectl get pod
-NAME                                   READY     STATUS    RESTARTS   AGE
-kubernetes-bootcamp-5c69669756-t6zb6   1/1       Running   0          25m
-$ kubectl proxy
-</code></pre>
+<li><p>访问项目</p>
+<ul>
+<li><p>kube-proxy：proxy会给每个pod生成一个访问的url</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl get pod</span><br><span class="line">NAME                                   READY     STATUS    RESTARTS   AGE</span><br><span class="line">kubernetes-bootcamp-5c69669756-t6zb6   1/1       Running   0          25m</span><br><span class="line">$ kubectl proxy</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>因为工作节点在内部网络中，无法直接访问<br>获取 POD_NAME=kubernetes-bootcamp-5c69669756-t6zb6<br>访问 <a href="http://localhost:8001/api/v1/namespaces/default/pods/$POD_NAME/proxy/" target="_blank" rel="noopener">http://localhost:8001/api/v1/namespaces/default/pods/$POD_NAME/proxy/</a></p>
 </blockquote>
 </li>
-<li>查看日志<pre><code class="bash">$ kubectl logs kubernetes-bootcamp-5c69669756-cwpx7
-Kubernetes Bootcamp App Started At: 2018-08-27T03:10:03.955Z | Running On:  kubernetes-bootcamp-5c69669756-cwpx7
-Running On: kubernetes-bootcamp-5c69669756-cwpx7 | Total Requests: 1 | App Uptime: 779.466 seconds | Log Time: 2018-08-27T03:23:03.424Z
-Running On: kubernetes-bootcamp-5c69669756-cwpx7 | Total Requests: 2 | App Uptime: 804.088 seconds | Log Time: 2018-08-27T03:23:28.043Z
-</code></pre>
+<li><p>查看日志</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl logs kubernetes-bootcamp-5c69669756-cwpx7</span><br><span class="line">Kubernetes Bootcamp App Started At: 2018-08-27T03:10:03.955Z | Running On:  kubernetes-bootcamp-5c69669756-cwpx7</span><br><span class="line">Running On: kubernetes-bootcamp-5c69669756-cwpx7 | Total Requests: 1 | App Uptime: 779.466 seconds | Log Time: 2018-08-27T03:23:03.424Z</span><br><span class="line">Running On: kubernetes-bootcamp-5c69669756-cwpx7 | Total Requests: 2 | App Uptime: 804.088 seconds | Log Time: 2018-08-27T03:23:28.043Z</span><br></pre></td></tr></table></figure>
 </li>
-<li>在Pod中执行指令<pre><code class="bash">  $ kubectl exec -ti kubernetes-bootcamp-5c69669756-cwpx7 bash
-  root@kubernetes-bootcamp-5c69669756-cwpx7:/# cat server.js
-</code></pre>
+<li><p>在Pod中执行指令</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl <span class="built_in">exec</span> -ti kubernetes-bootcamp-5c69669756-cwpx7 bash</span><br><span class="line">root@kubernetes-bootcamp-5c69669756-cwpx7:/<span class="comment"># cat server.js</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
-<li>暴露服务<pre><code class="bash"># 在工作节点上直接暴露
-$ kubectl expose deployment kubernetes-bootcamp --type=&quot;NodePort&quot; --port 8080
-service &quot;kubernetes-bootcamp&quot; exposed
-# 查询服务端口
-$ $ kubectl get svc
-NAME                  TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
-kubernetes            ClusterIP   10.96.0.1      &lt;none&gt;        443/TCP          5d
-kubernetes-bootcamp   NodePort    10.101.38.77   &lt;none&gt;        8080:31019/TCP   4m
-# 查询hello服务在集群中的url
-$ minikube service kubernetes-bootcamp --url
-http://192.168.99.100:31019
-</code></pre>
+<li><p>暴露服务</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在工作节点上直接暴露</span></span><br><span class="line">$ kubectl expose deployment kubernetes-bootcamp --<span class="built_in">type</span>=<span class="string">"NodePort"</span> --port 8080</span><br><span class="line">service <span class="string">"kubernetes-bootcamp"</span> exposed</span><br><span class="line"><span class="comment"># 查询服务端口</span></span><br><span class="line">$ $ kubectl get svc</span><br><span class="line">NAME                  TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE</span><br><span class="line">kubernetes            ClusterIP   10.96.0.1      &lt;none&gt;        443/TCP          5d</span><br><span class="line">kubernetes-bootcamp   NodePort    10.101.38.77   &lt;none&gt;        8080:31019/TCP   4m</span><br><span class="line"><span class="comment"># 查询hello服务在集群中的url</span></span><br><span class="line">$ minikube service kubernetes-bootcamp --url</span><br><span class="line">http://192.168.99.100:31019</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>使用<code>expose</code>将Deployment暴露成为Service，以NodePort方式在工作节点上为其随机映射一个端口<br>访问 <a href="http://192.168.99.100:31019" target="_blank" rel="noopener">http://192.168.99.100:31019</a> 或 <a href="http://localhost:8001/api/v1/namespaces/default/pods/$POD_NAME/proxy/" target="_blank" rel="noopener">http://localhost:8001/api/v1/namespaces/default/pods/$POD_NAME/proxy/</a></p>
 </blockquote>
 </li>
-<li>使用Label<blockquote>
-<p>Labels:run=kubernetes-bootcamp<br>  <code>`</code>bash</p>
+<li><p>使用Label</p>
+<blockquote>
+<p>Labels:run=kubernetes-bootcamp</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用默认label查询</span></span><br><span class="line">$ kubectl get pods -l run=kubernetes-bootcamp</span><br><span class="line">$ kubectl get svc -l run=kubernetes-bootcamp</span><br><span class="line"><span class="comment"># 新增一个label</span></span><br><span class="line">$ kubectl label pod kubernetes-bootcamp-5c69669756-cwpx7 app=v1</span><br></pre></td></tr></table></figure>
 </blockquote>
-<h1 id="使用默认label查询"><a href="#使用默认label查询" class="headerlink" title="使用默认label查询"></a>使用默认label查询</h1>  $ kubectl get pods -l run=kubernetes-bootcamp<br>  $ kubectl get svc -l run=kubernetes-bootcamp<h1 id="新增一个label"><a href="#新增一个label" class="headerlink" title="新增一个label"></a>新增一个label</h1>  $ kubectl label pod kubernetes-bootcamp-5c69669756-cwpx7 app=v1<br>  <code>`</code></li>
-<li>Scale应用：扩展Pod replicas<pre><code class="bash">  $ kubectl scale deployments/kubernetes-bootcamp --replicas=4
-deployment.extensions &quot;kubernetes-bootcamp&quot; scaled
-$ kubectl get deployments
-NAME                  DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
-kubernetes-bootcamp   4         4         4            4           2h
-​```bash
-$ kubectl get pods -o wide
-NAME                                   READY     STATUS    RESTARTS   AGE       IP           NODE
-kubernetes-bootcamp-5c69669756-9wmqv   1/1       Running   0          1m        172.17.0.7   minikube
-kubernetes-bootcamp-5c69669756-cwpx7   1/1       Running   0          2h        172.17.0.4   minikube
-kubernetes-bootcamp-5c69669756-nvkt6   1/1       Running   0          1m        172.17.0.5   minikube
-kubernetes-bootcamp-5c69669756-pnq2m   1/1       Running   0          1m        172.17.0.6   minikube
-</code></pre>
+</li>
+<li><p>Scale应用：扩展Pod replicas</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl scale deployments/kubernetes-bootcamp --replicas=4</span><br><span class="line"> deployment.extensions <span class="string">"kubernetes-bootcamp"</span> scaled</span><br><span class="line"> $ kubectl get deployments</span><br><span class="line"> NAME                  DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE</span><br><span class="line"> kubernetes-bootcamp   4         4         4            4           2h</span><br><span class="line"> ​```bash</span><br><span class="line"> $ kubectl get pods -o wide</span><br><span class="line"> NAME                                   READY     STATUS    RESTARTS   AGE       IP           NODE</span><br><span class="line"> kubernetes-bootcamp-5c69669756-9wmqv   1/1       Running   0          1m        172.17.0.7   minikube</span><br><span class="line"> kubernetes-bootcamp-5c69669756-cwpx7   1/1       Running   0          2h        172.17.0.4   minikube</span><br><span class="line"> kubernetes-bootcamp-5c69669756-nvkt6   1/1       Running   0          1m        172.17.0.5   minikube</span><br><span class="line"> kubernetes-bootcamp-5c69669756-pnq2m   1/1       Running   0          1m        172.17.0.6   minikube</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>访问service时会按照load-balance进行负载均衡</p>
 </blockquote>
 </li>
-<li>热更新<pre><code class="bash">  $ kubectl set image deployments/kubernetes-bootcamp kubernetes-bootcamp=jocatalin/kubernetes-bootcamp:v2
-  # 查看状态
-  $ kubectl rollout status deployments/kubernetes-bootcamp
-  # 回退
-  $ kubectl rollout undo deployments/kubernetes-bootcamp
-</code></pre>
+<li>热更新  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl <span class="built_in">set</span> image deployments/kubernetes-bootcamp kubernetes-bootcamp=jocatalin/kubernetes-bootcamp:v2</span><br><span class="line"><span class="comment"># 查看状态</span></span><br><span class="line">$ kubectl rollout status deployments/kubernetes-bootcamp</span><br><span class="line"><span class="comment"># 回退</span></span><br><span class="line">$ kubectl rollout undo deployments/kubernetes-bootcamp</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h3 id="minikube-dashboard"><a href="#minikube-dashboard" class="headerlink" title="minikube dashboard`"></a>minikube dashboard`</h3><p><img src="/images/k8s-dashboard.png" alt="k8s-dashboard"></p>
@@ -330,58 +159,15 @@ kubernetes-bootcamp-5c69669756-pnq2m   1/1       Running   0          1m        
 </ul>
 </li>
 </ul>
-<p><strong>查看Node IP</strong></p>
-<pre><code class="bash">$ minikube ip
-192.168.99.100
-$ ping 192.168.99.100
-# 成功连接
-</code></pre>
-<p><strong>查看Pod IP</strong></p>
-<pre><code class="bash">$ kubectl get pods -o wide
-NAME                                   READY     STATUS    RESTARTS   AGE       IP            NODE
-kubernetes-bootcamp-7799cbcb86-9hznw   1/1       Running   0          1d        172.17.0.5    minikube
-kubernetes-bootcamp-7799cbcb86-9sz9j   1/1       Running   0          1d        172.17.0.6    minikube
-$ ping 172.17.0.5
-# 无法连接
-</code></pre>
-<p><strong>容器互连</strong></p>
-<pre><code class="bash"># ssh 192.168.99.100 &amp; 查询容器kubernetes-bootcamp
-minikube$ docker ps
-...
-8248aa62f471        b6556396ebd4                    &quot;/bin/sh -c &#39;node se…&quot;   25 hours ago        Up 25 hours                             k8s_kubernetes-bootcamp_kubernetes-bootcamp-7799cbcb86-9sz9j_default_fda0378f-a9bc-11e8-a9bf-080027de9b8c_0
-...
-# 容器中连接其他容器
-minikube$ docker exec -it 8248aa62f471 ping 172.17.0.5
-# 成功连接
-</code></pre>
+<p><strong>查看Node IP</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ minikube ip</span><br><span class="line">192.168.99.100</span><br><span class="line">$ ping 192.168.99.100</span><br><span class="line"><span class="comment"># 成功连接</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>查看Pod IP</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl get pods -o wide</span><br><span class="line">NAME                                   READY     STATUS    RESTARTS   AGE       IP            NODE</span><br><span class="line">kubernetes-bootcamp-7799cbcb86-9hznw   1/1       Running   0          1d        172.17.0.5    minikube</span><br><span class="line">kubernetes-bootcamp-7799cbcb86-9sz9j   1/1       Running   0          1d        172.17.0.6    minikube</span><br><span class="line">$ ping 172.17.0.5</span><br><span class="line"><span class="comment"># 无法连接</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>容器互连</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ssh 192.168.99.100 &amp; 查询容器kubernetes-bootcamp</span></span><br><span class="line">minikube$ docker ps</span><br><span class="line">...</span><br><span class="line">8248aa62f471        b6556396ebd4                    <span class="string">"/bin/sh -c 'node se…"</span>   25 hours ago        Up 25 hours                             k8s_kubernetes-bootcamp_kubernetes-bootcamp-7799cbcb86-9sz9j_default_fda0378f-a9bc-11e8-a9bf-080027de9b8c_0</span><br><span class="line">...</span><br><span class="line"><span class="comment"># 容器中连接其他容器</span></span><br><span class="line">minikube$ docker <span class="built_in">exec</span> -it 8248aa62f471 ping 172.17.0.5</span><br><span class="line"><span class="comment"># 成功连接</span></span><br></pre></td></tr></table></figure></p>
 <blockquote>
 <p>这里可以发现Deployment:Name，Pod:Name，Container:Name有额外的随机字符，因此只能通过IP访问其他容器</p>
 </blockquote>
-<p><strong>查询Service</strong></p>
-<pre><code class="bash">$ kubectl get svc
-NAME                  TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)             AGE
-kubernetes            ClusterIP   10.96.0.1        &lt;none&gt;        443/TCP             6d
-kubernetes-bootcamp   NodePort    10.101.38.77     &lt;none&gt;        8080:31019/TCP      1d
-$ ping 10.101.38.77
-# 无法连接
-</code></pre>
-<p><strong>容器Service互连</strong></p>
-<pre><code class="bash"># ssh 192.168.99.100 &amp; 查询容器kubernetes-bootcamp
-# 容器中连接service
-minikube$ docker exec -it 8248aa62f471 ping kubernetes-bootcamp
-# 连接失败
-minikube$ docker exec -it 8248aa62f471 ping 10.101.38.77
-# 连接失败
-# 容器中基于clusterIP:port进行访问
-minikube$ docker exec -it 8248aa62f471 curl http://kubernetes-bootcamp:8080
-Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-7799cbcb86-9hznw | v=2
-minikube$ docker exec -it 8248aa62f471 curl http://10.101.38.77:8080
-Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-7799cbcb86-9hznw | v=2
-</code></pre>
-<p><strong>容器外连接</strong></p>
-<pre><code class="bash">$ curl http://192.168.99.100:31019
-Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-7799cbcb86-9hznw | v=2
-</code></pre>
+<p><strong>查询Service</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl get svc</span><br><span class="line">NAME                  TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)             AGE</span><br><span class="line">kubernetes            ClusterIP   10.96.0.1        &lt;none&gt;        443/TCP             6d</span><br><span class="line">kubernetes-bootcamp   NodePort    10.101.38.77     &lt;none&gt;        8080:31019/TCP      1d</span><br><span class="line">$ ping 10.101.38.77</span><br><span class="line"><span class="comment"># 无法连接</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>容器Service互连</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ssh 192.168.99.100 &amp; 查询容器kubernetes-bootcamp</span></span><br><span class="line"><span class="comment"># 容器中连接service</span></span><br><span class="line">minikube$ docker <span class="built_in">exec</span> -it 8248aa62f471 ping kubernetes-bootcamp</span><br><span class="line"><span class="comment"># 连接失败</span></span><br><span class="line">minikube$ docker <span class="built_in">exec</span> -it 8248aa62f471 ping 10.101.38.77</span><br><span class="line"><span class="comment"># 连接失败</span></span><br><span class="line"><span class="comment"># 容器中基于clusterIP:port进行访问</span></span><br><span class="line">minikube$ docker <span class="built_in">exec</span> -it 8248aa62f471 curl http://kubernetes-bootcamp:8080</span><br><span class="line">Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-7799cbcb86-9hznw | v=2</span><br><span class="line">minikube$ docker <span class="built_in">exec</span> -it 8248aa62f471 curl http://10.101.38.77:8080</span><br><span class="line">Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-7799cbcb86-9hznw | v=2</span><br></pre></td></tr></table></figure></p>
+<p><strong>容器外连接</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ curl http://192.168.99.100:31019</span><br><span class="line">Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-7799cbcb86-9hznw | v=2</span><br></pre></td></tr></table></figure></p>
 <p>因此：</p>
 <ul>
 <li>容器互连：需要知道彼此的PodIP<ul>
@@ -397,63 +183,4 @@ Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-7799cbcb86-9hznw | 
 </ul>
 </li>
 </ul>
-
-        
-        <br />
-        <div id="comment-container">
-        </div>
-        <div id="disqus_thread"></div>
-
-        <div id="lv-container">
-        </div>
-
-    </div>
-</div>
-    </div>
-</div>
-
-
-<footer class="footer">
-    <ul class="list-inline text-center">
-        
-        
-
-        
-
-        
-
-        
-
-        
-
-    </ul>
-    
-    <p>
-        <span id="busuanzi_container_site_pv">
-            <span id="busuanzi_value_site_pv"></span> PV
-        </span>
-        <span id="busuanzi_container_site_uv">
-            <span id="busuanzi_value_site_uv"></span> UV
-        </span>
-        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
-</footer>
-
-
-
-
-</body>
-
-<script>
-    // We expose some of the variables needed by the front end
-    window.hexo_search_path = ""
-    window.hexo_root = "/"
-    window.isPost = true
-</script>
-<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-
-
-
-</html>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2018-08-28</span><i class="fa fa-tag"></i><a class="tag" href="/tags/k8s/" title="k8s">k8s </a></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" href="http://twitter.com/home?status=,https://anddd7.github.io/k8s/kubernetes-1/,Anddd7's Planet,（一）Kubernetes入门,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/java/spring-multiple-size-limit/" title="Spring Exception:multiple-size-limit">上一篇</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/docker/jenkins-in-docker/" title="Jenkins with Docker">下一篇</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>

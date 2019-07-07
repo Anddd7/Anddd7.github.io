@@ -1,310 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="keyword"  content="">
-    <link rel="shortcut icon" href="/img/favicon.ico">
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="Anddd7"><title>Anddd7's Planet</title><meta name="description" content="Level Up! Programmer~"><meta name="keywords"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/assets/avatar.jpeg" style="width:127px;"><h3 title=""><a href="/">Anddd7's Planet</a></h3><div class="description"><p>Level Up! Programmer~</p></div></div></div><ul class="social-links"><li><a href="http://github.com/Anddd7"><i class="fa fa-github"></i></a></li></ul><div class="footer"><a target="_blank" href="/"><span>Nice Theme of </span></a><a href="https://github.com/Ben02/hexo-theme-Anatole">Anatole</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a class="current" href="/">首页</a></li><li><a href="/archives">归档</a></li><li><a href="/about">关于</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)" style="display:none;"> </a></li></div><div class="avatar"><img src="/assets/avatar.jpeg"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/legacy/Python Crawler/">Python爬虫应用:迁移CSDN博客+抓取Linux公社资料</a></h3></div><div class="post-content"><p>之前因为在公司连不上CSDN ,为了更方便的记录日常遇到的技术点  ,计划迁移博客到Github Pages.(方便在IDE中直接书写) .博客都是用Markdown书写的 ,但一篇一篇的编辑-&gt;复制-&gt;创建文件-&gt;粘贴-&gt;再编辑还是有些麻烦 ,所以打算用python脚本自动化这些工作.
+...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2017-10-26</span><i class="fa fa-tag"></i></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/legacy/MongoDB+Hadoop/">数据分析 起步 (一) MongoDB+Hadoop</a></h3></div><div class="post-content"><p>上个月看到一个学长在做斗鱼弹幕分析的开源项目 ,正好之前的计划已经完成了大半 ,所以决定借此机会学习一波爬虫和数据分析. 后面学长忙其他事去了 ,我也就开了一个新坑 ,从抓取分析B站的数据开始 :）
+项目地址:bilibili-analysis-data
+准备爬虫说到爬虫 ,就会想到Python ,边学边写我就直...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2017-09-28</span><i class="fa fa-tag"></i></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/legacy/Spring AOP/">Spring AOP造成的@Controller注册失败</a></h3></div><div class="post-content"><p>昨天在重构项目时 ,调整了原有Controller的路径 ,并抽取了部分方法形成AbstractController ,所有业务模块的Controller都继承它 .然后启动发现几乎所有移动过的Controller都失效了.
+主要对象
+ControllerLogInterceptor : aop拦截器 ,拦截目标...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2017-09-15</span><i class="fa fa-tag"></i></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/legacy/DI+IOP/">依赖注入 - 如何使用反射和注解实现简单的依赖注入</a></h3></div><div class="post-content"><p>Github源码 - &gt; Anddd7/cute-koala
+Spring Bean 应该是Spring被使用最多的功能 ,通过注解/xml配置 ,可以简化大量的依赖代码 ,同时也提高了效率 .在试用了Guice和阅读了部分Spring BeanFactory的源码后 ,也了解了一部分依赖注入的原理 ,自己...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2017-06-29</span><i class="fa fa-tag"></i></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/legacy/Panning/">最近计划</a></h3></div><div class="post-content"><p>上一次更新已经是2个多月前了 ,因为工作原因研究的东西有所变动.
 
-    <title>
-        
-        
-        
-    </title>
+Spring Boot的书后面大致浏览了一下,主要还是Spring原有的技术很重要 ,boot只是配置简化
+看了部分Spring的源码 spring3-source-learning ,对常用的模块原理进行了了解(DI/AOP)
+上手 java8...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2017-06-28</span><i class="fa fa-tag"></i></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/legacy/New Record/">一年工作总结</a></h3></div><div class="post-content"><p>离职从实习算起，加入亚信已经有21个月了（2015/07-2017/04），经历了3个不同大小不同类型的团队，也参与了3个不同领域的项目。虽然遇到的坑是越来越多，好在周围的同事都很优秀，也着实学到了很多东西。
+嘴上虽然会吐槽亚信，但离开的时候觉得亚信还是不错的。
+Telenor CRM @南京CRM团队很庆幸实习...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2017-04-12</span><i class="fa fa-tag"></i></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/legacy/SpringBoot4/">SpringBoot学习-第四章 SpringMVC基础-[Spring Boot 实战]</a></h3></div><div class="post-content"><p>SpringMvc 快速搭建
+依赖 : 这里直接使用SpringBoot的快速搭建
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/aircloud.css">
-    <link rel="stylesheet" href="/css/gitment.css">
-    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
-    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
-    <!-- ga & ba script hoook -->
-    <script></script>
-</head>
+12345&lt;!-- 包含常用的web/mvc等依赖 --&gt;&lt;dependency&gt;    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;  ...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2017-04-11</span><i class="fa fa-tag"></i></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/legacy/Google Guice/">Google Guice - 轻量级 DI 依赖注入框架</a></h3></div><div class="post-content"><p>Guice简单使用
 
-<body>
+示例代码 Anddd7/Demo-Guice参考了 博客 - Google Guice 系列教程 和 Github - greengerong/guice-demo
+Guice是一个DI (依赖注入) 框架 ,和Spring的依赖注入基本相同
 
-<div class="site-nav-toggle" id="site-nav-toggle">
-    <button>
-        <span class="btn-bar"></span>
-        <span class="btn-bar"></span>
-        <span class="btn-bar"></span>
-    </button>
-</div>
+轻量级 ,启动迅速
+使用比较简单
 
-<div class="index-about">
-    <i>  </i>
-</div>
+但是
 
-<div class="index-container">
-    
-    <div class="index-left">
-        
-<div class="nav" id="nav">
-    <div class="avatar-name">
-        <div class="avatar">
-            <img src="/assets/avatar.jpeg" />
-        </div>
-        <div class="name">
-            <i>Anddd7</i>
-        </div>
-    </div>
-    <div class="contents" id="nav-content">
-        <ul>
-            <li  class=active >
-                <a href="/">
-                    <i class="iconfont icon-shouye1"></i>
-                    <span>主页</span>
-                </a>
-            </li>
-            <li >
-                <a href="/tags">
-                    <i class="iconfont icon-biaoqian1"></i>
-                    <span>标签</span>
-                </a>
-            </li>
-            <li >
-                <a href="/archives">
-                    <i class="iconfont icon-guidang2"></i>
-                    <span>存档</span>
-                </a>
-            </li>
-            <li >
-                <a href="/about/">
-                    <i class="iconfont icon-guanyu2"></i>
-                    <span>关于</span>
-                </a>
-            </li>
-            
-        </ul>
-    </div>
-    
-</div>
+只...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2017-03-09</span><i class="fa fa-tag"></i></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/legacy/Build Blog with Jekyll/">Jekyll+GitHub部署个人博客</a></h3></div><div class="post-content"><p>Jekyll - 静态网页模板Jekyll ,使用模板语言书写静态页面 ,然后由Jekyll程序转换为Html/CSS/JavaScript .
 
+模板语言中可以使用变量 ,也可以定义和引入其他变量 ,可以方便的处理的嵌套/复用 .
+模板可以是.md/.html文件 
+页面/数据分离
 
-<div class="search-field" id="search-field">
-    <div class="search-container">
-        <div class="search-input">
-            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
-            <input id="search-input"/>
-            <span id="begin-search">搜索</span>
-        </div>
-        <div class="search-result-container" id="search-result-container">
+GitHub - 自动支持...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2017-03-07</span><i class="fa fa-tag"></i></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/legacy/SpringBoot3/">SpringBoot学习-第三章 Spring高级应用-[Spring Boot 实战]</a></h3></div><div class="post-content"><p>Spring Aware通常@Component标识的Bean由容器所管理，但它自身是不能和容器交互的（解耦），你只能通过@Autowired引入并使用。而Aware接口为Bean提供了与容器交互的能力。
 
-        </div>
-    </div>
-</div>
-        <div class="index-about-mobile">
-            <i>  </i>
-        </div>
-    </div>
-    
-    <div class="index-middle">
-        <!-- Main Content -->
-        
-<div class="post-preview-container" style="min-height: 720px">
-    
-    <div class="post-preview">
-        <div class="post-time">2018-01-06</div>
-        <div class="post-info">
-            <a href="/legacy/2017-01-04-Scala6/">
-                <h3>
-                    Scala学习整理[第十一-十三章 类型+特质和其应用+包][Programming In Scala]
-                </h3>
-            </a>
-            <p>
-                
-            </p>
-        </div>
-    </div>
-    
-    <div class="post-preview">
-        <div class="post-time">2018-01-06</div>
-        <div class="post-info">
-            <a href="/legacy/2017-01-04-Scala7/">
-                <h3>
-                    Scala学习整理[第十四章 测试][Programming In Scala]
-                </h3>
-            </a>
-            <p>
-                
-            </p>
-        </div>
-    </div>
-    
-    <div class="post-preview">
-        <div class="post-time">2018-01-06</div>
-        <div class="post-info">
-            <a href="/legacy/2017-01-04-Scala8/">
-                <h3>
-                    Scala学习整理[第十章 继承重载应用][Programming In Scala]
-                </h3>
-            </a>
-            <p>
-                
-            </p>
-        </div>
-    </div>
-    
-    <div class="post-preview">
-        <div class="post-time">2018-01-06</div>
-        <div class="post-info">
-            <a href="/legacy/2017-01-10-Scala10/">
-                <h3>
-                    Scala学习整理[第十七-十八章 集合和有状态对象][Programming In Scala]
-                </h3>
-            </a>
-            <p>
-                
-            </p>
-        </div>
-    </div>
-    
-    <div class="post-preview">
-        <div class="post-time">2018-01-06</div>
-        <div class="post-info">
-            <a href="/legacy/2017-01-13-Scala12/">
-                <h3>
-                    Scala学习整理[第二十-二十一章 抽象成员和隐式转换][Programming In Scala]
-                </h3>
-            </a>
-            <p>
-                
-            </p>
-        </div>
-    </div>
-    
-    <div class="post-preview">
-        <div class="post-time">2018-01-06</div>
-        <div class="post-info">
-            <a href="/legacy/2017-01-13-Scala13/">
-                <h3>
-                    Scala学习整理[第二十二-二十三章 List和For循环][Programming In Scala]
-                </h3>
-            </a>
-            <p>
-                
-            </p>
-        </div>
-    </div>
-    
-    <div class="post-preview">
-        <div class="post-time">2018-01-06</div>
-        <div class="post-info">
-            <a href="/legacy/2017-01-16-Scala15/">
-                <h3>
-                    Scala学习整理[第二十四-二十六章 抽取器和XML][Programming In Scala]
-                </h3>
-            </a>
-            <p>
-                
-            </p>
-        </div>
-    </div>
-    
-    <div class="post-preview">
-        <div class="post-time">2018-01-06</div>
-        <div class="post-info">
-            <a href="/legacy/2017-01-13-Scala14/">
-                <h3>
-                    Scala学习整理[第十九章 泛型和约束系统][Programming In Scala]
-                </h3>
-            </a>
-            <p>
-                
-            </p>
-        </div>
-    </div>
-    
-    <div class="post-preview">
-        <div class="post-time">2018-01-06</div>
-        <div class="post-info">
-            <a href="/legacy/2017-01-19-Scala16/">
-                <h3>
-                    Scala学习整理[第三十章 Actor和并发][Programming In Scala]
-                </h3>
-            </a>
-            <p>
-                
-            </p>
-        </div>
-    </div>
-    
-    <div class="post-preview">
-        <div class="post-time">2018-01-06</div>
-        <div class="post-info">
-            <a href="/legacy/2017-01-19-Scala17/">
-                <h3>
-                    Scala学习整理[第二十七-二十九章 模块化编程和Java][Programming In Scala]
-                </h3>
-            </a>
-            <p>
-                
-            </p>
-        </div>
-    </div>
-    
-</div>
-<ul class="pager">
-    
-    <li class="previous">
-        <a href="/">&larr; Newer Posts</a>
-    </li>
-    
-    
-    <li class="next">
-        <a href="/page/3/">Older Posts &rarr;</a>
-    </li>
-    
-</ul>
-
-    </div>
-</div>
-
-
-<footer class="footer">
-    <ul class="list-inline text-center">
-        
-        
-
-        
-
-        
-
-        
-
-        
-
-    </ul>
-    
-    <p>
-        <span id="busuanzi_container_site_pv">
-            <span id="busuanzi_value_site_pv"></span> PV
-        </span>
-        <span id="busuanzi_container_site_uv">
-            <span id="busuanzi_value_site_uv"></span> UV
-        </span>
-        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
-</footer>
-
-
-
-
-</body>
-
-<script>
-    // We expose some of the variables needed by the front end
-    window.hexo_search_path = ""
-    window.hexo_root = "/"
-    window.isPost = false
-</script>
-<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-
-
-
-</html>
+BeanNameAware：获取容器中Bean的名称
+BeanFactoryAware：获取当前Bean的...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2017-02-27</span><i class="fa fa-tag"></i></div></div></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/">上一页</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/page/3/">下一页</a></li></ul></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>

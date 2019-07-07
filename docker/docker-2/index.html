@@ -1,134 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="keyword"  content="">
-    <link rel="shortcut icon" href="/img/favicon.ico">
-
-    <title>
-        
-        （二）Docker基本操作 - undefined
-        
-    </title>
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/aircloud.css">
-    <link rel="stylesheet" href="/css/gitment.css">
-    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
-    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
-    <!-- ga & ba script hoook -->
-    <script></script>
-</head>
-
-<body>
-
-<div class="site-nav-toggle" id="site-nav-toggle">
-    <button>
-        <span class="btn-bar"></span>
-        <span class="btn-bar"></span>
-        <span class="btn-bar"></span>
-    </button>
-</div>
-
-<div class="index-about">
-    <i>  </i>
-</div>
-
-<div class="index-container">
-    
-    <div class="index-left">
-        
-<div class="nav" id="nav">
-    <div class="avatar-name">
-        <div class="avatar">
-            <img src="/assets/avatar.jpeg" />
-        </div>
-        <div class="name">
-            <i>Anddd7</i>
-        </div>
-    </div>
-    <div class="contents" id="nav-content">
-        <ul>
-            <li >
-                <a href="/">
-                    <i class="iconfont icon-shouye1"></i>
-                    <span>主页</span>
-                </a>
-            </li>
-            <li >
-                <a href="/tags">
-                    <i class="iconfont icon-biaoqian1"></i>
-                    <span>标签</span>
-                </a>
-            </li>
-            <li >
-                <a href="/archives">
-                    <i class="iconfont icon-guidang2"></i>
-                    <span>存档</span>
-                </a>
-            </li>
-            <li >
-                <a href="/about/">
-                    <i class="iconfont icon-guanyu2"></i>
-                    <span>关于</span>
-                </a>
-            </li>
-            
-        </ul>
-    </div>
-    
-        <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装和运行Docker"><span class="toc-text">安装和运行Docker</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#获取镜像"><span class="toc-text">获取镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开始Docker之旅"><span class="toc-text">开始Docker之旅</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Hello-Docker"><span class="toc-text">Hello Docker</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改镜像"><span class="toc-text">修改镜像</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Dockerfile实践"><span class="toc-text">Dockerfile实践</span></a></li></ol></li></ol></li></ol>
-</div>
-    
-</div>
-
-
-<div class="search-field" id="search-field">
-    <div class="search-container">
-        <div class="search-input">
-            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
-            <input id="search-input"/>
-            <span id="begin-search">搜索</span>
-        </div>
-        <div class="search-result-container" id="search-result-container">
-
-        </div>
-    </div>
-</div>
-        <div class="index-about-mobile">
-            <i>  </i>
-        </div>
-    </div>
-    
-    <div class="index-middle">
-        <!-- Main Content -->
-        
-
-
-<div class="post-container">
-    <div class="post-title">
-        （二）Docker基本操作
-    </div>
-
-    <div class="post-meta">
-        <span class="attr">发布于：<span>2018-08-10 00:00:00</span></span>
-        
-        </span>
-        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
-</span>
-</span>
-    </div>
-    <div class="post-content ">
-        <h2 id="安装和运行Docker"><a href="#安装和运行Docker" class="headerlink" title="安装和运行Docker"></a>安装和运行Docker</h2><blockquote>
-<p>Docker底层依赖Linux内核技术，因此在Window和MacOS上使用的Docker，是由Docker应用程序虚拟了一个Linux虚拟机(轻量级)，然后将Docker CLI安装在宿主机上与之交互。</p>
-<pre><code class="bash">$ docker -v # 查看docker版本，检查是否安装成功
-Docker version 18.03.1-ce, build 9ee9f40
-</code></pre>
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="Anddd7"><title>（二）Docker基本操作 · Anddd7's Planet</title><meta name="description" content="安装和运行Docker
+Docker底层依赖Linux内核技术，因此在Window和MacOS上使用的Docker，是由Docker应用程序虚拟了一个Linux虚拟机(轻量级)，然后将Docker CLI安装在宿主机上与之交互。12$ docker -v # 查看docker版本，检查是否安装成功D"><meta name="keywords"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/assets/avatar.jpeg" style="width:127px;"><h3 title=""><a href="/">Anddd7's Planet</a></h3><div class="description"><p>Level Up! Programmer~</p></div></div></div><ul class="social-links"><li><a href="http://github.com/Anddd7"><i class="fa fa-github"></i></a></li></ul><div class="footer"><a target="_blank" href="/"><span>Nice Theme of </span></a><a href="https://github.com/Ben02/hexo-theme-Anatole">Anatole</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/archives">归档</a></li><li><a href="/about">关于</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li></div><div class="avatar"><img src="/assets/avatar.jpeg"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>（二）Docker基本操作</a></h3></div><div class="post-content"><h2 id="安装和运行Docker"><a href="#安装和运行Docker" class="headerlink" title="安装和运行Docker"></a>安装和运行Docker</h2><blockquote>
+<p>Docker底层依赖Linux内核技术，因此在Window和MacOS上使用的Docker，是由Docker应用程序虚拟了一个Linux虚拟机(轻量级)，然后将Docker CLI安装在宿主机上与之交互。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ docker -v <span class="comment"># 查看docker版本，检查是否安装成功</span></span><br><span class="line">Docker version 18.03.1-ce, build 9ee9f40</span><br></pre></td></tr></table></figure></p>
 </blockquote>
 <h2 id="获取镜像"><a href="#获取镜像" class="headerlink" title="获取镜像"></a>获取镜像</h2><p>镜像是Docker容器的基础，想要启动一个容器需要先创建/获得它的镜像。</p>
 <ul>
@@ -151,125 +23,65 @@ Docker version 18.03.1-ce, build 9ee9f40
 </ul>
 <h2 id="开始Docker之旅"><a href="#开始Docker之旅" class="headerlink" title="开始Docker之旅"></a>开始Docker之旅</h2><p>我们主要使用一个<code>busybox</code>镜像，它包含了一个基本的Linux操作系统和一些简单的指令，能帮助我们快速掌握Docker的基础用法。</p>
 <h3 id="Hello-Docker"><a href="#Hello-Docker" class="headerlink" title="Hello Docker"></a>Hello Docker</h3><ol>
-<li>拉取镜像：docker会向注册过的仓库(本地或是远程)拉取目标镜像<pre><code class="bash">$ docker pull busybox
-Using default tag: latest
-latest: Pulling from library/busybox
-8c5a7da1afbc: Pull complete
-Digest: sha256:cb63aa0641a885f54de20f61d152187419e8f6b159ed11a251a09d115fdff9bd
-Status: Downloaded newer image for busybox:latest
-</code></pre>
+<li><p>拉取镜像：docker会向注册过的仓库(本地或是远程)拉取目标镜像</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ docker pull busybox</span><br><span class="line">Using default tag: latest</span><br><span class="line">latest: Pulling from library/busybox</span><br><span class="line">8c5a7da1afbc: Pull complete</span><br><span class="line">Digest: sha256:cb63aa0641a885f54de20f61d152187419e8f6b159ed11a251a09d115fdff9bd</span><br><span class="line">Status: Downloaded newer image <span class="keyword">for</span> busybox:latest</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看镜像</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ docker images</span><br><span class="line">REPOSITORY                                  TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">busybox                                     latest              e1ddd7948a1c        35 hours ago        1.16MB</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动容器：并告知容器打印‘Hello Docker’</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ docker run busybox <span class="built_in">echo</span> <span class="string">"Hello Docker"</span></span><br><span class="line">Hello Docker</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<ol start="2">
-<li>查看镜像<pre><code class="bash">$ docker images
-REPOSITORY                                  TAG                 IMAGE ID            CREATED             SIZE
-busybox                                     latest              e1ddd7948a1c        35 hours ago        1.16MB
-</code></pre>
-</li>
-</ol>
-<ol start="3">
-<li>启动容器：并告知容器打印‘Hello Docker’<pre><code class="bash">$ docker run busybox echo &quot;Hello Docker&quot;
-Hello Docker
-</code></pre>
 <blockquote>
 <p><code>docker run [image] [command]</code>：启动一个容器并执行指定命令</p>
 </blockquote>
+<ol start="4">
+<li>启动交互式容器：打开容器内的终端并进行交互<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -it busybox sh</span><br><span class="line">/ <span class="comment"># echo 'Hello Docker'</span></span><br><span class="line">Hello Docker</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<ol start="4">
-<li>启动交互式容器：打开容器内的终端并进行交互<pre><code class="bash">$ docker run -it busybox sh
-/ # echo &#39;Hello Docker&#39;
-Hello Docker
-</code></pre>
 <blockquote>
 <ul>
 <li>-t：在新容器内指定一个伪终端或终端</li>
 <li>-i：允许你对容器内的标准输入(STDIN)进行交互</li>
 </ul>
 </blockquote>
+<ol start="5">
+<li>后台启动容器，发送指令给后台容器<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -dit busybox</span><br><span class="line">0395c8f9ac04626d96cbef7860af59c1e062490f4e0f311ed94b25e4b18b06b4</span><br><span class="line">$ docker <span class="built_in">exec</span> 0395c8f9ac04626d96cbef7860af59c1e062490f4e0f311ed94b25e4b18b06b4 <span class="built_in">echo</span> <span class="string">"Hello Docker"</span></span><br><span class="line">Hello Docker</span><br><span class="line">$ docker <span class="built_in">exec</span> -it 0395c8f9ac04626d96cbef7860af59c1e062490f4e0f311ed94b25e4b18b06b4 sh</span><br><span class="line">/ <span class="comment"># echo 'Hello Docker'</span></span><br><span class="line">Hello Docker</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<ol start="5">
-<li>后台启动容器，发送指令给后台容器<pre><code class="bash">$ docker run -dit busybox
-0395c8f9ac04626d96cbef7860af59c1e062490f4e0f311ed94b25e4b18b06b4
-$ docker exec 0395c8f9ac04626d96cbef7860af59c1e062490f4e0f311ed94b25e4b18b06b4 echo &quot;Hello Docker&quot;
-Hello Docker
-$ docker exec -it 0395c8f9ac04626d96cbef7860af59c1e062490f4e0f311ed94b25e4b18b06b4 sh
-/ # echo &#39;Hello Docker&#39;
-Hello Docker
-</code></pre>
 <blockquote>
 <p><code>docker exec [Container-ID/Name] [command]</code>：向已启动的容器发送指定命令<br><code>docker run --name [Container-Name] [image]</code>：设置容器名称，方便按容器名进行操作</p>
 </blockquote>
-</li>
-</ol>
 <ol start="6">
-<li>查看容器<br><code>`</code>bash<br>$ docker ps # 查看运行的容器<br>$ docker ps -a # 查看所有容器<br>$ docker images # 查看所有镜像</li>
-</ol>
-<p>$ docker start [Container ID/Name] # 启动一个已关闭的容器<br>$ docker kill [Container ID/Name] # 关闭一个运行中的容器<br>$ docker logs [Container ID/Name] # 查看指定容器的log</p>
-<p>$ docker rm $(docker ps -a -q) # 删除所有容器<br>$ docker rmi $(docker images -q) # 删除所有镜像<br>$ docker rmi $(docker images -f “dangling=true” -q) # 删除’悬空’的镜像</p>
-<pre><code>
-
-
-0. 其他应用
-&gt; Docker Hub中有非常多的镜像，有Linux各种发行版的操作系统，还有Http Server、数据库等打包好的应用。你可以很快的拉取一个MongoDB镜像，然后在本机上运行容器并提供服务，而不需要进行繁琐的安装和环境配置。
-
-
-
-### Dockerfile
-
-虽然官方镜像很多，但我们仍希望自定义我们的容器来提供一些额外功能。例如，我希望启动容器能自动打印Hello Docker。前面提到Docker的镜像是通过分层结构存储的，我们需要在已有的镜像上新增一层用来支持我们的改动 - Dockerfile。
-
-**Dockerfile** 是用来描述镜像构建过程中的所有操作，包括基础镜像、拉取文件、执行指令等。
-``` Dockerfile
-FROM busybox # 指定镜像基于哪个基础镜像
-MAINTAINER author # 设置该镜像的作者
-ENV version=0.0.1 # 设置环境变量
-USER ... # 镜像正在运行时设置一个UID
-WORKDIR ... # 指定RUN、CMD与ENTRYPOINT命令的工作目录
-VOLUME ... | [...,...] # 设置容器内的匿名卷
-RUN [...,...] # 在shell或者exec的环境下执行的命令, RUN指令会在新创建的镜像上添加新的层面, 接下来提交的结果用在Dockerfile的下一条指令中
-ADD &lt;source&gt; &lt;destination&gt; # 添加文件指令，source可以是远程的地址
-COPY &lt;source&gt; &lt;destination&gt; # 复制文件指令
-EXPOSE 80 # 指定容器在运行时监听的端口
-ENTRYPOINT [&quot;sh&quot;] # 指定容器的启动程序及参数
-CMD ... # (唯一，最后一条生效)容器启动程序的参数，可以被docker run [IMAGE] [COMMAND]替换
-</code></pre><p>特别说明<code>CMD</code>：<br><code>CMD [&quot;executable&quot;,&quot;param1&quot;,&quot;param2&quot;]</code>：运行一个可执行的文件并提供参数<br><code>CMD [&quot;param1&quot;,&quot;param2&quot;]</code>：为ENTRYPOINT指定参数<br><code>CMD command param1 param2</code>：以”/bin/sh -c”的方法执行的命令</p>
-<h3 id="修改镜像"><a href="#修改镜像" class="headerlink" title="修改镜像"></a>修改镜像</h3><ol>
-<li>创建Dockerfile：需要完成这个功能，我们只需要在<code>busybox</code>容器启动时，默认执行打印动作即可。<pre><code class="Dockfile">FROM busybox
-# 1.
-# CMD [&quot;echo&quot;,&quot;Hello World&quot;] # 仅打印
-# 2.
-# CMD echo &quot;Hello World&quot; &amp; sh # 打印后自动开启sh
-CMD [&quot;sh&quot;,&quot;-c&quot;,&quot;echo &#39;Hello World&#39; &amp; sh&quot;] # 同上，打印后自动开启sh
-</code></pre>
+<li><p>查看容器</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ docker ps <span class="comment"># 查看运行的容器</span></span><br><span class="line">$ docker ps -a <span class="comment"># 查看所有容器</span></span><br><span class="line">$ docker images <span class="comment"># 查看所有镜像</span></span><br><span class="line"></span><br><span class="line">$ docker start [Container ID/Name] <span class="comment"># 启动一个已关闭的容器</span></span><br><span class="line">$ docker <span class="built_in">kill</span> [Container ID/Name] <span class="comment"># 关闭一个运行中的容器</span></span><br><span class="line">$ docker logs [Container ID/Name] <span class="comment"># 查看指定容器的log</span></span><br><span class="line"></span><br><span class="line">$ docker rm $(docker ps -a -q) <span class="comment"># 删除所有容器</span></span><br><span class="line">$ docker rmi $(docker images -q) <span class="comment"># 删除所有镜像</span></span><br><span class="line">$ docker rmi $(docker images -f <span class="string">"dangling=true"</span> -q) <span class="comment"># 删除'悬空'的镜像</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>其他应用</p>
+<blockquote>
+<p>Docker Hub中有非常多的镜像，有Linux各种发行版的操作系统，还有Http Server、数据库等打包好的应用。你可以很快的拉取一个MongoDB镜像，然后在本机上运行容器并提供服务，而不需要进行繁琐的安装和环境配置。</p>
+</blockquote>
 </li>
 </ol>
-<ol start="2">
-<li>生成镜像<pre><code class="bash">$ docker build -f Dockerfile-1 -t anddd7/busybox:latest .
-Sending build context to Docker daemon  2.048kB
-Step 1/2 : FROM busybox
----&gt; e1ddd7948a1c
-Step 2/2 : CMD [&quot;sh&quot;,&quot;-c&quot;,&quot;echo &#39;Hello World&#39; &amp; sh&quot;]
----&gt; Running in 85c38bf6ae46
-Removing intermediate container 85c38bf6ae46
----&gt; 1ff726e635ac
-Successfully built 1ff726e635ac
-Successfully tagged anddd7/busybox:latest
-</code></pre>
+<h3 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h3><p>虽然官方镜像很多，但我们仍希望自定义我们的容器来提供一些额外功能。例如，我希望启动容器能自动打印Hello Docker。前面提到Docker的镜像是通过分层结构存储的，我们需要在已有的镜像上新增一层用来支持我们的改动 - Dockerfile。</p>
+<p><strong>Dockerfile</strong> 是用来描述镜像构建过程中的所有操作，包括基础镜像、拉取文件、执行指令等。<br><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> busybox <span class="comment"># 指定镜像基于哪个基础镜像</span></span><br><span class="line"><span class="keyword">MAINTAINER</span> author <span class="comment"># 设置该镜像的作者</span></span><br><span class="line"><span class="keyword">ENV</span> version=<span class="number">0.0</span>.<span class="number">1</span> <span class="comment"># 设置环境变量</span></span><br><span class="line"><span class="keyword">USER</span> ... <span class="comment"># 镜像正在运行时设置一个UID</span></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="bash"> ... <span class="comment"># 指定RUN、CMD与ENTRYPOINT命令的工作目录</span></span></span><br><span class="line"><span class="bash">VOLUME ... | [...,...] <span class="comment"># 设置容器内的匿名卷</span></span></span><br><span class="line"><span class="bash">RUN [...,...] <span class="comment"># 在shell或者exec的环境下执行的命令, RUN指令会在新创建的镜像上添加新的层面, 接下来提交的结果用在Dockerfile的下一条指令中</span></span></span><br><span class="line"><span class="bash">ADD &lt;<span class="built_in">source</span>&gt; &lt;destination&gt; <span class="comment"># 添加文件指令，source可以是远程的地址</span></span></span><br><span class="line"><span class="bash">COPY &lt;<span class="built_in">source</span>&gt; &lt;destination&gt; <span class="comment"># 复制文件指令</span></span></span><br><span class="line"><span class="bash">EXPOSE 80 <span class="comment"># 指定容器在运行时监听的端口</span></span></span><br><span class="line"><span class="bash">ENTRYPOINT [<span class="string">"sh"</span>] <span class="comment"># 指定容器的启动程序及参数</span></span></span><br><span class="line"><span class="bash">CMD ... <span class="comment"># (唯一，最后一条生效)容器启动程序的参数，可以被docker run [IMAGE] [COMMAND]替换</span></span></span><br></pre></td></tr></table></figure></p>
+<p>特别说明<code>CMD</code>：<br><code>CMD [&quot;executable&quot;,&quot;param1&quot;,&quot;param2&quot;]</code>：运行一个可执行的文件并提供参数<br><code>CMD [&quot;param1&quot;,&quot;param2&quot;]</code>：为ENTRYPOINT指定参数<br><code>CMD command param1 param2</code>：以”/bin/sh -c”的方法执行的命令</p>
+<h3 id="修改镜像"><a href="#修改镜像" class="headerlink" title="修改镜像"></a>修改镜像</h3><ol>
+<li><p>创建Dockerfile：需要完成这个功能，我们只需要在<code>busybox</code>容器启动时，默认执行打印动作即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">FROM busybox</span><br><span class="line"># 1.</span><br><span class="line"># CMD [&quot;echo&quot;,&quot;Hello World&quot;] # 仅打印</span><br><span class="line"># 2.</span><br><span class="line"># CMD echo &quot;Hello World&quot; &amp; sh # 打印后自动开启sh</span><br><span class="line">CMD [&quot;sh&quot;,&quot;-c&quot;,&quot;echo &apos;Hello World&apos; &amp; sh&quot;] # 同上，打印后自动开启sh</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>生成镜像</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ docker build -f Dockerfile-1 -t anddd7/busybox:latest .</span><br><span class="line">Sending build context to Docker daemon  2.048kB</span><br><span class="line">Step 1/2 : FROM busybox</span><br><span class="line"> ---&gt; e1ddd7948a1c</span><br><span class="line">Step 2/2 : CMD [<span class="string">"sh"</span>,<span class="string">"-c"</span>,<span class="string">"echo 'Hello World' &amp; sh"</span>]</span><br><span class="line"> ---&gt; Running <span class="keyword">in</span> 85c38bf6ae46</span><br><span class="line">Removing intermediate container 85c38bf6ae46</span><br><span class="line"> ---&gt; 1ff726e635ac</span><br><span class="line">Successfully built 1ff726e635ac</span><br><span class="line">Successfully tagged anddd7/busybox:latest</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
 <blockquote>
 <ul>
 <li>-f：Dockerfile文件(当名称不是默认的Dockerfile时使用)</li>
 <li>-t：镜像名称+tag标签<br>可以看到，build过程中引用/生成了不同的层（包括busybox镜像和中间层）。使用<code>docker images</code>和<code>docker history</code>进行查看。</li>
 </ul>
 </blockquote>
-</li>
-</ol>
 <ol start="3">
-<li>启动容器<pre><code class="bash">$ docker run -it anddd7/busybox
-Hello World
-/ #
-</code></pre>
+<li>启动容器<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -it anddd7/busybox</span><br><span class="line">Hello World</span><br><span class="line">/ <span class="comment">#</span></span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <h4 id="Dockerfile实践"><a href="#Dockerfile实践" class="headerlink" title="Dockerfile实践"></a>Dockerfile实践</h4><ul>
@@ -279,63 +91,4 @@ Hello World
 <li>CMD与ENTRYPOINT命令请使用数组语法。</li>
 <li>..</li>
 </ul>
-
-        
-        <br />
-        <div id="comment-container">
-        </div>
-        <div id="disqus_thread"></div>
-
-        <div id="lv-container">
-        </div>
-
-    </div>
-</div>
-    </div>
-</div>
-
-
-<footer class="footer">
-    <ul class="list-inline text-center">
-        
-        
-
-        
-
-        
-
-        
-
-        
-
-    </ul>
-    
-    <p>
-        <span id="busuanzi_container_site_pv">
-            <span id="busuanzi_value_site_pv"></span> PV
-        </span>
-        <span id="busuanzi_container_site_uv">
-            <span id="busuanzi_value_site_uv"></span> UV
-        </span>
-        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
-</footer>
-
-
-
-
-</body>
-
-<script>
-    // We expose some of the variables needed by the front end
-    window.hexo_search_path = ""
-    window.hexo_root = "/"
-    window.isPost = true
-</script>
-<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-
-
-
-</html>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2018-08-10</span><i class="fa fa-tag"></i></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" href="http://twitter.com/home?status=,https://anddd7.github.io/docker/docker-2/,Anddd7's Planet,（二）Docker基本操作,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/java/java-workflow-engine/" title="Java工作流引擎">上一篇</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/docker/docker-4/" title="（四）多主机部署和服务发现">下一篇</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>
